@@ -1,5 +1,5 @@
 .Navbar {
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   width: 100%;
@@ -7,28 +7,37 @@
   background-color: var(--background-color);
   display: flex;
   align-items: center;
-  padding: 0 1rem;
-}
 
-.Navbar .logo {
-  height: calc(var(--navbar-height) - 16px); /* Логотип будет меньше Navbar с отступами */
-  width: auto; /* Сохраняем пропорции */
-  margin: auto 0; /* Центрируем внутри Navbar */
-}
+  .logo {
+    height: calc(var(--navbar-height) - 16px);
+    width: auto;
+    margin: auto 0;
+    //will-change: filter;
+    //transition: filter 300ms;
 
-.logo {
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em var(--green-dark));
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
+    //&:hover {
+    //  filter: drop-shadow(0 0 2em var(--green-dark));
+    //}
+  }
 
-.Title {
-  font-size: var(--font-size-title);
-  margin-left: 20px;
-  font-weight: 600;
+  .Title {
+    font-size: var(--font-size-title);
+    margin-left: 20px;
+    font-weight: 600;
+    position: relative;
+
+    &:hover + .title-end {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .title-end {
+    margin-left: 20px;
+    font-weight: 600;
+    color: var(--green-light);
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
 }

@@ -1,0 +1,13 @@
+.lang-switcher {
+  position: absolute; /* Абсолютное позиционирование внутри Navbar */
+  top: -10px; /* Отступ от верхнего края */
+  right: -8px; /* Отступ от правого края */
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: var(--gray-dark); /* Пример оформления */
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+}
