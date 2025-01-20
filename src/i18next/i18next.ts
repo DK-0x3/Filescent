@@ -8,7 +8,7 @@ i18n
     .use(LanguageDetector) // Для определения языка браузера
     .use(initReactI18next) // Для интеграции с React
     .init({
-        fallbackLng: 'en', // Язык по умолчанию
+        fallbackLng: 'ru', // Язык по умолчанию
         supportedLngs: ['en', 'ru'], // Поддерживаемые языки
         debug: true, // Для отладки
         interpolation: {

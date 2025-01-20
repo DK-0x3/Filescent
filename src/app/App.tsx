@@ -1,6 +1,7 @@
 import './styles/App.css'
 import {Navbar} from "../widgets/navbar";
 import './styles/globaVariables.scss';
+import {ParametersPanel} from "../widgets/parametersPanel";
 
 function App() {
 
@@ -8,6 +9,7 @@ function App() {
     <>
       <div className="App">
         <Navbar/>
+        <ParametersPanel/>
       </div>
     </>
   )

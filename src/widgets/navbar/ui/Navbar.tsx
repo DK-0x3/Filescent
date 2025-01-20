@@ -19,7 +19,7 @@ export const Navbar = (props: INavbarProps) => {
 			<img src={logo} className="logo" alt="Vite logo"/>
 
 			<label className='Title'>Filescent</label>
-			<label className='title-end'>{t('the best file exchanger!')}</label>
+			<label className='title-end'>{t('Лучший обменник файлами!')}</label>
 
 			<LangSwitcher/>
 		</div>

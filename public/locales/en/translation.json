@@ -1,6 +1,18 @@
 {
-  "Drag & Drop Files": "Drag & Drop Files",
-  "EN": "EN",
-  "test": "test",
-  "the best file exchanger!": "the best file exchanger!"
+  "Перетащите файлы": "Drag & Drop Files",
+  "Короткий язык": "EN",
+  "Тест": "Test",
+  "Лучший обменник файлами!": "The best file exchanger!",
+  "Параметры": "Parameters",
+  "1 день": "1 day",
+  "3 дня": "3 days",
+  "7 дней": "7 days",
+  "14 дней": "14 days",
+  "30 дней": "30 days",
+  "Бесконечно": "Infinity",
+  "1 скач-е": "1 d-load",
+  "3 скач-я": "3 d-load",
+  "5 скач-й": "5 d-loads",
+  "10 скач-й": "10 d-loads",
+  "Свое": "Own"
 }

@@ -20,7 +20,7 @@ export const LangSwitcher = (props: ILangSwitcherProps) => {
 		<div className={"lang-switcher " + className}
             onClick={() => toggleLang()}
         >
-            {t('EN')}
+            {t('Короткий язык')}
 		</div>
 	);
 };
