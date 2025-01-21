@@ -5,6 +5,10 @@ import countLoadIcon from '../../../shared/assets/svg/countLoad.svg';
 import passwordIcon from '../../../shared/assets/svg/password.svg';
 import {DropDownList, IDropDownItem} from "../../../shared/ui/dropDownList/DropDownList.tsx";
 import {InputApp} from "../../../shared/ui/input/InputApp.tsx";
+import {DropDownMenuHover} from "../../../shared/ui/dropDownMenuHover/DropDownMenuHover.tsx";
+import {InputOutlinedMUI} from "../../../shared/ui/inputOutlinedMUI/InputOutlinedMUI.tsx";
+import {Switch} from "@mui/material";
+import {SwitchMUI} from "../../../shared/ui/switchMUI/switchMUI.tsx";
 
 interface IParametersPanelProps {
     className?: string;
@@ -80,21 +84,24 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 				</div>
 				<div className='containerTime'>
 					<img src={timeIcon} alt='time'/>
-					<DropDownList
+					<DropDownMenuHover
 						fnChanged={() => void {}}
 						defaultItem={defaultTimeListItems[0]}
 						items={defaultTimeListItems}/>
 				</div>
 				<div className='containerCountLoad'>
 					<img src={countLoadIcon} alt='time'/>
-					<DropDownList
+					<DropDownMenuHover
 						fnChanged={() => void {}}
 						defaultItem={defaultCountLoadListItems[0]}
 						items={defaultCountLoadListItems}/>
 				</div>
 				<div className='containerPassword'>
 					<img src={passwordIcon} alt='time'/>
-					<InputApp placeholder='пароль'/>
+					<SwitchMUI/>
+				</div>
+				<div className='containerPasswordInput'>
+					<InputOutlinedMUI placeholder='пароль'/>
 				</div>
 			</div>
 		</footer>
