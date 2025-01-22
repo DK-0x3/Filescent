@@ -1,3 +1,3 @@
-import {ParametersPanel} from "./ui/ParametersPanel.tsx";
+import { ParametersPanel } from './ui/ParametersPanel';
 
-export {ParametersPanel};
+export { ParametersPanel };

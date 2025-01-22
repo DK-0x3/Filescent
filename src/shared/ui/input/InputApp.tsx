@@ -1,5 +1,5 @@
 import './InputApp.scss';
-import {FC} from "react";
+import { FC } from 'react';
 
 interface IInputAppProps {
     className?: string;
@@ -10,19 +10,19 @@ interface IInputAppProps {
 
 export const InputApp: FC<IInputAppProps> = (props: IInputAppProps) => {
 	const {
-        placeholder,
+		placeholder,
 		className,
-        onChange,
-        type = 'text',
-        ...otherProps
+		onChange,
+		type = 'text',
+		...otherProps
 	} = props;
 
 	return (
-        <input {...otherProps}
-            className={`InputApp ${className}`}
-            type={type}
-            onChange={onChange}
-            placeholder={placeholder}
-        />
-    );
+		<input {...otherProps}
+			className={`InputApp ${className}`}
+			type={type}
+			onChange={onChange}
+			placeholder={placeholder}
+		/>
+	);
 };

@@ -1,5 +1,5 @@
-import {Navbar} from "./ui/Navbar.tsx";
+import { Navbar } from './ui/Navbar';
 
 export {
-    Navbar
+	Navbar
 };

@@ -9,18 +9,18 @@ export const LangSwitcher = (props: ILangSwitcherProps) => {
 	const { t, i18n } = useTranslation();
 
 	const {
-        className,
+		className,
 	} = props;
 
-    const toggleLang = () => {
-        i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru');
-    };
+	const toggleLang = () => {
+		i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru');
+	};
 
 	return (
-		<div className={"lang-switcher " + className}
-            onClick={() => toggleLang()}
-        >
-            {t('Короткий язык')}
+		<div className={'lang-switcher ' + className}
+			onClick={() => toggleLang()}
+		>
+			{t('Короткий язык')}
 		</div>
 	);
 };

@@ -3,12 +3,12 @@ import { useTranslation } from 'react-i18next';
 import timeIcon from '../../../shared/assets/svg/time.svg';
 import countLoadIcon from '../../../shared/assets/svg/countLoad.svg';
 import passwordIcon from '../../../shared/assets/svg/password.svg';
-import {DropDownList, IDropDownItem} from "../../../shared/ui/dropDownList/DropDownList.tsx";
-import {InputApp} from "../../../shared/ui/input/InputApp.tsx";
-import {DropDownMenuHover} from "../../../shared/ui/dropDownMenuHover/DropDownMenuHover.tsx";
-import {InputOutlinedMUI} from "../../../shared/ui/inputOutlinedMUI/InputOutlinedMUI.tsx";
-import {Switch} from "@mui/material";
-import {SwitchMUI} from "../../../shared/ui/switchMUI/switchMUI.tsx";
+import { IDropDownItem } from '../../../shared/ui/dropDownMenuHover/interface/IDropDownItem';
+import { DropDownMenuHover } from '../../../shared/ui/dropDownMenuHover/DropDownMenuHover';
+import { SwitchMUI } from '../../../shared/ui/switchMUI/switchMUI';
+import { InputOutlinedMUI } from '../../../shared/ui/inputOutlinedMUI/InputOutlinedMUI';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store/store';
 
 interface IParametersPanelProps {
     className?: string;
@@ -20,6 +20,8 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 	const {
 		className,
 	} = props;
+
+	const passwordEnabled = useSelector((state: RootState) => state.parameterSettings.passwordEnabled);
 
 	const defaultTimeListItems: IDropDownItem[] = [
 		{
@@ -98,11 +100,11 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 				</div>
 				<div className='containerPassword'>
 					<img src={passwordIcon} alt='time'/>
-					<SwitchMUI/>
+					<SwitchMUI />
 				</div>
-				<div className='containerPasswordInput'>
+				{passwordEnabled && <div className='containerPasswordInput'>
 					<InputOutlinedMUI placeholder='пароль'/>
-				</div>
+				</div>}
 			</div>
 		</footer>
 	);

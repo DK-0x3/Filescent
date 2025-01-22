@@ -1,18 +1,18 @@
-import './styles/App.css'
-import {Navbar} from "../widgets/navbar";
+import './styles/App.css';
+import { Navbar } from '../widgets/navbar';
 import './styles/globaVariables.scss';
-import {ParametersPanel} from "../widgets/parametersPanel";
+import { ParametersPanel } from '../widgets/parametersPanel';
 
-function App() {
+const App = () => {
 
-  return (
-    <>
-      <div className="App">
-        <Navbar/>
-        <ParametersPanel/>
-      </div>
-    </>
-  )
-}
+	return (
+		<>
+			<div className="App">
+				<Navbar/>
+				<ParametersPanel/>
+			</div>
+		</>
+	);
+};
 
-export default App
+export default App;

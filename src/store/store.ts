@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
+import parametersSettingsSlice from './services/togglePassword/parametersSettingsSlice';
 
-// Создание store
 const store = configureStore({
-    reducer: {
-        
-    },
+	reducer: {
+		parameterSettings: parametersSettingsSlice,
+	},
 });
 
 // Экспорт типов для глобального состояния и dispatch
