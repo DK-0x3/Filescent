@@ -2,23 +2,19 @@ import { useState } from 'react';
 import './DropDownMenuHover.scss';
 import { useTranslation } from 'react-i18next';
 import { IDropDownItem } from './interface/IDropDownItem';
-
-export interface IDropDownMenuHoverProps {
-    fnChanged: (selectedItem: IDropDownItem) => void;
-    defaultItem: IDropDownItem;
-    items: IDropDownItem[];
-    className?: string;
-}
+import { IDropDownMenuHoverProps } from './interface/IDropDownMenuHoverProps';
 
 export const DropDownMenuHover = (props: IDropDownMenuHoverProps) => {
 	const { t } = useTranslation();
-	const { className, fnChanged, defaultItem, items } = props;
+	const { className, fnChanged, defaultSelectItem, items } = props;
 
-	const [selectedOption, setSelectedOption] = useState<IDropDownItem>(defaultItem);
+	const [selectedOption, setSelectedOption] = useState<IDropDownItem>(defaultSelectItem);
 
 	const handleOptionClick = (item: IDropDownItem) => {
+		if (fnChanged) {
+			fnChanged(item);
+		}
 		setSelectedOption(item);
-		fnChanged(item);
 	};
 
 	return (

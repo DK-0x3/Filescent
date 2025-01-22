@@ -6,10 +6,6 @@
   width: 100%;
   justify-content: center;
 
-  //.select:not(:last-child) {
-  //  margin-right: 40px;
-  //}
-
   .select {
     border: 2px solid transparent;
     border-radius: 5px;
@@ -18,6 +14,7 @@
     width: 100%;
     cursor: default;
     background-color: var(--gray-dark);
+    z-index: 10;
 
     span {
       color: var(--white-primary);

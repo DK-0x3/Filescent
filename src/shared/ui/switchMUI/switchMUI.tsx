@@ -1,22 +1,16 @@
 import React, { useState } from 'react';
 import { Switch } from '@mui/material';
 import { useAppDispatch } from '../../../store/types/useAppDispatch';
-import { togglePassword } from '../../../store/services/togglePassword/parametersSettingsSlice';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../store/store';
-
-interface ISwitchMUIProps {
-	className?: string;
-	onToggle?: (checked: boolean) => Promise<boolean>; // Возвращает промис для обработки
-}
+import { ISwitchMUIProps } from './interface/ISwitchMUIProps';
 
 export const SwitchMUI: React.FC<ISwitchMUIProps> = (props) => {
-	const { className, onToggle } = props;
+	const { onPrevToggle, sx, changeSelector, onDispatchToggle } = props;
 
 	const dispatch = useAppDispatch();
-	const passwordEnabled = useSelector((state: RootState) => state.parameterSettings.passwordEnabled);
+	const passwordEnabled = useSelector(changeSelector);
 
-	const [isProcessing, setIsProcessing] = useState(false); // Флаг для предотвращения спама
+	const [isProcessing, setIsProcessing] = useState(false);
 
 	const handleChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
 		if (isProcessing) return; // Блокируем повторное нажатие пока идёт обработка
@@ -25,15 +19,15 @@ export const SwitchMUI: React.FC<ISwitchMUIProps> = (props) => {
 		setIsProcessing(true);
 
 		try {
-			if (onToggle) {
-				const success = await onToggle(isChecked);
+			if (onPrevToggle) {
+				const success = await onPrevToggle(isChecked);
 				if (success) {
-					dispatch(togglePassword(isChecked));
+					dispatch(onDispatchToggle(isChecked));
 				} else {
 					console.error('Toggle action failed');
 				}
 			} else {
-				dispatch(togglePassword(isChecked));
+				dispatch(onDispatchToggle(isChecked));
 			}
 		} catch (error) {
 			console.error('Error during toggle:', error);
@@ -44,7 +38,6 @@ export const SwitchMUI: React.FC<ISwitchMUIProps> = (props) => {
 
 	return (
 		<Switch
-			className={className}
 			checked={passwordEnabled}
 			onChange={handleChange}
 			sx={{
@@ -57,8 +50,9 @@ export const SwitchMUI: React.FC<ISwitchMUIProps> = (props) => {
 				'& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
 					backgroundColor: 'var(--green-dark)',
 				},
+				...(sx || {}),
 			}}
-			disabled={isProcessing} // Отключаем переключатель, пока идёт обработка
+			disabled={isProcessing}
 		/>
 	);
 };

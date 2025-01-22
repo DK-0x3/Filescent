@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import parametersSettingsSlice from './services/togglePassword/parametersSettingsSlice';
+import parametersSettingsSlice from './services/parametersSettings/parametersSettingsSlice';
+import { IStateSchema } from './IStateSchema';
 
-const store = configureStore({
+const store = configureStore<IStateSchema>({
 	reducer: {
 		parameterSettings: parametersSettingsSlice,
 	},

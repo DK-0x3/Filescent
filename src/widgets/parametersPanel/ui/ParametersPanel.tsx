@@ -3,12 +3,29 @@ import { useTranslation } from 'react-i18next';
 import timeIcon from '../../../shared/assets/svg/time.svg';
 import countLoadIcon from '../../../shared/assets/svg/countLoad.svg';
 import passwordIcon from '../../../shared/assets/svg/password.svg';
-import { IDropDownItem } from '../../../shared/ui/dropDownMenuHover/interface/IDropDownItem';
 import { DropDownMenuHover } from '../../../shared/ui/dropDownMenuHover/DropDownMenuHover';
 import { SwitchMUI } from '../../../shared/ui/switchMUI/switchMUI';
-import { InputOutlinedMUI } from '../../../shared/ui/inputOutlinedMUI/InputOutlinedMUI';
+import { InputPasswordOutlinedMUI } from '../../../shared/ui/inputPasswordOutlinedMUI/InputPasswordOutlinedMUI';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../../store/store';
+import { getPasswordEnabled } from '../../../store/services/parametersSettings/selectors/getPasswordEnabled';
+import {
+	toggleEnableCustomCountLoad,
+	toggleEnableCustomTime,
+	togglePassword
+} from '../../../store/services/parametersSettings/parametersSettingsSlice';
+import { DefaultTimeItems, DefaultTimeKeys, DefaultTimeSelectItem } from '../types/DefaultTimeItems';
+import {
+	DefaultCountLoadItems,
+	DefaultCountLoadKeys,
+	DefaultCountLoadSelectItem } from '../types/DefaultCountLoadItems';
+import { IDropDownItem } from '../../../shared/ui/dropDownMenuHover/interface/IDropDownItem';
+import { useAppDispatch } from '../../../store/types/useAppDispatch';
+import { InputOutlinedMUI } from '../../../shared/ui/inputOutlinedMUI/InputOutlinedMUI';
+import { getEnabledCustomTime } from '../../../store/services/parametersSettings/selectors/getEnabledCustomTime';
+import {
+	getEnabledCustomCountLoad
+} from '../../../store/services/parametersSettings/selectors/getEnabledCustomCountLoad';
+import { Tooltip } from '@mui/material';
 
 interface IParametersPanelProps {
     className?: string;
@@ -16,67 +33,31 @@ interface IParametersPanelProps {
 
 export const ParametersPanel = (props: IParametersPanelProps) => {
 	const { t } = useTranslation();
+	const dispatch = useAppDispatch();
 
 	const {
 		className,
 	} = props;
 
-	const passwordEnabled = useSelector((state: RootState) => state.parameterSettings.passwordEnabled);
+	const isPasswordEnable = useSelector(getPasswordEnabled);
+	const isEnableCustomTime = useSelector(getEnabledCustomTime);
+	const isEnableCustomCountLoad = useSelector(getEnabledCustomCountLoad);
 
-	const defaultTimeListItems: IDropDownItem[] = [
-		{
-			key: 'time1d',
-			text: '1 день',
-		},
-		{
-			key: 'time3d',
-			text: '3 дня',
-		},
-		{
-			key: 'time7d',
-			text: '7 дней',
-		},
-		{
-			key: 'time14d',
-			text: '14 дней',
-		},
-		{
-			key: 'time30d',
-			text: '30 дней',
-		},
-		{
-			key: 'timeOwn',
-			text: 'Свое',
-		},
-	];
-
-	const defaultCountLoadListItems: IDropDownItem[] = [
-		{
-			key: 'countLoadInfinity',
-			text: 'Бесконечно',
-		},
-		{
-			key: 'countLoad1',
-			text: '1 скач-е',
-		},
-		{
-			key: 'countLoad3',
-			text: '3 скач-я',
-		},
-		{
-			key: 'countLoad5',
-			text: '5 скач-й',
-		},
-		{
-			key: 'countLoad10',
-			text: '10 скач-й',
-		},
-		{
-			key: 'countLoadOwn',
-			text: 'Свое',
-		},
-	];
-
+	const handleSelectCustomTime = (item: IDropDownItem) => {
+		if (item.key === DefaultTimeKeys.CUSTOM) {
+			dispatch(toggleEnableCustomTime(true));
+			return;
+		}
+		dispatch(toggleEnableCustomTime(false));
+	};
+	const handleSelectCustomCountLoad = (item: IDropDownItem) => {
+		if (item.key === DefaultCountLoadKeys.CUSTOM) {
+			dispatch(toggleEnableCustomCountLoad(true));
+			return;
+		}
+		dispatch(toggleEnableCustomCountLoad(false));
+	};
+	
 	return (
 		<footer className={`ParametersPanel ${className}`}>
 			<div className='containerGridMain'>
@@ -85,26 +66,68 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 					<div className='separator'></div>
 				</div>
 				<div className='containerTime'>
-					<img src={timeIcon} alt='time'/>
+					<Tooltip
+						title={t('Время хранения файла')}
+						enterDelay={500}
+						leaveDelay={200}
+						placement='top'
+					>
+						<img src={timeIcon} alt='timeIcon'/>
+					</Tooltip>
 					<DropDownMenuHover
-						fnChanged={() => void {}}
-						defaultItem={defaultTimeListItems[0]}
-						items={defaultTimeListItems}/>
+						defaultSelectItem={DefaultTimeSelectItem}
+						items={DefaultTimeItems}
+						fnChanged={handleSelectCustomTime}/>
 				</div>
 				<div className='containerCountLoad'>
-					<img src={countLoadIcon} alt='time'/>
+					<Tooltip
+						title={t('Количество скачиваний')}
+						enterDelay={500}
+						leaveDelay={200}
+						placement='top'
+					>
+						<img src={countLoadIcon} alt='countLoadIcon'/>
+					</Tooltip>
 					<DropDownMenuHover
-						fnChanged={() => void {}}
-						defaultItem={defaultCountLoadListItems[0]}
-						items={defaultCountLoadListItems}/>
+						defaultSelectItem={DefaultCountLoadSelectItem}
+						items={DefaultCountLoadItems}
+						fnChanged={handleSelectCustomCountLoad}/>
 				</div>
 				<div className='containerPassword'>
-					<img src={passwordIcon} alt='time'/>
-					<SwitchMUI />
+					<Tooltip
+						title={t('Пароль для скачивания')}
+						enterDelay={500}
+						leaveDelay={200}
+						placement='top'
+					>
+						<img src={passwordIcon} alt='passwordIcon'/>
+					</Tooltip>
+					<SwitchMUI
+						onDispatchToggle={togglePassword}
+						changeSelector={getPasswordEnabled}
+					/>
 				</div>
-				{passwordEnabled && <div className='containerPasswordInput'>
-					<InputOutlinedMUI placeholder='пароль'/>
-				</div>}
+				<div className={`containerPasswordInput ${
+					isPasswordEnable ? 'fade-in' : 'fade-out'
+				}`}>
+					<InputPasswordOutlinedMUI placeholder='пароль'/>
+				</div>
+				<div className={`containerTimeInput ${
+					isEnableCustomTime ? 'fade-in' : 'fade-out'
+				}`}>
+					<InputOutlinedMUI
+						startAdornment='дни'
+						placeholder='кол-во'
+						type='number'/>
+				</div>
+				<div className={`containerCountLoadInput ${
+					isEnableCustomCountLoad ? 'fade-in' : 'fade-out'
+				}`}>
+					<InputOutlinedMUI
+						startAdornment='скач-я'
+						placeholder='кол-во'
+						type='number'/>
+				</div>
 			</div>
 		</footer>
 	);

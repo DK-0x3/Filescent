@@ -58,9 +58,44 @@
   align-items: center;
 }
 
-.containerPasswordInput {
-  grid-column: 3;
-  grid-row: 3;
+/* Общие стили для контейнеров */
+.containerInput {
   align-items: center;
   display: flex;
+  grid-row: 3;
+
+  /* Начальное состояние для анимации */
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 300ms, transform 300ms, visibility 300ms;
+  visibility: hidden;
+
+  &.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
+
+  &.fade-out {
+    opacity: 0;
+    transform: translateY(-10px);
+    visibility: hidden;
+  }
 }
+
+/* Специфичные модификаторы для каждого контейнера */
+.containerPasswordInput {
+  @extend .containerInput;
+  grid-column: 3;
+}
+
+.containerCountLoadInput {
+  @extend .containerInput;
+  grid-column: 2;
+}
+
+.containerTimeInput {
+  @extend .containerInput;
+  grid-column: 1;
+}
+
