@@ -1,15 +1,26 @@
 import { useEffect, useRef } from 'react';
-import QRCodeStyling from 'qr-code-styling';
+import QRCodeStyling, { Options } from 'qr-code-styling';
 
-const QRCodeComponent = () => {
+export interface IQRCodeProps {
+	text: string;
+	options?: Partial<Options>
+}
+
+/**
+ * Компонент QR кода
+ * @constructor
+ */
+const QRCode = (props: IQRCodeProps) => {
 	const qrCodeRef = useRef<HTMLDivElement | null>(null);
+
+	const { text, options } = props;
 
 	useEffect(() => {
 		const qrCode = new QRCodeStyling({
-			width: 300,
-			height: 300,
+			width: 100,
+			height: 100,
 			type: 'svg',
-			data: 'https://example.com',
+			data: text,
 			shape: 'square',
 			// настройка 3 больших квадратов
 			cornersSquareOptions: {
@@ -31,8 +42,8 @@ const QRCodeComponent = () => {
 				round: 0.1,
 				color: '#2D3031'
 			},
-			margin: 20,
-
+			margin: 1,
+			...options,
 		});
 
 		// Если контейнер доступен, добавляем QR-код в div
@@ -51,4 +62,4 @@ const QRCodeComponent = () => {
 	return <div ref={qrCodeRef} />;
 };
 
-export default QRCodeComponent;
+export default QRCode;

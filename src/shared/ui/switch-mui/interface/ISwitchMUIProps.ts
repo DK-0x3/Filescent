@@ -9,7 +9,7 @@ export interface ISwitchMUIProps {
      */
     onDispatchToggle: (payload: boolean) => PayloadAction<boolean>;
     /**
-     * Сетелкор для получения состояния из `Store`.
+     * Селектор для получения состояния из `Store`.
      * @param state
      */
     changeSelector: (state: IStateSchema) => boolean;

@@ -1,6 +1,6 @@
 import './Navbar.scss';
 import logo from '../../../shared/assets/svg/logo.svg';
-import { LangSwitcher } from '../../../shared/ui/langSwitcher/LangSwitcher';
+import { LangSwitcher } from '../../../shared/ui/lang-switcher/LangSwitcher';
 import { useTranslation } from 'react-i18next';
 
 interface INavbarProps {

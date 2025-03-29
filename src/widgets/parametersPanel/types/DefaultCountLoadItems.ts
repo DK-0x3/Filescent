@@ -1,4 +1,4 @@
-import { IDropDownItem } from '../../../shared/ui/dropDownMenuHover/interface/IDropDownItem';
+import { IDropDownItem } from '../../../shared/ui/drop-down-menu-hover/interface/IDropDownItem';
 
 export enum DefaultCountLoadKeys {
 	INFINITY = 'countLoad_Infinity',

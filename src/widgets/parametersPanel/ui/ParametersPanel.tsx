@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next';
 import timeIcon from '../../../shared/assets/svg/time.svg';
 import countLoadIcon from '../../../shared/assets/svg/countLoad.svg';
 import passwordIcon from '../../../shared/assets/svg/password.svg';
-import { DropDownMenuHover } from '../../../shared/ui/dropDownMenuHover/DropDownMenuHover';
-import { SwitchMUI } from '../../../shared/ui/switchMUI/switchMUI';
-import { InputPasswordOutlinedMUI } from '../../../shared/ui/inputPasswordOutlinedMUI/InputPasswordOutlinedMUI';
+import { DropDownMenuHover } from '../../../shared/ui/drop-down-menu-hover/DropDownMenuHover';
+import { SwitchMUI } from '../../../shared/ui/switch-mui/switchMUI';
+import { InputPasswordOutlinedMUI } from '../../../shared/ui/input-password-outlined-mui/InputPasswordOutlinedMUI';
 import { useSelector } from 'react-redux';
 import { getPasswordEnabled } from '../../../store/services/parametersSettings/selectors/getPasswordEnabled';
 import {
@@ -18,9 +18,9 @@ import {
 	DefaultCountLoadItems,
 	DefaultCountLoadKeys,
 	DefaultCountLoadSelectItem } from '../types/DefaultCountLoadItems';
-import { IDropDownItem } from '../../../shared/ui/dropDownMenuHover/interface/IDropDownItem';
+import { IDropDownItem } from '../../../shared/ui/drop-down-menu-hover/interface/IDropDownItem';
 import { useAppDispatch } from '../../../store/types/useAppDispatch';
-import { InputOutlinedMUI } from '../../../shared/ui/inputOutlinedMUI/InputOutlinedMUI';
+import { InputOutlinedMUI } from '../../../shared/ui/input-outlined-mui/InputOutlinedMUI';
 import { getEnabledCustomTime } from '../../../store/services/parametersSettings/selectors/getEnabledCustomTime';
 import {
 	getEnabledCustomCountLoad
@@ -72,7 +72,7 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 						leaveDelay={200}
 						placement='top'
 					>
-						<img src={timeIcon} alt='timeIcon'/>
+						<img className={'img-parameter'} src={timeIcon} alt='timeIcon'/>
 					</Tooltip>
 					<DropDownMenuHover
 						defaultSelectItem={DefaultTimeSelectItem}
@@ -86,7 +86,7 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 						leaveDelay={200}
 						placement='top'
 					>
-						<img src={countLoadIcon} alt='countLoadIcon'/>
+						<img className={'img-parameter'} src={countLoadIcon} alt='countLoadIcon'/>
 					</Tooltip>
 					<DropDownMenuHover
 						defaultSelectItem={DefaultCountLoadSelectItem}
@@ -100,7 +100,7 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 						leaveDelay={200}
 						placement='top'
 					>
-						<img src={passwordIcon} alt='passwordIcon'/>
+						<img className={'img-parameter'} src={passwordIcon} alt='passwordIcon'/>
 					</Tooltip>
 					<SwitchMUI
 						onDispatchToggle={togglePassword}
