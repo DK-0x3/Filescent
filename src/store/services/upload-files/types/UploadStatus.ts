@@ -1,4 +1,4 @@
-export enum DownloadStatus {
+export enum UploadStatus {
     IDLE = 'IDLE',
     LOADING = 'LOADING',
     ERROR = 'ERROR',

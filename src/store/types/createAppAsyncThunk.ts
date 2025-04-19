@@ -9,14 +9,4 @@ export interface IThunkConfig {
 }
 
 // Обертка для createAsyncThunk
-export const createAppAsyncThunk = <Returned, Arg>(
-	type: string,
-	payloadCreator: (
-        arg: Arg,
-        thunkAPI: {
-            dispatch: AppDispatch;
-            getState: () => RootState;
-            rejectWithValue: (value: string) => unknown;
-        }
-    ) => Promise<Returned> | Returned
-) => createAsyncThunk<Returned, Arg, IThunkConfig>(type, payloadCreator);
+export const createAppAsyncThunk = createAsyncThunk.withTypes<IThunkConfig>();

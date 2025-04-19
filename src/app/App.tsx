@@ -8,8 +8,11 @@ import { useAppDispatch } from '../store/types/useAppDispatch';
 import { useEffect } from 'react';
 import { initSession } from '../store/services/session/thunk/initSession';
 import { updateLastActivity } from '../store/services/session/thunk/updateLastActivity';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { uploadFileThunk } from '../store/services/upload-files/thunks/uploadFileThunk';
 
 const App = () => {
+	const queryClient = new QueryClient();
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
@@ -27,7 +30,10 @@ const App = () => {
 	}, [dispatch]);
 
 	const handleFiles = (files: File[]) => {
-		console.log('Полученные файлы:', files);
+		// console.log('Полученные файлы:', files);
+		files.forEach(file => {
+			dispatch(uploadFileThunk({ file }));
+		});
 		// Здесь можно, например, загрузить файлы на сервер или отобразить их
 	};
 	
@@ -40,7 +46,7 @@ const App = () => {
 	};
 	
 	return (
-		<>
+		<QueryClientProvider client={queryClient}>
 			<div className="App">
 				<Navbar/>
 				<DropZone onFilesDropped={handleFiles} onDragStart={xx} onDragEnd={xxx}>
@@ -48,7 +54,8 @@ const App = () => {
 				</DropZone>
 				<ParametersPanel/>
 			</div>
-		</>
+		</QueryClientProvider>
+		
 	);
 };
 
