@@ -25,3 +25,7 @@
   color: #888;
 }
 
+.App {
+  display: grid;
+  grid-template-rows: var(--navbar-height) 3fr 1fr;
+}

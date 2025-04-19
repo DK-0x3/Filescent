@@ -20,14 +20,7 @@ const parametersSettingsSlice = createSlice({
 		toggleEnableCustomCountLoad(state, action: PayloadAction<boolean>) {
 			state.isEnableCustomCountLoad = action.payload;
 		},
-	},
-	// extraReducers: (builder) => {
-	// 	builder;
-	// 	// .addCase(togglePasswordAsync.rejected, (state, action) => {
-	// 	// 	state.status = 'failed';
-	// 	// 	state.error = action.payload as string || 'Failed to fetch todos';
-	// 	// });
-	// },
+	}
 });
 
 export const {

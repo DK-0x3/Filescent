@@ -7,12 +7,12 @@ import { DropDownMenuHover } from '../../../shared/ui/drop-down-menu-hover/DropD
 import { SwitchMUI } from '../../../shared/ui/switch-mui/switchMUI';
 import { InputPasswordOutlinedMUI } from '../../../shared/ui/input-password-outlined-mui/InputPasswordOutlinedMUI';
 import { useSelector } from 'react-redux';
-import { getPasswordEnabled } from '../../../store/services/parametersSettings/selectors/getPasswordEnabled';
+import { getPasswordEnabled } from '../../../store/services/parameters-settings/selectors/getPasswordEnabled';
 import {
 	toggleEnableCustomCountLoad,
 	toggleEnableCustomTime,
 	togglePassword
-} from '../../../store/services/parametersSettings/parametersSettingsSlice';
+} from '../../../store/services/parameters-settings/parametersSettingsSlice';
 import { DefaultTimeItems, DefaultTimeKeys, DefaultTimeSelectItem } from '../types/DefaultTimeItems';
 import {
 	DefaultCountLoadItems,
@@ -21,10 +21,10 @@ import {
 import { IDropDownItem } from '../../../shared/ui/drop-down-menu-hover/interface/IDropDownItem';
 import { useAppDispatch } from '../../../store/types/useAppDispatch';
 import { InputOutlinedMUI } from '../../../shared/ui/input-outlined-mui/InputOutlinedMUI';
-import { getEnabledCustomTime } from '../../../store/services/parametersSettings/selectors/getEnabledCustomTime';
+import { getEnabledCustomTime } from '../../../store/services/parameters-settings/selectors/getEnabledCustomTime';
 import {
 	getEnabledCustomCountLoad
-} from '../../../store/services/parametersSettings/selectors/getEnabledCustomCountLoad';
+} from '../../../store/services/parameters-settings/selectors/getEnabledCustomCountLoad';
 import { Tooltip } from '@mui/material';
 
 interface IParametersPanelProps {
