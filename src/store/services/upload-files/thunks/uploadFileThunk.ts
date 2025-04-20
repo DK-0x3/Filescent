@@ -70,7 +70,7 @@ export const uploadFileThunk = createAppAsyncThunk<
 				name: file.name,
 				size: file.size,
 				type: file.type,
-				status: UploadStatus.IDLE,
+				status: UploadStatus.ERROR,
 				progress: null,
 			}]));
 			return rejectWithValue('Ошибка при загрузке файла');

@@ -1,4 +1,4 @@
-.file-upload-idle {
+.file-upload-loading {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -7,13 +7,7 @@
   gap: 50px;
 }
 
-.file-upload-idle-title {
-  justify-self: left;
-  font-size: 64px;
-  font-weight: 600;
-}
-
-.file-upload-idle-logo {
+.file-upload-loading-logo {
   justify-self: right;
   cursor: pointer;
 
@@ -31,4 +25,23 @@
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Увеличиваем тень */
     transform: scale(1.05); /* Легкое увеличение размера изображения */
   }
+}
+
+.file-upload-loading-title {
+  font-size: 64px;
+  font-weight: 600;
+  color: var(--green-dark);
+}
+
+.file-upload-loading-loaded {
+  font-size: 64px;
+  color: var(--gray-light);
+}
+
+.file-upload-loading-description {
+  background-color: var(--gray-dark);
+  width: fit-content;
+  padding: 30px;
+  border-radius: 50px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }

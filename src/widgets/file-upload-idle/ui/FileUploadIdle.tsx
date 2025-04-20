@@ -47,12 +47,12 @@ const FileUploadIdle = () => {
 
 			{/* Кастомная кнопка */}
 			<img
-				className='file-upload-logo'
+				className='file-upload-idle-logo'
 				src={LogoBig}
 				onClick={handleClick}
 			/>
 
-			<span className="file-upload-title">
+			<span className="file-upload-idle-title">
 				{t('Перетащи файлы')}<br />{t('для загрузки')}
 			</span>
 			

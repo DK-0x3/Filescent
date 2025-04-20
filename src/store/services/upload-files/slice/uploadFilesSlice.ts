@@ -34,6 +34,8 @@ const uploadFilesSlice = createSlice({
 					uploadFile.status = UploadStatus.SUCCESS;
 				}
 			});
+
+			uploadFilesSlice.caseReducers.checkAllUploadsFinished(state);
 		},
 		setUploadFilesLoading(state, action: PayloadAction<string[]>) {
 			state.uploadedFiles.forEach((uploadFile) => {
@@ -41,6 +43,8 @@ const uploadFilesSlice = createSlice({
 					uploadFile.status = UploadStatus.LOADING;
 				}
 			});
+
+			uploadFilesSlice.caseReducers.checkAllUploadsFinished(state);
 		},
 		setUploadFilesIdle(state, action: PayloadAction<string[]>) {
 			state.uploadedFiles.forEach((uploadFile) => {
@@ -48,6 +52,8 @@ const uploadFilesSlice = createSlice({
 					uploadFile.status = UploadStatus.IDLE;
 				}
 			});
+
+			uploadFilesSlice.caseReducers.checkAllUploadsFinished(state);
 		},
 		setUploadFilesError(state, action: PayloadAction<string[]>) {
 			state.uploadedFiles.forEach((uploadFile) => {
@@ -55,16 +61,38 @@ const uploadFilesSlice = createSlice({
 					uploadFile.status = UploadStatus.ERROR;
 				}
 			});
+
+			uploadFilesSlice.caseReducers.checkAllUploadsFinished(state);
 		},
 		setStatus(state, action: PayloadAction<UploadStatus>) {
 			state.status = action.payload;
 		},
-		setError(state, action: PayloadAction<string>) {
-			state.error = action.payload;
-		},
-		setFilesUrl(state, action: PayloadAction<string>) {
-			state.filesUrl = action.payload;
-		},
+		checkAllUploadsFinished(state) {
+			if (state.uploadedFiles.length === 0) {
+				state.status = UploadStatus.IDLE;
+				return;
+			}
+
+			const hasLoadingOrIdle = state.uploadedFiles.some(file =>
+				file.status === UploadStatus.LOADING || file.status === UploadStatus.IDLE
+			);
+
+			if (hasLoadingOrIdle) {
+				state.status = UploadStatus.LOADING;
+				return;
+			}
+
+			const hasError = state.uploadedFiles.some(file =>
+				file.status === UploadStatus.ERROR
+			);
+
+			if (hasError) {
+				state.status = UploadStatus.ERROR;
+				return;
+			}
+
+			state.status = UploadStatus.SUCCESS;
+		}
 	},
 });
 
@@ -72,13 +100,12 @@ export const {
 	addUploadFiles,
 	clearUploadFiles,
 	setStatus,
-	setError,
-	setFilesUrl,
 	setUploadFilesSuccess,
 	setUploadFilesError,
 	setUploadFilesLoading,
 	setUploadFilesIdle,
 	updateUploadFileProgress,
+	checkAllUploadsFinished,
 } = uploadFilesSlice.actions;
 
 export default uploadFilesSlice.reducer;
