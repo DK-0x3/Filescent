@@ -67,6 +67,9 @@ const uploadFilesSlice = createSlice({
 		setStatus(state, action: PayloadAction<UploadStatus>) {
 			state.status = action.payload;
 		},
+		setFilesUrl(state, action: PayloadAction<string>) {
+			state.filesUrl = action.payload;
+		},
 		checkAllUploadsFinished(state) {
 			if (state.uploadedFiles.length === 0) {
 				state.status = UploadStatus.IDLE;
@@ -106,6 +109,7 @@ export const {
 	setUploadFilesIdle,
 	updateUploadFileProgress,
 	checkAllUploadsFinished,
+	setFilesUrl,
 } = uploadFilesSlice.actions;
 
 export default uploadFilesSlice.reducer;

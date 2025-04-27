@@ -1,6 +1,6 @@
 import { PayloadAction } from '@reduxjs/toolkit';
-import { IStateSchema } from '../../../../store/IStateSchema';
 import { SxProps } from '@mui/material';
+import { RootState } from '../../../../store/store';
 
 export interface ISwitchMUIProps {
     /**
@@ -12,7 +12,7 @@ export interface ISwitchMUIProps {
      * Селектор для получения состояния из `Store`.
      * @param state
      */
-    changeSelector: (state: IStateSchema) => boolean;
+    changeSelector: (state: RootState) => boolean;
     /**
      * Функция срабатывающая до срабатывания `Switch`.
      * @param checked

@@ -7,9 +7,10 @@ import { getUploadFiles } from '../../../store/services/upload-files/selectors/g
 import { getUploadGlobalProgress } from '../../../store/services/upload-files/selectors/getUploadGlobalProgress';
 import { uploadFileThunk } from '../../../store/services/upload-files/thunks/uploadFileThunk';
 import { FILE_UTILS } from '../../../shared/utils/fileUtils';
+import { useTranslation } from 'react-i18next';
 
 const FileUploadLoading = () => {
-	// const { t } = useTranslation();
+	const { t } = useTranslation();
 	const dispatch = useAppDispatch();
 	const uploadedFiles = useSelector(getUploadFiles);
 	const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -40,7 +41,6 @@ const FileUploadLoading = () => {
 				style={{ display: 'none' }}
 			/>
 
-			{/* Кастомная кнопка */}
 			<img
 				className='file-upload-loading-logo'
 				src={LogoBig}
@@ -49,7 +49,7 @@ const FileUploadLoading = () => {
 
 			<div className='file-upload-loading-description'>
 				<span className="file-upload-loading-title">
-					{'Файлы: ' + uploadedFiles.length}
+					{t('Файлы') + ': ' + uploadedFiles.length}
 				</span>
 				<br/>
 				<span className="file-upload-loading-loaded">

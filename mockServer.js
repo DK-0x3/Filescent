@@ -13,9 +13,9 @@ app.use(cors({
 }));
 
 app.post('/upload', upload.single('file'), (req, res) => {
-	res.json({ fileUrl: `http://localhost:25504/uploads/${req.file.filename}` });
+	res.json({ sessionCode: 'Qwe123' });
 });
 
-app.listen(25504, () => {
-	console.log('Mock server running on http://localhost:25504');
+app.listen(1941, () => {
+	console.log('Mock server running on http://localhost:1941');
 });

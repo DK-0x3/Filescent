@@ -7,7 +7,7 @@
   margin-left: 16px;
   text-align: center;
   display: grid;
-  grid-template-columns: 20% 20% 20% 40%;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 2fr;
   grid-gap: 20px;
 
@@ -82,8 +82,12 @@
 
 /* Специфичные модификаторы для каждого контейнера */
 .containerPasswordInput {
-  @extend .containerInput;
   grid-column: 3;
+}
+
+.passwordInput {
+  @extend .containerInput;
+  grid-column: 2;
 }
 
 .containerCountLoadInput {

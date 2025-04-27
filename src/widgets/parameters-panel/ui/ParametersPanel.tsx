@@ -107,11 +107,15 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 						changeSelector={getPasswordEnabled}
 					/>
 				</div>
-				<div className={`containerPasswordInput ${
-					isPasswordEnable ? 'fade-in' : 'fade-out'
-				}`}>
-					<InputPasswordOutlinedMUI placeholder='пароль'/>
+
+				<div className='containerPasswordInput'>
+					<div className={`passwordInput ${
+						isPasswordEnable ? 'fade-in' : 'fade-out'
+					}`}>
+						<InputPasswordOutlinedMUI placeholder='пароль'/>
+					</div>
 				</div>
+
 				<div className={`containerTimeInput ${
 					isEnableCustomTime ? 'fade-in' : 'fade-out'
 				}`}>

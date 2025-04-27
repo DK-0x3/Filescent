@@ -10,6 +10,9 @@ import { initSession } from '../store/services/session/thunk/initSession';
 import { updateLastActivity } from '../store/services/session/thunk/updateLastActivity';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { uploadFileThunk } from '../store/services/upload-files/thunks/uploadFileThunk';
+import { Toaster } from 'react-hot-toast';
+import { ModalProvider } from '../widgets/modal/ui/ModalContext';
+import { Modal } from '../widgets/modal/ui/Modal';
 
 const App = () => {
 	const queryClient = new QueryClient();
@@ -30,32 +33,25 @@ const App = () => {
 	}, [dispatch]);
 
 	const handleFiles = (files: File[]) => {
-		// console.log('Полученные файлы:', files);
 		files.forEach(file => {
 			dispatch(uploadFileThunk({ file }));
 		});
-		// Здесь можно, например, загрузить файлы на сервер или отобразить их
-	};
-	
-	const xx = () => {
-		console.log('актив перетаскивания');
-	};
-
-	const xxx = () => {
-		console.log('конец перетаскивания');
 	};
 	
 	return (
 		<QueryClientProvider client={queryClient}>
-			<div className="App">
-				<Navbar/>
-				<DropZone onFilesDropped={handleFiles} onDragStart={xx} onDragEnd={xxx}>
-					<MainPage/>
-				</DropZone>
-				<ParametersPanel/>
-			</div>
+			<ModalProvider>
+				<div className="App">
+					<Navbar/>
+					<DropZone onFilesDropped={handleFiles}>
+						<MainPage/>
+					</DropZone>
+					<ParametersPanel/>
+					<Modal/>
+				</div>
+			</ModalProvider>
+			<Toaster position="top-center" />
 		</QueryClientProvider>
-		
 	);
 };
 

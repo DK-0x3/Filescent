@@ -1,9 +1,13 @@
-import { useEffect, useRef } from 'react';
+import { MouseEventHandler, useEffect, useRef } from 'react';
 import QRCodeStyling, { Options } from 'qr-code-styling';
 
 export interface IQRCodeProps {
 	text: string;
-	options?: Partial<Options>
+	size: number;
+	cursor?: string;
+	onClick?: MouseEventHandler<HTMLDivElement>;
+	padding?: number;
+	options?: Partial<Options>;
 }
 
 /**
@@ -13,42 +17,49 @@ export interface IQRCodeProps {
 const QRCode = (props: IQRCodeProps) => {
 	const qrCodeRef = useRef<HTMLDivElement | null>(null);
 
-	const { text, options } = props;
+	const {
+		text,
+		size,
+		padding = 10,
+		options,
+		onClick,
+		cursor = 'auto'
+	} = props;
 
 	useEffect(() => {
 		const qrCode = new QRCodeStyling({
-			width: 100,
-			height: 100,
+			width: size,
+			height: size,
 			type: 'svg',
 			data: text,
 			shape: 'square',
-			// настройка 3 больших квадратов
 			cornersSquareOptions: {
-				type: 'classy'
+				type: 'classy',
 			},
 			dotsOptions: {
 				type: 'rounded',
 				gradient: {
-					type: 'linear', // Тип градиента
-					rotation: 45,   // Угол градиента
+					type: 'linear',
+					rotation: 45,
 					colorStops: [
-						{ offset: 0, color: '#86C232' }, // Цвет 1 (начало градиента)
-						{ offset: 0.67, color: '#86C232' }, // Цвет 1 занимает 2/3
-						{ offset: 1, color: '#61892F' }  // Цвет 2 (конец градиента)
-					]
-				}
+						{ offset: 0, color: '#86C232' },
+						{ offset: 0.67, color: '#86C232' },
+						{ offset: 1, color: '#61892F' },
+					],
+				},
 			},
 			backgroundOptions: {
 				round: 0.1,
-				color: '#2D3031'
+				color: '#2D3031',
 			},
-			margin: 1,
+			margin: padding,
 			...options,
 		});
 
 		// Если контейнер доступен, добавляем QR-код в div
 		if (qrCodeRef.current) {
 			qrCode.append(qrCodeRef.current);
+			qrCodeRef.current.style.cursor = cursor;
 		}
 
 		// Очистка при размонтировании компонента
@@ -57,9 +68,14 @@ const QRCode = (props: IQRCodeProps) => {
 				qrCodeRef.current.innerHTML = '';
 			}
 		};
-	}, []);
+	}, [text, size, padding, options, cursor]);
 
-	return <div ref={qrCodeRef} />;
+	return (
+		<div
+			ref={qrCodeRef}
+			onClick={onClick}
+		/>
+	);
 };
 
 export default QRCode;

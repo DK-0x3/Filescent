@@ -46,5 +46,5 @@ export const initSession = (): AppThunk => (dispatch) => {
 
 	dispatch(setSessionData(newSession));
 	localStorage.setItem(StorageKeyType.SESSION, JSON.stringify(newSession));
-	console.log('создана новая сессия', newSession);
+	// console.log('создана новая сессия', newSession);
 };

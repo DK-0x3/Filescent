@@ -17,18 +17,15 @@
   justify-self: right;
   cursor: pointer;
 
-  border-radius: 50%; /* Сделаем круг */
-  object-fit: cover; /* Это важно, чтобы SVG вписывался в круг */
+  border-radius: 50%;
+  object-fit: cover;
 
-  /* Начальная тень */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 
-  /* Плавная анимация для тени */
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 
-  /* При наведении на картинку */
   &:hover {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Увеличиваем тень */
-    transform: scale(1.05); /* Легкое увеличение размера изображения */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    transform: scale(1.05);
   }
 }
