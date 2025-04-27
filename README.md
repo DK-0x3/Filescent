@@ -16,5 +16,5 @@ nvm use v22.14.0
 
 Создайте файл `.env` в корне проекта
 ```
-VITE_API_URL=http://localhost:25504
+VITE_API_URL=http://localhost:1941
 ```
