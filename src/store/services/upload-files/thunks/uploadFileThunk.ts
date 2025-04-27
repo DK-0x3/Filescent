@@ -9,7 +9,6 @@ import {
 	updateUploadFileProgress
 } from '../slice/uploadFilesSlice';
 import { v4 as uuidv4 } from 'uuid';
-import { useSelector } from 'react-redux';
 import { getSessionId } from '../../session/selectors/getSessionId';
 
 interface IUploadFileResponse {
@@ -25,10 +24,11 @@ export const uploadFileThunk = createAppAsyncThunk<
     IUploadFileThunk
 >(
 	'upload/file',
-	async ({ file }, { dispatch, rejectWithValue }) => {
+	async ({ file }, { dispatch, rejectWithValue, getState }) => {
 		const fileId = uuidv4();
-		// const sessionId = useSelector(getSessionId);
-		// console.log(sessionId);
+
+		const state = getState();
+		const sessionId = getSessionId(state);
 
 		try {
 			const fileBase64 = await new Promise<string>((resolve, reject) => {
@@ -44,17 +44,18 @@ export const uploadFileThunk = createAppAsyncThunk<
 				reader.onerror = (error) => reject(error);
 			});
 
-			console.log('Base64 файла:', fileBase64);
-
 			const response = await axios.post<IUploadFileResponse>(
 				`${API_URL}/api/file/save`,
 				{
-					files: [fileBase64]
+					file: {
+						name: file.name,
+						base64: fileBase64,
+					}
 				},
 				{
 					headers: {
 						'Content-Type': 'application/json',
-						'X-Session-ID': 'sessionId',
+						'X-Session-ID': sessionId,
 					},
 					onUploadProgress: (event) => {
 						if (event.total) {
@@ -70,48 +71,6 @@ export const uploadFileThunk = createAppAsyncThunk<
 					},
 				}
 			);
-
-			console.log(response.data);
-			// const formData = new FormData();
-			// formData.append('file', file);
-			//
-			// dispatch(addUploadFiles([{
-			// 	id: fileId,
-			// 	name: file.name,
-			// 	size: file.size,
-			// 	type: file.type,
-			// 	status: UploadStatus.IDLE,
-			// 	progress: null,
-			// }]));
-			//
-			// for (const [key, value] of formData.entries()) {
-			// 	console.log(key, value);
-			// }
-			// const response = await axios.post<IUploadFileResponse>(
-			// 	`${API_URL}/api/file/save`,
-			// 	formData,
-			// 	{
-			// 		headers: {
-			// 			'Content-Type': 'multipart/form-data',
-			// 			'X-Session-ID': 'sdfsdfsd',
-			// 		},
-			// 		onUploadProgress: (event) => {
-			// 			if (event.total) {
-			// 				dispatch(
-			// 					updateUploadFileProgress({
-			// 						id: fileId,
-			// 						progress: {
-			// 							loaded: event.loaded,
-			// 							total: event.total,
-			// 						}
-			// 					})
-			// 				);
-			// 				dispatch(setUploadFilesLoading([ fileId ]));
-			// 			}
-			// 		},
-			// 	}
-			// );
-			// console.log(response.data);
 
 			dispatch(setUploadFilesSuccess([ fileId ]));
 			dispatch(setFilesUrl(response.data.sessionCode));
