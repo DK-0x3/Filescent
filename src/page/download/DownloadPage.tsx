@@ -76,20 +76,6 @@ export const DownloadPage = () => {
 					`${API_URL}/api/file/${fileId}/data`
 				);
 				setParameters(responseGet.data);
-				console.log(responseGet.data);
-
-				if (responseGet.data.message.count_download <= 0) {
-					alert('Кол-во скачиваний закончилось');
-					navigate(ROUTES.HOME);
-				}
-
-				const date = new Date(responseGet.data.message.date_deleted);
-				const today = new Date();
-				today.setHours(0, 0, 0, 0);
-				if (date < today) {
-					alert('Время на скачивание закончилось');
-					navigate(ROUTES.HOME);
-				}
 
 				if (responseGet.data.message.password) {
 					if (password !== null) {
@@ -133,6 +119,7 @@ export const DownloadPage = () => {
 					setBlobUrl(url);
 				}
 			} catch (error) {
+				alert(t('Файлы удалены'));
 				navigate(ROUTES.HOME);
 				console.error('Ошибка при получении файла:', error);
 			}
