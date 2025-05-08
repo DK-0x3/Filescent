@@ -4,8 +4,8 @@ import { useAppDispatch } from '../../../store/types/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { ISwitchMUIProps } from './interface/ISwitchMUIProps';
 
-export const SwitchMUI: React.FC<ISwitchMUIProps> = (props) => {
-	const { onPrevToggle, sx, changeSelector, onDispatchToggle } = props;
+export const SwitchMUI: React.FC<ISwitchMUIProps> = (props: ISwitchMUIProps) => {
+	const { onPrevToggle, sx, changeSelector, onDispatchToggle, onChange } = props;
 
 	const dispatch = useAppDispatch();
 	const passwordEnabled = useSelector(changeSelector);
@@ -23,11 +23,17 @@ export const SwitchMUI: React.FC<ISwitchMUIProps> = (props) => {
 				const success = await onPrevToggle(isChecked);
 				if (success) {
 					dispatch(onDispatchToggle(isChecked));
+					if (onChange) {
+						onChange(isChecked);
+					}
 				} else {
 					console.error('Toggle action failed');
 				}
 			} else {
 				dispatch(onDispatchToggle(isChecked));
+				if (onChange) {
+					onChange(isChecked);
+				}
 			}
 		} catch (error) {
 			console.error('Error during toggle:', error);

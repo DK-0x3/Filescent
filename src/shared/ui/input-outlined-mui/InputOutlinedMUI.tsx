@@ -10,6 +10,7 @@ interface IInputOutlinedMUIProps {
     sxEndAdornment?: SxProps;
     placeholder?: string;
     sx?: SxProps;
+	onInputChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const InputOutlinedMUI = (props: IInputOutlinedMUIProps) => {
@@ -23,10 +24,18 @@ export const InputOutlinedMUI = (props: IInputOutlinedMUIProps) => {
 		placeholder,
 		sx,
 		type = 'text',
+		onInputChange,
 	} = props;
+
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		if (onInputChange) {
+			onInputChange(event);
+		}
+	};
 
 	return (
 		<OutlinedInput
+			onInput={handleChange}
 			type={type}
 			startAdornment={
 				startAdornment ? (

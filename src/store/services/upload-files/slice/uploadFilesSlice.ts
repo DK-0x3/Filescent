@@ -44,6 +44,7 @@ const uploadFilesSlice = createSlice({
 				}
 			});
 
+			console.log('setUploadFilesLoading');
 			uploadFilesSlice.caseReducers.checkAllUploadsFinished(state);
 		},
 		setUploadFilesIdle(state, action: PayloadAction<string[]>) {
@@ -73,6 +74,7 @@ const uploadFilesSlice = createSlice({
 		checkAllUploadsFinished(state) {
 			if (state.uploadedFiles.length === 0) {
 				state.status = UploadStatus.IDLE;
+				console.log(1);
 				return;
 			}
 
@@ -82,6 +84,7 @@ const uploadFilesSlice = createSlice({
 
 			if (hasLoadingOrIdle) {
 				state.status = UploadStatus.LOADING;
+				console.log(2);
 				return;
 			}
 
@@ -91,10 +94,12 @@ const uploadFilesSlice = createSlice({
 
 			if (hasError) {
 				state.status = UploadStatus.ERROR;
+				console.log(3);
 				return;
 			}
 
 			state.status = UploadStatus.SUCCESS;
+			console.log(state.status);
 		}
 	},
 });

@@ -18,6 +18,7 @@ export interface ISwitchMUIProps {
      * @param checked
      */
     onPrevToggle?: (checked: boolean) => Promise<boolean>;
+    onChange?: (checked: boolean) => Promise<void>;
     /**
      * Дополнительные стили.
      */

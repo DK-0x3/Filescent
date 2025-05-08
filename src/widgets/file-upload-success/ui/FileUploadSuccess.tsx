@@ -38,7 +38,7 @@ const FileUploadSuccess = () => {
 		}
 	};
 
-	const handleClick = () => {
+	const handleUploadFilesClick = () => {
 		fileInputRef.current?.click();
 	};
 
@@ -88,7 +88,7 @@ const FileUploadSuccess = () => {
 			<img
 				className='file-upload-success-logo'
 				src={LogoBig}
-				onClick={handleClick}
+				onClick={handleUploadFilesClick}
 			/>
 
 			<div className='file-upload-success-description'>

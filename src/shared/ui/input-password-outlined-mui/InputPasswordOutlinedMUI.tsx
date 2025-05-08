@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 interface IInputPasswordOutlinedMUIProps {
     placeholder?: string;
 	sx?: SxProps;
+	onInputChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const InputPasswordOutlinedMUI = (props: IInputPasswordOutlinedMUIProps) => {
@@ -16,6 +17,7 @@ export const InputPasswordOutlinedMUI = (props: IInputPasswordOutlinedMUIProps) 
 	const {
 		placeholder,
 		sx,
+		onInputChange,
 	} = props;
 
 	const [showPassword, setShowPassword] = useState(false);
@@ -30,8 +32,15 @@ export const InputPasswordOutlinedMUI = (props: IInputPasswordOutlinedMUIProps) 
 		event.preventDefault();
 	};
 
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		if (onInputChange) {
+			onInputChange(event);
+		}
+	};
+
 	return (
 		<OutlinedInput
+			onInput={handleChange}
 			type={showPassword ? 'text' : 'password'}
 			endAdornment={
 				<InputAdornment position="end">

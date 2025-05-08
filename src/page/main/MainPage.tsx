@@ -1,9 +1,9 @@
-import FileUploadIdle from '../../file-upload-idle/ui/FileUploadIdle';
+import FileUploadIdle from '../../widgets/file-upload-idle/ui/FileUploadIdle';
 import { useSelector } from 'react-redux';
-import { getUploadGlobalStatus } from '../../../store/services/upload-files/selectors/getUploadGlobalStatus';
-import { UploadStatus } from '../../../store/services/upload-files/types/UploadStatus';
-import FileUploadLoading from '../../file-upload-loading/ui/FileUploadLoading';
-import FileUploadSuccess from '../../file-upload-success/ui/FileUploadSuccess';
+import { getUploadGlobalStatus } from '../../store/services/upload-files/selectors/getUploadGlobalStatus';
+import { UploadStatus } from '../../store/services/upload-files/types/UploadStatus';
+import FileUploadLoading from '../../widgets/file-upload-loading/ui/FileUploadLoading';
+import FileUploadSuccess from '../../widgets/file-upload-success/ui/FileUploadSuccess';
 
 const MainPage = () => {
 	const globalStatus = useSelector(getUploadGlobalStatus);

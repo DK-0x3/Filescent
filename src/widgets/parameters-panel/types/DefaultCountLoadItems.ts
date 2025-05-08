@@ -1,12 +1,12 @@
 import { IDropDownItem } from '../../../shared/ui/drop-down-menu-hover/interface/IDropDownItem';
 
 export enum DefaultCountLoadKeys {
-	INFINITY = 'countLoad_Infinity',
-	ONE = 'countLoad_1',
-	THREE = 'countLoad_3',
-	FIVE = 'countLoad_5',
-	TEN = 'countLoad_10',
-	CUSTOM = 'countLoad_Custom',
+	INFINITY = '365',
+	ONE = '1',
+	THREE = '3',
+	FIVE = '5',
+	TEN = '10',
+	CUSTOM = 'custom',
 }
 
 export const DefaultCountLoadItems: IDropDownItem[] = [

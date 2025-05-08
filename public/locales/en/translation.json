@@ -26,5 +26,9 @@
   "для загрузки": "the files to download",
   "Скопировано": "Copied",
   "Нажмите, чтобы скопировать": "Click to copy",
-  "Файлы": "Files"
+  "Файлы": "Files",
+  "Введите пароль": "Enter the password",
+  "Неверный пароль": "Invalid password",
+  "Осталось скачиваний": "There downloads left",
+  "Срок харнения": "Shelf life"
 }

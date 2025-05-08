@@ -26,6 +26,9 @@ import {
 	getEnabledCustomCountLoad
 } from '../../../store/services/parameters-settings/selectors/getEnabledCustomCountLoad';
 import { Tooltip } from '@mui/material';
+import { updateTimeParameterThunk } from '../../../store/services/upload-files/thunks/updateTimeParameterThunk';
+import { updateCountLoadParameterThunk } from '../../../store/services/upload-files/thunks/updateCountLoadParameterThunk';
+import { updatePasswordParameterThunk } from '../../../store/services/upload-files/thunks/updatePasswordParameterThunk';
 
 interface IParametersPanelProps {
     className?: string;
@@ -48,6 +51,9 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 			dispatch(toggleEnableCustomTime(true));
 			return;
 		}
+		dispatch(updateTimeParameterThunk({
+			days: +item.key,
+		}));
 		dispatch(toggleEnableCustomTime(false));
 	};
 	const handleSelectCustomCountLoad = (item: IDropDownItem) => {
@@ -55,7 +61,37 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 			dispatch(toggleEnableCustomCountLoad(true));
 			return;
 		}
+		dispatch(updateCountLoadParameterThunk({
+			countLoad: +item.key,
+		}));
 		dispatch(toggleEnableCustomCountLoad(false));
+	};
+
+	const handleTimeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		dispatch(updateTimeParameterThunk({
+			days: +event.target.value,
+		}));
+	};
+
+	const handleCountLoadChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		dispatch(updateCountLoadParameterThunk({
+			countLoad: +event.target.value,
+		}));
+	};
+
+	const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		dispatch(updatePasswordParameterThunk({
+			password: event.target.value,
+		}));
+	};
+
+	const handlePasswordEnabledChange = async (change: boolean) => {
+		if (change) {
+			return;
+		}
+		dispatch(updatePasswordParameterThunk({
+			password: '',
+		}));
 	};
 	
 	return (
@@ -105,6 +141,7 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 					<SwitchMUI
 						onDispatchToggle={togglePassword}
 						changeSelector={getPasswordEnabled}
+						onChange={handlePasswordEnabledChange}
 					/>
 				</div>
 
@@ -112,7 +149,10 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 					<div className={`passwordInput ${
 						isPasswordEnable ? 'fade-in' : 'fade-out'
 					}`}>
-						<InputPasswordOutlinedMUI placeholder='пароль'/>
+						<InputPasswordOutlinedMUI
+							placeholder='пароль'
+							onInputChange={handlePasswordChange}
+						/>
 					</div>
 				</div>
 
@@ -122,7 +162,9 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 					<InputOutlinedMUI
 						startAdornment='дни'
 						placeholder='кол-во'
-						type='number'/>
+						type='number'
+						onInputChange={handleTimeChange}
+					/>
 				</div>
 				<div className={`containerCountLoadInput ${
 					isEnableCustomCountLoad ? 'fade-in' : 'fade-out'
@@ -130,7 +172,9 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 					<InputOutlinedMUI
 						startAdornment='скач-я'
 						placeholder='кол-во'
-						type='number'/>
+						type='number'
+						onInputChange={handleCountLoadChange}
+					/>
 				</div>
 			</div>
 		</footer>
