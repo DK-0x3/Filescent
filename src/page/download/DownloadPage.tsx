@@ -70,7 +70,7 @@ export const DownloadPage = () => {
 
 		const password = searchParams.get(RouteParams.download.queryParams.password);
 
-		const fetchFileById = async (fileId: string) => {
+		const fetchFilesById = async (fileId: string) => {
 			try {
 				const responseGet = await axios.get<IFilesDownloadParameters>(
 					`${API_URL}/api/file/${fileId}/data`
@@ -125,7 +125,7 @@ export const DownloadPage = () => {
 			}
 		};
 
-		fetchFileById(id);
+		fetchFilesById(id);
 	}, [id, searchParams]);
 
 

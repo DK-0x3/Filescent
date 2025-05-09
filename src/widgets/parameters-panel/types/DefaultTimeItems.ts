@@ -1,12 +1,12 @@
 import { IDropDownItem } from '../../../shared/ui/drop-down-menu-hover/interface/IDropDownItem';
 
 export enum DefaultTimeKeys {
-	ONE = 'time_1d',
-	THREE = 'time_3d',
-	SEVEN = 'time_7d',
-	FOURTEEN = 'time_14d',
-	THIRTY = 'time_30d',
-	CUSTOM = 'time_Custom',
+	ONE = '1',
+	THREE = '3',
+	SEVEN = '7',
+	FOURTEEN = '14',
+	THIRTY = '365',
+	CUSTOM = 'custom',
 }
 
 export const DefaultTimeItems: IDropDownItem[] = [
@@ -28,7 +28,7 @@ export const DefaultTimeItems: IDropDownItem[] = [
 	},
 	{
 		key: DefaultTimeKeys.THIRTY,
-		text: '30 дней',
+		text: '1 год',
 	},
 	{
 		key: DefaultTimeKeys.CUSTOM,
@@ -36,4 +36,4 @@ export const DefaultTimeItems: IDropDownItem[] = [
 	},
 ];
 
-export const DefaultTimeSelectItem: IDropDownItem = DefaultTimeItems[0];
+export const DefaultTimeSelectItem: IDropDownItem = DefaultTimeItems[4];
