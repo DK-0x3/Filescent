@@ -78,6 +78,7 @@ export const DownloadPage = () => {
 				const responseGet = await axios.get<IFilesDownloadParameters>(
 					`${API_URL}/api/file/${fileId}/data`
 				);
+				console.log(responseGet.data);
 				setParameters(responseGet.data);
 
 				if (responseGet.data.message.password) {
@@ -106,6 +107,7 @@ export const DownloadPage = () => {
 						setIsPassword(IncorrectPassword.EMPTY);
 					}
 				} else {
+					console.log(fileId);
 					const response = await axios.post<Blob>(
 						`${API_URL}/api/file/${fileId}`,
 						{
