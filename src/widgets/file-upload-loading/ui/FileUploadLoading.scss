@@ -30,6 +30,12 @@
   color: var(--green-dark);
 }
 
+.file-upload-loading-info {
+  color: var(--white-primary);
+  font-size: 18px;
+  font-weight: 600;
+}
+
 .file-upload-loading-loaded {
   font-size: 64px;
   color: var(--gray-light);

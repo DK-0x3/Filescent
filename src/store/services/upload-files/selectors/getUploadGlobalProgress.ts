@@ -5,15 +5,17 @@ import { getUploadFiles } from './getUploadFiles';
 export const getUploadGlobalProgress = createSelector(
 	[getUploadFiles],
 	(uploadFiles): IProgress => {
-		const loaded = uploadFiles.reduce(
-			(res, file) => res + (file.progress !== null ? file.progress.loaded : 0),
-			0
-		);
-		const total = uploadFiles.reduce(
-			(res, file) => res + (file.progress !== null ? file.progress.total : 0),
-			0
-		);
+		const validFiles = uploadFiles.filter(file => file.progress !== null);
 
-		return { loaded, total };
+		const loaded = validFiles.reduce((res, file) => res + file.progress!.loaded, 0);
+		const total = validFiles.reduce((res, file) => res + file.progress!.total, 0);
+
+		const speed = validFiles.reduce((res, file) => res + (file.progress?.speed ?? 0), 0);
+
+		const eta = speed > 0 && total > 0
+			? (total - loaded) / speed
+			: null;
+
+		return { loaded, total, speed, eta };
 	}
 );

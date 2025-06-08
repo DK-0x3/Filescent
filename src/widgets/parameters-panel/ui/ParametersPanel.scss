@@ -7,7 +7,7 @@
   margin-left: 16px;
   text-align: center;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 2fr;
   grid-gap: 20px;
 
@@ -78,6 +78,13 @@
     transform: translateY(-10px);
     visibility: hidden;
   }
+}
+
+.ParametersPanelDescription {
+  grid-column: 4;
+  grid-row: 2 / 5;
+  width: 100%;
+  height: 100%;
 }
 
 /* Специфичные модификаторы для каждого контейнера */

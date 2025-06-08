@@ -49,6 +49,7 @@ export const uploadFileThunk = createAppAsyncThunk<
 			const formData = new FormData();
 			formData.append('file', file);
 			formData.append('filename', file.name);
+			let startTime = Date.now();
 
 			const response = await axios.post<IUploadFileResponse>(
 				`${API_URL}/api/file/save`,
@@ -58,13 +59,25 @@ export const uploadFileThunk = createAppAsyncThunk<
 						'Content-Type': 'multipart/form-data',
 						'X-Session-ID': sessionId,
 					},
+
 					onUploadProgress: (event) => {
 						if (event.total) {
+							const currentTime = Date.now();
+							const elapsedTimeSec = (currentTime - startTime) / 1000; // в секундах
+							const loadedBytes = event.loaded;
+							const totalBytes = event.total;
+
+							const speed = loadedBytes / elapsedTimeSec; // bytes/sec
+							const remainingBytes = totalBytes - loadedBytes;
+							const eta = speed > 0 ? remainingBytes / speed : 0; // в секундах
+
 							dispatch(updateUploadFileProgress({
 								id: fileId,
 								progress: {
-									loaded: event.loaded,
-									total: event.total,
+									loaded: loadedBytes,
+									total: totalBytes,
+									speed: speed,
+									eta: eta,
 								}
 							}));
 							dispatch(setUploadFilesLoading([fileId]));

@@ -27,8 +27,13 @@ import {
 } from '../../../store/services/parameters-settings/selectors/getEnabledCustomCountLoad';
 import { Tooltip } from '@mui/material';
 import { updateTimeParameterThunk } from '../../../store/services/upload-files/thunks/updateTimeParameterThunk';
-import { updateCountLoadParameterThunk } from '../../../store/services/upload-files/thunks/updateCountLoadParameterThunk';
+import { updateCountLoadParameterThunk } from
+	'../../../store/services/upload-files/thunks/updateCountLoadParameterThunk';
 import { updatePasswordParameterThunk } from '../../../store/services/upload-files/thunks/updatePasswordParameterThunk';
+import { TextAreaDelayed } from '../../text-area-description/TextAreaDelayed';
+import {
+	updateDescriptionParameterThunk
+} from '../../../store/services/upload-files/thunks/updateDescriptionParameterThunk';
 
 interface IParametersPanelProps {
     className?: string;
@@ -56,6 +61,7 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 		}));
 		dispatch(toggleEnableCustomTime(false));
 	};
+
 	const handleSelectCustomCountLoad = (item: IDropDownItem) => {
 		if (item.key === DefaultCountLoadKeys.CUSTOM) {
 			dispatch(toggleEnableCustomCountLoad(true));
@@ -91,6 +97,11 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 		}
 		dispatch(updatePasswordParameterThunk({
 			password: '',
+		}));
+	};
+	const handleDescriptionChange = (description: string) => {
+		dispatch(updateDescriptionParameterThunk({
+			description: description,
 		}));
 	};
 	
@@ -175,6 +186,13 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 						type='number'
 						onInputChange={handleCountLoadChange}
 					/>
+				</div>
+
+				<div className='ParametersPanelDescription'>
+					<TextAreaDelayed
+						timeChange={1500}
+						onChangeDelayed={handleDescriptionChange}
+						placeholder={t('Описание')}/>
 				</div>
 			</div>
 		</footer>

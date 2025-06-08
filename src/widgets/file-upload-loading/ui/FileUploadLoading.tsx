@@ -6,8 +6,8 @@ import { useSelector } from 'react-redux';
 import { getUploadFiles } from '../../../store/services/upload-files/selectors/getUploadFiles';
 import { getUploadGlobalProgress } from '../../../store/services/upload-files/selectors/getUploadGlobalProgress';
 import { uploadFileThunk } from '../../../store/services/upload-files/thunks/uploadFileThunk';
-import { FILE_UTILS } from '../../../shared/utils/fileUtils';
 import { useTranslation } from 'react-i18next';
+import { UTILS } from '../../../shared/utils/Utils';
 
 const FileUploadLoading = () => {
 	const { t } = useTranslation();
@@ -53,8 +53,15 @@ const FileUploadLoading = () => {
 				</span>
 				<br/>
 				<span className="file-upload-loading-loaded">
-					{FILE_UTILS.formatFileSize(load.loaded) + ' / '
-						+ FILE_UTILS.formatFileSize(load.total)}
+					{UTILS.formatFileSize(load.loaded) + ' / '
+						+ UTILS.formatFileSize(load.total)}
+				</span>
+				<span className='file-upload-loading-info'>
+					<br/>
+					{t('Осталось') + ' ≈ '}{UTILS.formatEtaVerbose(load.eta)}
+					<br/>
+					{t('Скорость') + ' ≈ '}{UTILS.formatSpeed(load.speed)}
+					<br/>
 				</span>
 			</div>
 		</div>

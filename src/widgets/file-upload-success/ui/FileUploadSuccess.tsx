@@ -6,7 +6,7 @@ import React, { useRef } from 'react';
 import { getUploadGlobalProgress } from '../../../store/services/upload-files/selectors/getUploadGlobalProgress';
 import { uploadFileThunk } from '../../../store/services/upload-files/thunks/uploadFileThunk';
 import LogoBig from '../../../shared/assets/svg/logoBig.svg';
-import { FILE_UTILS } from '../../../shared/utils/fileUtils';
+import { UTILS } from '../../../shared/utils/Utils';
 import QRCode from '../../../shared/ui/qr-code/QRCode';
 import { getUploadFilesUrl } from '../../../store/services/upload-files/selectors/getUploadUrl';
 import CopyLinkSvg from '../../../shared/assets/svg/copyLink.svg';
@@ -97,7 +97,7 @@ const FileUploadSuccess = () => {
 				</span>
 				<br/>
 				<span className="file-upload-success-loaded">
-					{FILE_UTILS.formatFileSize(load.total)}
+					{UTILS.formatFileSize(load.total)}
 				</span>
 			</div>
 		</div>

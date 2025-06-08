@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IUploadFilesSchema, IUploadFile } from '../types/IUploadFilesSchema';
 import { UploadStatus } from '../types/UploadStatus';
+import { IProgress } from '../../../../shared/types/IProgress';
 
 const initialState: IUploadFilesSchema = {
 	status: UploadStatus.IDLE,
@@ -21,7 +22,7 @@ const uploadFilesSlice = createSlice({
 		},
 		updateUploadFileProgress(
 			state,
-			action: PayloadAction<{ id: string; progress: { loaded: number; total: number } }>
+			action: PayloadAction<{ id: string; progress: IProgress }>
 		) {
 			const file = state.uploadedFiles.find(f => f.id === action.payload.id);
 			if (file) {
@@ -72,9 +73,11 @@ const uploadFilesSlice = createSlice({
 			state.filesUrl = action.payload;
 		},
 		checkAllUploadsFinished(state) {
+			console.log('checkAllUploadsFinished');
+
 			if (state.uploadedFiles.length === 0) {
 				state.status = UploadStatus.IDLE;
-				console.log(1);
+				console.log('globalStatus IDLE');
 				return;
 			}
 
@@ -84,7 +87,7 @@ const uploadFilesSlice = createSlice({
 
 			if (hasLoadingOrIdle) {
 				state.status = UploadStatus.LOADING;
-				console.log(2);
+				console.log('globalStatus LOADING');
 				return;
 			}
 
@@ -94,12 +97,12 @@ const uploadFilesSlice = createSlice({
 
 			if (hasError) {
 				state.status = UploadStatus.ERROR;
-				console.log(3);
+				console.log('globalStatus ERROR');
 				return;
 			}
 
 			state.status = UploadStatus.SUCCESS;
-			console.log(state.status);
+			console.log('globalStatus SUCCESS');
 		}
 	},
 });

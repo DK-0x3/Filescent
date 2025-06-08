@@ -2,7 +2,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 10fr 1fr;
+  grid-template-rows: 10fr 2fr;
   align-items: center;
   justify-content: center;
   gap: 50px;
@@ -43,12 +43,18 @@
   color: var(--gray-light);
 }
 
-.DownloadPageDescription {
+.DownloadPageProperty {
   background-color: var(--gray-dark);
   width: fit-content;
   padding: 30px;
   border-radius: 50px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.DownloadPageDescription {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--white-primary);
 }
 
 .DownloadPageParameters {

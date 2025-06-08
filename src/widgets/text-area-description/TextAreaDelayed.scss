@@ -1,0 +1,21 @@
+.TextAreaDelayed {
+  width: inherit;
+  height: inherit;
+  resize: none;
+  outline: none;
+  border: none;
+  background-color: var(--gray-dark);
+  box-sizing: border-box;
+  padding: 12px;
+  border-radius: 20px;
+  font-size: 16px;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    color: #999;
+    font-size: 18px;
+  }
+}

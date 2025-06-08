@@ -11,7 +11,7 @@ import { useModal } from '../../widgets/modal/ui/ModalContext';
 import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
 import CopySvg from '../../shared/assets/svg/copy.svg';
-import { FILE_UTILS } from '../../shared/utils/fileUtils';
+import { UTILS } from '../../shared/utils/Utils';
 import ROUTES from '../../app/routing/routes';
 import { DownloadPassword } from '../../widgets/download-password/DownloadPassword';
 import i18n from 'i18next';
@@ -21,6 +21,7 @@ export interface IFilesDownloadParameters {
 		count_download: number,
 		date_deleted: string,
 		password: boolean,
+		description: string,
 	}
 }
 
@@ -65,7 +66,9 @@ export const DownloadPage = () => {
 				color: '#fff',
 			},
 		});
-	};useEffect(() => {
+	};
+
+	useEffect(() => {
 		if (!id) return;
 
 		const password = searchParams.get(RouteParams.download.queryParams.password);
@@ -79,7 +82,6 @@ export const DownloadPage = () => {
 
 				if (responseGet.data.message.password) {
 					if (password !== null) {
-						console.log(password);
 						try {
 							const response = await axios.post<Blob>(
 								`${API_URL}/api/file/${fileId}`,
@@ -107,7 +109,7 @@ export const DownloadPage = () => {
 					const response = await axios.post<Blob>(
 						`${API_URL}/api/file/${fileId}`,
 						{
-							password: '',
+							password: password,
 						},
 						{
 							responseType: 'blob',
@@ -127,8 +129,6 @@ export const DownloadPage = () => {
 
 		fetchFilesById(id);
 	}, [id, searchParams]);
-
-
 
 	if (isPassword !== IncorrectPassword.CORRECT) {
 		return (
@@ -159,13 +159,13 @@ export const DownloadPage = () => {
 				/>
 			</a>
 
-			<div className={styles.DownloadPageDescription}>
+			<div className={styles.DownloadPageProperty}>
 				<span className={styles.DownloadPageTitle}>
-					{t('Файлы') + ': ' + (FILE_UTILS.getExtensionFromMime(blob?.type ?? 'anonim') || 'load')}
+					{t('Файлы') + ': ' + (UTILS.getExtensionFromMime(blob?.type ?? 'anonim') || 'load')}
 				</span>
 				<br/>
 				<span className="file-upload-success-loaded">
-					{FILE_UTILS.formatFileSize(blob?.size ?? 0)}
+					{UTILS.formatFileSize(blob?.size ?? 0)}
 				</span>
 			</div>
 
@@ -180,6 +180,12 @@ export const DownloadPage = () => {
 						year: 'numeric',
 					}).format(parameters?.message && new Date(parameters?.message.date_deleted))}
 				</span>
+			</div>
+
+			<div></div>
+
+			<div className={styles.DownloadPageDescription}>
+				{parameters?.message.description}
 			</div>
 		</div>
 	);
