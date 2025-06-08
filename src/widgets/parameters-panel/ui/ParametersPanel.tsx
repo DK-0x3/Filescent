@@ -34,6 +34,7 @@ import { TextAreaDelayed } from '../../text-area-description/TextAreaDelayed';
 import {
 	updateDescriptionParameterThunk
 } from '../../../store/services/upload-files/thunks/updateDescriptionParameterThunk';
+import { ChangeEvent } from 'react';
 
 interface IParametersPanelProps {
     className?: string;
@@ -73,19 +74,19 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 		dispatch(toggleEnableCustomCountLoad(false));
 	};
 
-	const handleTimeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleTimeChange = (event: ChangeEvent<HTMLInputElement>) => {
 		dispatch(updateTimeParameterThunk({
 			days: +event.target.value,
 		}));
 	};
 
-	const handleCountLoadChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handleCountLoadChange = (event: ChangeEvent<HTMLInputElement>) => {
 		dispatch(updateCountLoadParameterThunk({
 			countLoad: +event.target.value,
 		}));
 	};
 
-	const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
 		dispatch(updatePasswordParameterThunk({
 			password: event.target.value,
 		}));

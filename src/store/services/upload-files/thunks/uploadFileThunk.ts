@@ -30,6 +30,7 @@ export const uploadFileThunk = createAppAsyncThunk<
 >(
 	'upload/file',
 	async ({ file }, { dispatch, rejectWithValue, getState }) => {
+		console.log('uploadFileThunk');
 		const fileId = uuidv4();
 		const state = getState();
 		const sessionId = getSessionId(state);

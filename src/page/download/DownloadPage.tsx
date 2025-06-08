@@ -108,13 +108,13 @@ export const DownloadPage = () => {
 					}
 				} else {
 					console.log(fileId);
-					const response = await axios.post<Blob>(
+					const response = await axios.get<Blob>(
 						`${API_URL}/api/file/${fileId}`,
 						{
-							password: password,
-						},
-						{
-							responseType: 'blob',
+							headers: {
+								'X-Password': password,
+							},
+							responseType: 'blob'
 						}
 					);
 

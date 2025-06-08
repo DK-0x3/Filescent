@@ -15,6 +15,7 @@ const uploadFilesSlice = createSlice({
 	initialState,
 	reducers: {
 		addUploadFiles(state, action: PayloadAction<IUploadFile[]>) {
+			console.log('addUploadFiles');
 			state.uploadedFiles.push(...action.payload);
 		},
 		clearUploadFiles(state) {
@@ -45,7 +46,6 @@ const uploadFilesSlice = createSlice({
 				}
 			});
 
-			console.log('setUploadFilesLoading');
 			uploadFilesSlice.caseReducers.checkAllUploadsFinished(state);
 		},
 		setUploadFilesIdle(state, action: PayloadAction<string[]>) {
