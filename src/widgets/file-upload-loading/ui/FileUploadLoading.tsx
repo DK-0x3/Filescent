@@ -13,7 +13,6 @@ const FileUploadLoading = () => {
 	const { t } = useTranslation();
 	const dispatch = useAppDispatch();
 	const uploadedFiles = useSelector(getUploadFiles);
-	console.log(uploadedFiles);
 	const fileInputRef = useRef<HTMLInputElement | null>(null);
 	const load = useSelector(getUploadGlobalProgress);
 

@@ -5,6 +5,7 @@ export const initialState: IParametersSettingsSchema = {
 	isEnablePassword: false,
 	isEnableCustomTime: false,
 	isEnableCustomCountLoad: false,
+	isEnable: false,
 };
 
 const parametersSettingsSlice = createSlice({
@@ -20,6 +21,9 @@ const parametersSettingsSlice = createSlice({
 		toggleEnableCustomCountLoad(state, action: PayloadAction<boolean>) {
 			state.isEnableCustomCountLoad = action.payload;
 		},
+		toggleEnableParametersUI(state, action: PayloadAction<boolean>) {
+			state.isEnable = action.payload;
+		}
 	}
 });
 
@@ -27,6 +31,7 @@ export const {
 	togglePassword,
 	toggleEnableCustomTime,
 	toggleEnableCustomCountLoad,
+	toggleEnableParametersUI,
 } = parametersSettingsSlice.actions;
 
 export default parametersSettingsSlice.reducer;

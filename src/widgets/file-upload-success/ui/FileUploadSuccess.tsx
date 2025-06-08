@@ -2,7 +2,7 @@ import './FileUploadSuccess.scss';
 import { useAppDispatch } from '../../../store/types/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { getUploadFiles } from '../../../store/services/upload-files/selectors/getUploadFiles';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { getUploadGlobalProgress } from '../../../store/services/upload-files/selectors/getUploadGlobalProgress';
 import { uploadFileThunk } from '../../../store/services/upload-files/thunks/uploadFileThunk';
 import LogoBig from '../../../shared/assets/svg/logoBig.svg';
@@ -14,6 +14,7 @@ import CopySvg from '../../../shared/assets/svg/copy.svg';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import { useModal } from '../../modal/ui/ModalContext';
+import { toggleEnableParametersUI } from '../../../store/services/parameters-settings/parametersSettingsSlice';
 
 const FileUploadSuccess = () => {
 	const { t } = useTranslation();
@@ -23,6 +24,10 @@ const FileUploadSuccess = () => {
 	const load = useSelector(getUploadGlobalProgress);
 	const urlId = useSelector(getUploadFilesUrl);
 	const domain = window.location.origin;
+
+	useEffect(() => {
+		dispatch(toggleEnableParametersUI(true));
+	});
 
 	const { openModal } = useModal();
 

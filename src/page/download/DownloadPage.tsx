@@ -163,7 +163,8 @@ export const DownloadPage = () => {
 
 			<div className={styles.DownloadPageProperty}>
 				<span className={styles.DownloadPageTitle}>
-					{t('Файлы') + ': ' + (UTILS.getExtensionFromMime(blob?.type ?? 'anonim') || 'load')}
+					{/*{t('Файлы') + ': ' + (UTILS.getExtensionFromMime(blob?.type ?? 'anonim') || 'load')}*/}
+					{t('Архив')}{' .zip'}
 				</span>
 				<br/>
 				<span className="file-upload-success-loaded">

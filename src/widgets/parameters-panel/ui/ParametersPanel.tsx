@@ -35,6 +35,9 @@ import {
 	updateDescriptionParameterThunk
 } from '../../../store/services/upload-files/thunks/updateDescriptionParameterThunk';
 import { ChangeEvent } from 'react';
+import {
+	getEnabledParametersPanel
+} from '../../../store/services/parameters-settings/selectors/getEnabledParametersPanel';
 
 interface IParametersPanelProps {
     className?: string;
@@ -51,6 +54,7 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 	const isPasswordEnable = useSelector(getPasswordEnabled);
 	const isEnableCustomTime = useSelector(getEnabledCustomTime);
 	const isEnableCustomCountLoad = useSelector(getEnabledCustomCountLoad);
+	const isEnabledUI = useSelector(getEnabledParametersPanel);
 
 	const handleSelectCustomTime = (item: IDropDownItem) => {
 		if (item.key === DefaultTimeKeys.CUSTOM) {
@@ -107,7 +111,13 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 	};
 	
 	return (
-		<footer className={`ParametersPanel ${className}`}>
+		<footer
+			style={isEnabledUI ? {} : {
+				pointerEvents: 'none',
+				opacity: 0.5
+			}}
+			className={`ParametersPanel ${className}`
+			}>
 			<div className='containerGridMain'>
 				<div className='containerTitle'>
 					<h2 className='title'>{t('Параметры')}</h2>

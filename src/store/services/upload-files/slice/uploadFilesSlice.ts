@@ -15,7 +15,6 @@ const uploadFilesSlice = createSlice({
 	initialState,
 	reducers: {
 		addUploadFiles(state, action: PayloadAction<IUploadFile[]>) {
-			console.log('addUploadFiles');
 			state.uploadedFiles.push(...action.payload);
 		},
 		clearUploadFiles(state) {
@@ -73,8 +72,6 @@ const uploadFilesSlice = createSlice({
 			state.filesUrl = action.payload;
 		},
 		checkAllUploadsFinished(state) {
-			console.log('checkAllUploadsFinished');
-
 			if (state.uploadedFiles.length === 0) {
 				state.status = UploadStatus.IDLE;
 				console.log('globalStatus IDLE');
