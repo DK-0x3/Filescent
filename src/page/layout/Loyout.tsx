@@ -10,9 +10,7 @@ const Layout = () => {
 	const dispatch = useAppDispatch();
 
 	const handleFiles = (files: File[]) => {
-		files.forEach(file => {
-			dispatch(uploadFileThunk({ file }));
-		});
+		dispatch(uploadFileThunk({ files }));
 	};
 
 	const location = useLocation();

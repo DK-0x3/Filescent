@@ -37,9 +37,7 @@ const FileUploadSuccess = () => {
 		const files = event.target.files;
 
 		if (files) {
-			Array.from(files).forEach((file) => {
-				dispatch(uploadFileThunk({ file }));
-			});
+			dispatch(uploadFileThunk({ files: Array.from(files) }));
 		}
 	};
 

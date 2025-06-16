@@ -21,7 +21,7 @@ interface IUploadFileResponse {
 }
 
 interface IUploadFileThunk {
-	file: File;
+	files: File[];
 }
 
 export const uploadFileThunk = createAppAsyncThunk<
@@ -29,26 +29,29 @@ export const uploadFileThunk = createAppAsyncThunk<
 	IUploadFileThunk
 >(
 	'upload/file',
-	async ({ file }, { dispatch, rejectWithValue, getState }) => {
+	async ({ files }, { dispatch, rejectWithValue, getState }) => {
 		const fileId = uuidv4();
 		const state = getState();
 		const sessionId = getSessionId(state);
 
 		try {
 			// Добавляем файл в список
-			dispatch(addUploadFiles([{
-				id: fileId,
-				name: file.name,
-				size: file.size,
-				type: file.type,
-				status: UploadStatus.IDLE,
-				progress: null,
-			}]));
+			dispatch(addUploadFiles(files.map(file => {
+				return {
+					id: fileId,
+					name: file.name,
+					size: file.size,
+					type: file.type,
+					status: UploadStatus.IDLE,
+					progress: null,
+				};
+			})));
 
 			// Создаём form data
 			const formData = new FormData();
-			formData.append('file', file);
-			formData.append('filename', file.name);
+			files.forEach((file: File) => {
+				formData.append('files', file);
+			});
 			let startTime = Date.now();
 
 			const response = await axios.post<IUploadFileResponse>(
@@ -56,7 +59,7 @@ export const uploadFileThunk = createAppAsyncThunk<
 				formData,
 				{
 					headers: {
-						'Content-Type': 'multipart/form-data',
+						// 'Content-Type': 'multipart/form-data',
 						'X-Session-ID': sessionId,
 					},
 
@@ -91,14 +94,16 @@ export const uploadFileThunk = createAppAsyncThunk<
 
 			return response.data;
 		} catch (err) {
-			dispatch(addUploadFiles([{
-				id: fileId,
-				name: file.name,
-				size: file.size,
-				type: file.type,
-				status: UploadStatus.ERROR,
-				progress: null,
-			}]));
+			dispatch(addUploadFiles(files.map(file => {
+				return {
+					id: fileId,
+					name: file.name,
+					size: file.size,
+					type: file.type,
+					status: UploadStatus.ERROR,
+					progress: null,
+				};
+			})));
 			return rejectWithValue('Ошибка при загрузке файла');
 		}
 	}
