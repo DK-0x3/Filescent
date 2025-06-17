@@ -15,6 +15,7 @@ import { UTILS } from '../../shared/utils/Utils';
 import ROUTES from '../../app/routing/routes';
 import { DownloadPassword } from '../../widgets/download-password/DownloadPassword';
 import i18n from 'i18next';
+import { useIsMobile } from '../../shared/hooks/useIsMobile';
 
 export interface IFilesDownloadParameters {
 	message: {
@@ -38,6 +39,7 @@ export const DownloadPage = () => {
 	const { id } = useParams<IDownloadPageParams>() as IDownloadPageParams;
 	const navigate = useNavigate();
 	const { openModal } = useModal();
+	const isMobile = useIsMobile();
 
 	const [searchParams] = useSearchParams();
 
@@ -52,7 +54,7 @@ export const DownloadPage = () => {
 
 	const handleOpenQR = (event: React.MouseEvent) => {
 		event.stopPropagation();
-		openModal(<QRCode size={800} text={filesUrl} />);
+		openModal(<QRCode size={isMobile ? 320 : 800} text={filesUrl} />);
 	};
 
 	const handleCopy = async () => {
@@ -78,7 +80,6 @@ export const DownloadPage = () => {
 				const responseGet = await axios.get<IFilesDownloadParameters>(
 					`${API_URL}/api/file/${fileId}/data`
 				);
-				console.log(responseGet.data);
 				setParameters(responseGet.data);
 
 				if (responseGet.data.message.password) {
@@ -107,7 +108,6 @@ export const DownloadPage = () => {
 						setIsPassword(IncorrectPassword.EMPTY);
 					}
 				} else {
-					console.log(fileId);
 					const response = await axios.get<Blob>(
 						`${API_URL}/api/file/${fileId}`,
 						{
@@ -141,9 +141,9 @@ export const DownloadPage = () => {
 	return (
 		<div className={styles.DownloadPage}>
 			<div>
-				<QRCode onClick={handleOpenQR} cursor='pointer' size={300} text={filesUrl} />
+				<QRCode onClick={handleOpenQR} cursor='pointer' size={isMobile ? 250 : 300} text={filesUrl} />
 				<div>
-					<img src={CopyLinkSvg} alt='' />
+					<img className='file-upload-success-qr-img' src={CopyLinkSvg} alt='' />
 					<span
 						className='file-upload-success-qr-title'
 						onClick={handleCopy}

@@ -15,6 +15,7 @@ import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import { useModal } from '../../modal/ui/ModalContext';
 import { toggleEnableParametersUI } from '../../../store/services/parameters-settings/parametersSettingsSlice';
+import { useIsMobile } from '../../../shared/hooks/useIsMobile';
 
 const FileUploadSuccess = () => {
 	const { t } = useTranslation();
@@ -24,6 +25,7 @@ const FileUploadSuccess = () => {
 	const load = useSelector(getUploadGlobalProgress);
 	const urlId = useSelector(getUploadFilesUrl);
 	const domain = window.location.origin;
+	const isMobile = useIsMobile();
 
 	useEffect(() => {
 		dispatch(toggleEnableParametersUI(true));
@@ -60,7 +62,7 @@ const FileUploadSuccess = () => {
 	
 	const handleOpenQR = (event: React.MouseEvent) => {
 		event.stopPropagation();
-		openModal(<QRCode size={800} text={filesUrl} />);
+		openModal(<QRCode size={isMobile ? 320 : 800} text={filesUrl} />);
 	};
 
 	return (
@@ -75,9 +77,9 @@ const FileUploadSuccess = () => {
 			/>
 
 			<div className='file-upload-success-qr'>
-				<QRCode onClick={handleOpenQR} cursor='pointer' size={300} text={filesUrl} />
+				<QRCode onClick={handleOpenQR} cursor='pointer' size={isMobile ? 250 : 300} text={filesUrl} />
 				<div className='file-upload-success-text'>
-					<img src={CopyLinkSvg} alt='' />
+					<img className='file-upload-success-qr-img' src={CopyLinkSvg} alt='' />
 					<span
 						className='file-upload-success-qr-title'
 						onClick={handleCopy}

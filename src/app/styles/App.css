@@ -29,3 +29,10 @@
   display: grid;
   grid-template-rows: var(--navbar-height) 3fr 1fr;
 }
+
+@media (max-width: 600px) {
+  .App {
+    display: grid;
+    grid-template-rows: var(--navbar-height) auto auto;
+  }
+}

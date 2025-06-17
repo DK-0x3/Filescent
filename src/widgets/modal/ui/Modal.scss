@@ -59,3 +59,13 @@
 .modal-close:hover {
   color: #ff0000;
 }
+
+@media (max-width: 600px) {
+  .modal-content {
+    padding: 10px;
+  }
+
+  .modal-close {
+    display: none;
+  }
+}

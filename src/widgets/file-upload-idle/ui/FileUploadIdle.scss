@@ -29,3 +29,20 @@
     transform: scale(1.05);
   }
 }
+
+@media (max-width: 600px) {
+  .file-upload-idle {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    grid-template-columns: 1fr;
+  }
+
+  .file-upload-idle-logo {
+    justify-self: center;
+    width: 60%;
+  }
+
+  .file-upload-idle-title {
+    display: none;
+  }
+}

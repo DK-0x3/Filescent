@@ -53,3 +53,36 @@
   border-radius: 50px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
+
+@media (max-width: 600px) {
+  .file-upload-success {
+    margin-top: 50px;
+    grid-template-columns: 1fr;
+    margin-bottom: 50px;
+  }
+
+  .file-upload-success-qr-title {
+    font-size: 18px;
+  }
+
+  .file-upload-success-qr-img {
+    height: 20px;
+  }
+
+  .file-upload-success-logo {
+    width: 60%;
+  }
+
+  .file-upload-success-description {
+    width: auto;
+    margin: 10px;
+  }
+
+  .file-upload-success-title {
+    font-size: 34px;
+  }
+
+  .file-upload-success-loaded {
+    font-size: 34px;
+  }
+}

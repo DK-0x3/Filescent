@@ -8,6 +8,8 @@ import { getUploadGlobalProgress } from '../../../store/services/upload-files/se
 import { uploadFileThunk } from '../../../store/services/upload-files/thunks/uploadFileThunk';
 import { useTranslation } from 'react-i18next';
 import { UTILS } from '../../../shared/utils/Utils';
+import toast from 'react-hot-toast';
+import CopySvg from '../../../shared/assets/svg/copy.svg';
 
 const FileUploadLoading = () => {
 	const { t } = useTranslation();
@@ -25,7 +27,14 @@ const FileUploadLoading = () => {
 	};
 
 	const handleClick = () => {
-		fileInputRef.current?.click();
+		toast(t('Ожидайте завершения'), {
+			duration: 1000,
+			style: {
+				borderRadius: '10px',
+				background: '#333',
+				color: '#fff',
+			},
+		});
 	};
     
 	return (

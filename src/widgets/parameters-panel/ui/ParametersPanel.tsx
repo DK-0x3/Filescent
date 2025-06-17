@@ -135,7 +135,9 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 					<DropDownMenuHover
 						defaultSelectItem={DefaultTimeSelectItem}
 						items={DefaultTimeItems}
-						fnChanged={handleSelectCustomTime}/>
+						fnChanged={handleSelectCustomTime}
+						className='TimeSelect'
+					/>
 				</div>
 				<div className='containerCountLoad'>
 					<Tooltip

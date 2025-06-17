@@ -18,11 +18,26 @@
 
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 
-  &:hover {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-    transform: scale(1.05);
+  animation: pulse 2s ease-in-out infinite;
+  transform-origin: center center;
+
+  //&:hover {
+  //  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  //  transform: scale(1.2);
+  //}
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
   }
 }
+
 
 .file-upload-loading-title {
   font-size: 64px;
@@ -47,4 +62,36 @@
   padding: 30px;
   border-radius: 50px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 600px) {
+  .file-upload-loading {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    grid-template-columns: 1fr;
+  }
+
+  .file-upload-loading-logo {
+    justify-self: center;
+    width: 60%;
+  }
+
+  .file-upload-loading-description {
+    margin: 10px;
+    width: auto;
+  }
+
+  .file-upload-loading-title {
+    font-size: 34px;
+  }
+
+  .file-upload-loading-loaded {
+    font-size: 34px;
+  }
+
+  .file-upload-loading-info {
+    font-size: 14px;
+    margin-top: 20px;
+    display: block;
+  }
 }

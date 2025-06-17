@@ -38,11 +38,6 @@
   color: var(--green-dark);
 }
 
-.file-upload-success-loaded {
-  font-size: 64px;
-  color: var(--gray-light);
-}
-
 .DownloadPageProperty {
   background-color: var(--gray-dark);
   width: fit-content;
@@ -70,5 +65,40 @@
 
   span {
     margin: 50px;
+  }
+}
+
+@media (max-width: 600px) {
+  .DownloadPage {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .DownloadPageLogo {
+    width: 60%;
+  }
+
+  .file-upload-success-qr-img {
+    height: 20px;
+  }
+
+  .DownloadPageProperty {
+    width: auto;
+    margin: 10px;
+  }
+
+  .DownloadPageTitle {
+    font-size: 34px;
+  }
+
+  .DownloadPageParameters {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    grid-column: 1;
+
+    span {
+      margin: 0;
+    }
   }
 }
