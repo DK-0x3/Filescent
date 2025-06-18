@@ -14,7 +14,7 @@ export const getUploadGlobalProgress = createSelector(
 
 		const eta = speed > 0 && total > 0
 			? (total - loaded) / speed
-			: null;
+			: 0;
 
 		return { loaded, total, speed, eta };
 	}

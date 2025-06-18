@@ -9,7 +9,6 @@ import { uploadFileThunk } from '../../../store/services/upload-files/thunks/upl
 import { useTranslation } from 'react-i18next';
 import { UTILS } from '../../../shared/utils/Utils';
 import toast from 'react-hot-toast';
-import CopySvg from '../../../shared/assets/svg/copy.svg';
 
 const FileUploadLoading = () => {
 	const { t } = useTranslation();

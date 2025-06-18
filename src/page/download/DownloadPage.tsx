@@ -80,18 +80,20 @@ export const DownloadPage = () => {
 				const responseGet = await axios.get<IFilesDownloadParameters>(
 					`${API_URL}/api/file/${fileId}/data`
 				);
+				console.log(`${API_URL}/api/file/${fileId}/data`);
+				console.log('responseGet', responseGet);
 				setParameters(responseGet.data);
 
 				if (responseGet.data.message.password) {
 					if (password !== null) {
 						try {
-							const response = await axios.post<Blob>(
+							const response = await axios.get<Blob>(
 								`${API_URL}/api/file/${fileId}`,
 								{
-									password: password,
-								},
-								{
-									responseType: 'blob',
+									headers: {
+										'X-Password': password,
+									},
+									responseType: 'blob'
 								}
 							);
 
