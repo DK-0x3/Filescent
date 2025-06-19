@@ -74,7 +74,6 @@ const uploadFilesSlice = createSlice({
 		checkAllUploadsFinished(state) {
 			if (state.uploadedFiles.length === 0) {
 				state.status = UploadStatus.IDLE;
-				console.log('globalStatus IDLE');
 				return;
 			}
 
@@ -84,7 +83,6 @@ const uploadFilesSlice = createSlice({
 
 			if (hasLoadingOrIdle) {
 				state.status = UploadStatus.LOADING;
-				console.log('globalStatus LOADING');
 				return;
 			}
 
@@ -94,12 +92,10 @@ const uploadFilesSlice = createSlice({
 
 			if (hasError) {
 				state.status = UploadStatus.ERROR;
-				console.log('globalStatus ERROR');
 				return;
 			}
 
 			state.status = UploadStatus.SUCCESS;
-			console.log('globalStatus SUCCESS');
 		}
 	},
 });

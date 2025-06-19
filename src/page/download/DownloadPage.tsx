@@ -16,6 +16,7 @@ import ROUTES from '../../app/routing/routes';
 import { DownloadPassword } from '../../widgets/download-password/DownloadPassword';
 import i18n from 'i18next';
 import { useIsMobile } from '../../shared/hooks/useIsMobile';
+import copy from 'copy-to-clipboard';
 
 export interface IFilesDownloadParameters {
 	message: {
@@ -58,7 +59,7 @@ export const DownloadPage = () => {
 	};
 
 	const handleCopy = async () => {
-		await navigator.clipboard.writeText(filesUrl);
+		copy(filesUrl);
 		toast(t('Скопировано'), {
 			icon: <img src={CopySvg} alt='' />,
 			duration: 1000,
@@ -80,8 +81,6 @@ export const DownloadPage = () => {
 				const responseGet = await axios.get<IFilesDownloadParameters>(
 					`${API_URL}/api/file/${fileId}/data`
 				);
-				console.log(`${API_URL}/api/file/${fileId}/data`);
-				console.log('responseGet', responseGet);
 				setParameters(responseGet.data);
 
 				if (responseGet.data.message.password) {

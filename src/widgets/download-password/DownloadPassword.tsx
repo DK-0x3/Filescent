@@ -14,7 +14,6 @@ export const DownloadPassword = (props: IDownloadPasswordProps) => {
 	const navigate = useNavigate();
 
 	const handleSubmit = () => {
-		console.log('Пароль отправлен:', password);
 		navigate('?password=' + password, { replace: true });
 	};
 
