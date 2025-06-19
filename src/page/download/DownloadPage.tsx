@@ -59,7 +59,6 @@ export const DownloadPage = () => {
 	};
 
 	const handleCopy = async () => {
-		console.log('copied');
 		copy(filesUrl);
 		toast(t('Скопировано'), {
 			icon: <img src={CopySvg} alt='' />,
