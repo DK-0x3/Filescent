@@ -16,7 +16,7 @@ export const Navbar = (props: INavbarProps) => {
 
 	return (
 		<div className={'Navbar ' + (className || '')}>
-			<img src={logo} className="logo" alt="Vite logo"/>
+			<img src={logo} className="logo" alt="Vite logo" draggable="false"/>
 
 			{/* eslint-disable-next-line i18next/no-literal-string */}
 			<label className='Title'>Filescent</label>

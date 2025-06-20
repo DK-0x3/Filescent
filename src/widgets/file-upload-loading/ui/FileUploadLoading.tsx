@@ -51,6 +51,7 @@ const FileUploadLoading = () => {
 				className='file-upload-loading-logo'
 				src={LogoBig}
 				onClick={handleClick}
+				draggable="false"
 			/>
 
 			<div className='file-upload-loading-description'>

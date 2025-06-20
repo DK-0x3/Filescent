@@ -37,6 +37,7 @@ const FileUploadIdle = () => {
 				className='file-upload-idle-logo'
 				src={LogoBig}
 				onClick={handleClick}
+				draggable="false"
 			/>
 
 			<span className="file-upload-idle-title">

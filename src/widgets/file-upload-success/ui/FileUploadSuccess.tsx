@@ -95,6 +95,7 @@ const FileUploadSuccess = () => {
 				className='file-upload-success-logo'
 				src={LogoBig}
 				onClick={handleUploadFilesClick}
+				draggable="false"
 			/>
 
 			<div className='file-upload-success-description'>

@@ -11,6 +11,11 @@
   justify-self: left;
   font-size: 64px;
   font-weight: 600;
+
+  user-select: none;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* IE/Edge */
 }
 
 .file-upload-idle-logo {

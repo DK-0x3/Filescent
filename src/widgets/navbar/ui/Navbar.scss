@@ -26,6 +26,11 @@
     font-weight: 600;
     position: relative;
 
+    user-select: none;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* IE/Edge */
+
     &:hover + .title-end {
       opacity: 1;
       transform: translateX(0);
@@ -39,5 +44,10 @@
     opacity: 0;
     transform: translateX(-50px);
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+
+    user-select: none;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* IE/Edge */
   }
 }
