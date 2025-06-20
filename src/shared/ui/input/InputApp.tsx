@@ -1,5 +1,6 @@
 import './InputApp.scss';
 import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 
 interface IInputAppProps {
     className?: string;
@@ -10,19 +11,21 @@ interface IInputAppProps {
 
 export const InputApp: FC<IInputAppProps> = (props: IInputAppProps) => {
 	const {
-		placeholder,
+		placeholder = '',
 		className,
 		onChange,
 		type = 'text',
 		...otherProps
 	} = props;
 
+	const { t } = useTranslation();
+
 	return (
 		<input {...otherProps}
 			className={`InputApp ${className}`}
 			type={type}
 			onChange={onChange}
-			placeholder={placeholder}
+			placeholder={t(placeholder)}
 		/>
 	);
 };

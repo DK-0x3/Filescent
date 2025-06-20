@@ -5,7 +5,6 @@ import countLoadIcon from '../../../shared/assets/svg/countLoad.svg';
 import passwordIcon from '../../../shared/assets/svg/password.svg';
 import { DropDownMenuHover } from '../../../shared/ui/drop-down-menu-hover/DropDownMenuHover';
 import { SwitchMUI } from '../../../shared/ui/switch-mui/switchMUI';
-import { InputPasswordOutlinedMUI } from '../../../shared/ui/input-password-outlined-mui/InputPasswordOutlinedMUI';
 import { useSelector } from 'react-redux';
 import { getPasswordEnabled } from '../../../store/services/parameters-settings/selectors/getPasswordEnabled';
 import {
@@ -20,7 +19,6 @@ import {
 	DefaultCountLoadSelectItem } from '../types/DefaultCountLoadItems';
 import { IDropDownItem } from '../../../shared/ui/drop-down-menu-hover/interface/IDropDownItem';
 import { useAppDispatch } from '../../../store/types/useAppDispatch';
-import { InputOutlinedMUI } from '../../../shared/ui/input-outlined-mui/InputOutlinedMUI';
 import { getEnabledCustomTime } from '../../../store/services/parameters-settings/selectors/getEnabledCustomTime';
 import {
 	getEnabledCustomCountLoad
@@ -38,6 +36,7 @@ import { ChangeEvent } from 'react';
 import {
 	getEnabledParametersPanel
 } from '../../../store/services/parameters-settings/selectors/getEnabledParametersPanel';
+import { InputApp } from '../../../shared/ui/input/InputApp';
 
 interface IParametersPanelProps {
     className?: string;
@@ -170,12 +169,18 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 				</div>
 
 				<div className='containerPasswordInput'>
-					<div className={`passwordInput ${
+					<div className={`passwordContainerInput ${
 						isPasswordEnable ? 'fade-in' : 'fade-out'
 					}`}>
-						<InputPasswordOutlinedMUI
+						{/*<InputPasswordOutlinedMUI*/}
+						{/*	placeholder='пароль'*/}
+						{/*	onInputChange={handlePasswordChange}*/}
+						{/*/>*/}
+						<InputApp
+							type='password'
+							onChange={handlePasswordChange}
 							placeholder='пароль'
-							onInputChange={handlePasswordChange}
+							className='password-input'
 						/>
 					</div>
 				</div>
@@ -183,21 +188,33 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 				<div className={`containerTimeInput ${
 					isEnableCustomTime ? 'fade-in' : 'fade-out'
 				}`}>
-					<InputOutlinedMUI
-						startAdornment='дни'
-						placeholder='кол-во'
+					{/*<InputOutlinedMUI*/}
+					{/*	startAdornment='дни'*/}
+					{/*	placeholder='кол-во'*/}
+					{/*	type='number'*/}
+					{/*	onInputChange={handleTimeChange}*/}
+					{/*/>*/}
+					<InputApp
 						type='number'
-						onInputChange={handleTimeChange}
+						onChange={handleTimeChange}
+						placeholder='дни'
+						className='time-input'
 					/>
 				</div>
 				<div className={`containerCountLoadInput ${
 					isEnableCustomCountLoad ? 'fade-in' : 'fade-out'
 				}`}>
-					<InputOutlinedMUI
-						startAdornment='скач-я'
-						placeholder='кол-во'
+					{/*<InputOutlinedMUI*/}
+					{/*	startAdornment='скач-я'*/}
+					{/*	placeholder='кол-во'*/}
+					{/*	type='number'*/}
+					{/*	onInputChange={handleCountLoadChange}*/}
+					{/*/>*/}
+					<InputApp
 						type='number'
-						onInputChange={handleCountLoadChange}
+						onChange={handleCountLoadChange}
+						placeholder='скачивания'
+						className='countload-input'
 					/>
 				</div>
 

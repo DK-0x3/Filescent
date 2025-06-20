@@ -1,7 +1,7 @@
 import styles from './DownloadPassword.module.scss';
 import { useTranslation } from 'react-i18next';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { IncorrectPassword } from '../../page/download/DownloadPage';
 
 interface IDownloadPasswordProps {
@@ -10,11 +10,25 @@ interface IDownloadPasswordProps {
 
 export const DownloadPassword = (props: IDownloadPasswordProps) => {
 	const { t } = useTranslation();
+
+	const params = useParams() as Record<string, string | undefined>;
+	const id = params.id;
+	if (!id) {
+		throw new Error('Missing file id');
+	}
+
 	const [password, setPassword] = useState('');
 	const navigate = useNavigate();
+	const inputRef = useRef<HTMLInputElement>(null);
+
+	// Автофокус при отображении компонента
+	useEffect(() => {
+		inputRef.current?.focus();
+	}, []);
 
 	const handleSubmit = () => {
-		navigate('?password=' + password, { replace: true });
+		sessionStorage.setItem(`file-password-${id}`, password);
+		navigate(0); // перезагрузка компонента DownloadPage
 	};
 
 	const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -23,11 +37,12 @@ export const DownloadPassword = (props: IDownloadPasswordProps) => {
 			setPassword('');
 		}
 	};
-	
+
 	return (
 		<div className={styles.DownloadPassword}>
 			<span>{t('Введите пароль')}</span>
 			<input
+				ref={inputRef}
 				type="password"
 				value={password}
 				onChange={(e) => setPassword(e.target.value)}

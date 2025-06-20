@@ -97,19 +97,32 @@
   grid-column: 3;
 }
 
-.passwordInput {
+.passwordContainerInput {
   @extend .containerInput;
   grid-column: 2;
+  width: inherit;
+
+  .password-input {
+    width: max-content;
+  }
 }
 
 .containerCountLoadInput {
   @extend .containerInput;
   grid-column: 2;
+
+  .countload-input {
+    width: max-content;
+  }
 }
 
 .containerTimeInput {
   @extend .containerInput;
   grid-column: 1;
+
+  .time-input {
+    width: max-content;
+  }
 }
 
 .img-parameter {

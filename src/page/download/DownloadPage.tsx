@@ -1,6 +1,5 @@
 import styles from './DownloadPage.module.scss';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { IDownloadPageParams, RouteParams } from '../../app/routing/routeParams';
+import { useNavigate, useParams } from 'react-router-dom';
 import { API_URL } from '../../app/env';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
@@ -35,14 +34,16 @@ export enum IncorrectPassword {
 
 export const DownloadPage = () => {
 	const { t } = useTranslation();
-	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-	// @ts-expect-error
-	const { id } = useParams<IDownloadPageParams>() as IDownloadPageParams;
+
+	const params = useParams() as Record<string, string | undefined>;
+	const id = params.id;
+	if (!id) {
+		throw new Error('Missing file id');
+	}
+
 	const navigate = useNavigate();
 	const { openModal } = useModal();
 	const isMobile = useIsMobile();
-
-	const [searchParams] = useSearchParams();
 
 	const [blob, setBlob] = useState<Blob | null>(null);
 	const [blobUrl, setBlobUrl] = useState<string | null>(null);
@@ -74,7 +75,7 @@ export const DownloadPage = () => {
 	useEffect(() => {
 		if (!id) return;
 
-		const password = searchParams.get(RouteParams.download.queryParams.password);
+		const password = sessionStorage.getItem(`file-password-${id}`);
 
 		const fetchFilesById = async (fileId: string) => {
 			try {
@@ -102,8 +103,12 @@ export const DownloadPage = () => {
 							setIsPassword(IncorrectPassword.CORRECT);
 						}
 						catch (error) {
-							console.log(error);
-							setIsPassword(IncorrectPassword.INCORRECT);
+							if (axios.isAxiosError(error) && error.response?.status === 401) {
+								console.log('Неверный пароль');
+								setIsPassword(IncorrectPassword.INCORRECT);
+							} else {
+								console.log(error);
+							}
 						}
 					} else {
 						setIsPassword(IncorrectPassword.EMPTY);
@@ -131,7 +136,7 @@ export const DownloadPage = () => {
 		};
 
 		fetchFilesById(id);
-	}, [id, searchParams]);
+	}, [id]);
 
 	if (isPassword !== IncorrectPassword.CORRECT) {
 		return (
