@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
 import CopySvg from '../../shared/assets/svg/copy.svg';
 import { UTILS } from '../../shared/utils/Utils';
-import ROUTES from '../../app/routing/routes';
+import ROUTES from '../../app/rout/routes';
 import { DownloadPassword } from '../../widgets/download-password/DownloadPassword';
 import i18n from 'i18next';
 import { useIsMobile } from '../../shared/hooks/useIsMobile';

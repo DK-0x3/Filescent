@@ -3,7 +3,7 @@ import logo from '../../../shared/assets/svg/logo.svg';
 import { LangSwitcher } from '../../../shared/ui/lang-switcher/LangSwitcher';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import ROUTES from '../../../app/routing/routes';
+import ROUTES from '../../../app/rout/routes';
 import { useAppDispatch } from '../../../store/types/useAppDispatch';
 import { clearUploadFiles, setStatus } from '../../../store/services/upload-files/slice/uploadFilesSlice';
 import { UploadStatus } from '../../../store/services/upload-files/types/UploadStatus';

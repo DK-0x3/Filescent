@@ -7,7 +7,7 @@ import { updateLastActivity } from '../store/services/session/thunk/updateLastAc
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { Toaster } from 'react-hot-toast';
 import { ModalProvider } from '../widgets/modal/ui/ModalContext';
-import AppRouter from './routing/AppRouter';
+import AppRouter from './rout/AppRouter';
 
 const App = () => {
 	const queryClient = new QueryClient();
