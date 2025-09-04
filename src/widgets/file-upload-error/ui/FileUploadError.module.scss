@@ -1,0 +1,76 @@
+.Wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+}
+
+.Content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Title {
+  justify-self: left;
+  font-size: 64px;
+  font-weight: 600;
+
+  user-select: none;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* IE/Edge */
+}
+
+.Button {
+  font-size: 64px;
+  font-weight: 600;
+  width: fit-content;
+  cursor: pointer;
+  color: var(--green-light);
+  background: none;
+
+  &:hover {
+    background: var(--gray-dark);
+  }
+}
+
+.Logo {
+  width: 200px;
+  height: 200px;
+
+  justify-self: right;
+  cursor: pointer;
+
+  border-radius: 50%;
+  object-fit: cover;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    transform: scale(1.05);
+  }
+}
+
+@media (max-width: 600px) {
+  .Wrapper {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    grid-template-columns: 1fr;
+  }
+
+  .Logo {
+    justify-self: center;
+    width: 60%;
+  }
+
+  .Title {
+    display: none;
+  }
+}

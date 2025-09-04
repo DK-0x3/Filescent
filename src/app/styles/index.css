@@ -13,3 +13,30 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+button {
+    all: unset; // сбрасываем ВСЕ стили, включая системные (очень удобно для полной кастомизации)
+
+display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 8px 14px;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1;
+    border-radius: 6px;
+    background-color: #2563eb;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+    border: none;
+
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover,
+button:focus,
+button:focus-visible {
+    outline: none;
+    box-shadow: none;
+}

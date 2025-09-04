@@ -4,6 +4,7 @@ import { getUploadGlobalStatus } from '../../store/services/upload-files/selecto
 import { UploadStatus } from '../../store/services/upload-files/types/UploadStatus';
 import FileUploadLoading from '../../widgets/file-upload-loading/ui/FileUploadLoading';
 import FileUploadSuccess from '../../widgets/file-upload-success/ui/FileUploadSuccess';
+import FileUploadError from '../../widgets/file-upload-error/ui/FileUploadError';
 
 const MainPage = () => {
 	const globalStatus = useSelector(getUploadGlobalStatus);
@@ -20,9 +21,9 @@ const MainPage = () => {
 	case UploadStatus.SUCCESS:
 		content = <FileUploadSuccess />;
 		break;
-	// case UploadStatus.ERROR:
-	// 	content = <FileUploadError />;
-	// 	break;
+	case UploadStatus.ERROR:
+		content = <FileUploadError />;
+		break;
 	default:
 		content = null;
 	}
