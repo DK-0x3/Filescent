@@ -36,5 +36,7 @@
   "Скорость": "Speed",
   "Осталось": "Remained",
   "Описание": "Description",
-  "Архив": "Archive"
+  "Архив": "Archive",
+  "Ошибка загрузки": "Download error",
+  "Повторить попытку": "Try again"
 }
