@@ -1,12 +1,13 @@
-import './InputApp.scss';
-import { FC } from 'react';
+import styles from './InputApp.module.scss';
+import { ChangeEvent, FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import classNames from 'classnames';
 
 interface IInputAppProps {
     className?: string;
     placeholder?: string;
     type?: string;
-    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export const InputApp: FC<IInputAppProps> = (props: IInputAppProps) => {
@@ -22,7 +23,7 @@ export const InputApp: FC<IInputAppProps> = (props: IInputAppProps) => {
 
 	return (
 		<input {...otherProps}
-			className={`InputApp ${className}`}
+			className={classNames(styles.InputApp, className)}
 			type={type}
 			onChange={onChange}
 			placeholder={t(placeholder)}

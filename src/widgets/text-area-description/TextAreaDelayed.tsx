@@ -1,5 +1,5 @@
 import { ChangeEvent, FC, TextareaHTMLAttributes, useEffect, useRef, useState } from 'react';
-import './TextAreaDelayed.scss';
+import styles from './TextAreaDelayed.module.scss';
 
 export interface ITextAreaDescriptionProps
     extends TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -47,7 +47,7 @@ export const TextAreaDelayed: FC<ITextAreaDescriptionProps> = ({
 			{...restProps}
 			value={value}
 			onChange={handleChange}
-			className='TextAreaDelayed'
+			className={styles.Wrapper}
 		/>
 	);
 };

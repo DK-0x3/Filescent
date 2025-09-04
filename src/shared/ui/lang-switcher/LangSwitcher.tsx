@@ -1,8 +1,9 @@
-import './LangSwitcher.scss';
+import styles from './LangSwitcher.module.scss';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from '../../../store/types/useAppDispatch';
 import { setSessionLanguage } from '../../../store/services/session/slice/sessionSlice';
 import { Language } from '../../types/language';
+import classNames from 'classnames';
 
 interface ILangSwitcherProps {
     className?: string;
@@ -22,7 +23,7 @@ export const LangSwitcher = (props: ILangSwitcherProps) => {
 	};
 
 	return (
-		<div className={'lang-switcher ' + className}
+		<div className={classNames(styles.LangSwitcher, className)}
 			onClick={() => toggleLang()}
 		>
 			{t('Короткий язык')}

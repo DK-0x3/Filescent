@@ -1,4 +1,4 @@
-.file-upload-success {
+.Wrapper {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -7,7 +7,7 @@
   gap: 50px;
 }
 
-.file-upload-success-logo {
+.Logo {
   justify-self: center;
   cursor: pointer;
 
@@ -24,29 +24,29 @@
   }
 }
 
-.file-upload-success-qr {
+.QR {
 
 }
 
-.file-upload-success-qr-title {
+.QRTitle {
   font-size: 30px;
   font-weight: 600;
   cursor: pointer;
   margin-left: 10px;
 }
 
-.file-upload-success-title {
+.Title {
   font-size: 64px;
   font-weight: 600;
   color: var(--green-dark);
 }
 
-.file-upload-success-loaded {
+.Loaded {
   font-size: 64px;
   color: var(--gray-light);
 }
 
-.file-upload-success-description {
+.Description {
   background-color: var(--gray-dark);
   width: fit-content;
   padding: 30px;
@@ -55,34 +55,34 @@
 }
 
 @media (max-width: 600px) {
-  .file-upload-success {
+  .Wrapper {
     margin-top: 50px;
     grid-template-columns: 1fr;
     margin-bottom: 50px;
   }
 
-  .file-upload-success-qr-title {
+  .QRTitle {
     font-size: 18px;
   }
 
-  .file-upload-success-qr-img {
+  .QRImg {
     height: 20px;
   }
 
-  .file-upload-success-logo {
+  .Logo {
     width: 60%;
   }
 
-  .file-upload-success-description {
+  .Description {
     width: auto;
     margin: 10px;
   }
 
-  .file-upload-success-title {
+  .Title {
     font-size: 34px;
   }
 
-  .file-upload-success-loaded {
+  .Loaded {
     font-size: 34px;
   }
 }

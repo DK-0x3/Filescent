@@ -1,4 +1,4 @@
-import { IDropDownItem } from '../../../shared/ui/drop-down-menu-hover/interface/IDropDownItem';
+import IDropdownItem from '../../../shared/ui/drop-down-list-menu/types/IDropdownItem';
 
 export enum DefaultTimeKeys {
 	ONE = '1',
@@ -9,31 +9,47 @@ export enum DefaultTimeKeys {
 	CUSTOM = 'custom',
 }
 
-export const DefaultTimeItems: IDropDownItem[] = [
+export interface IDropDownItemTimesValue {
+    key: DefaultTimeKeys,
+}
+
+export const DefaultTimeItems: IDropdownItem<IDropDownItemTimesValue>[] = [
 	{
-		key: DefaultTimeKeys.ONE,
-		text: '1 день',
+		value: {
+			key: DefaultTimeKeys.ONE,
+		},
+		label: '1 день',
 	},
 	{
-		key: DefaultTimeKeys.THREE,
-		text: '3 дня',
+		value: {
+			key: DefaultTimeKeys.THREE,
+		},
+		label: '3 дня',
 	},
 	{
-		key: DefaultTimeKeys.SEVEN,
-		text: '7 дней',
+		value: {
+			key: DefaultTimeKeys.SEVEN,
+		},
+		label: '7 дней',
 	},
 	{
-		key: DefaultTimeKeys.FOURTEEN,
-		text: '14 дней',
+		value: {
+			key: DefaultTimeKeys.FOURTEEN,
+		},
+		label: '14 дней',
 	},
 	{
-		key: DefaultTimeKeys.THIRTY,
-		text: '1 год',
+		value: {
+			key: DefaultTimeKeys.THIRTY,
+		},
+		label: '1 год',
 	},
 	{
-		key: DefaultTimeKeys.CUSTOM,
-		text: 'Свое',
+		value: {
+			key: DefaultTimeKeys.CUSTOM,
+		},
+		label: 'Свое',
 	},
 ];
 
-export const DefaultTimeSelectItem: IDropDownItem = DefaultTimeItems[4];
+export const DefaultTimeSelectItem = DefaultTimeItems[4];

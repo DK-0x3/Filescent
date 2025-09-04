@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useAppDispatch } from '../../../store/types/useAppDispatch';
 import LogoBig from '../../../shared/assets/svg/logoBig.svg';
-import './FileUploadIdle.scss';
+import styles from './FileUploadIdle.module.scss';
 import { useTranslation } from 'react-i18next';
 import { uploadFileThunk } from '../../../store/services/upload-files/thunks/uploadFileThunk';
 
@@ -23,7 +23,7 @@ const FileUploadIdle = () => {
 	};
 
 	return (
-		<div className='file-upload-idle'>
+		<div className={styles.Wrapper}>
 			{/* Скрытый инпут */}
 			<input
 				type="file"
@@ -34,13 +34,13 @@ const FileUploadIdle = () => {
 			/>
 
 			<img
-				className='file-upload-idle-logo'
+				className={styles.Logo}
 				src={LogoBig}
 				onClick={handleClick}
 				draggable="false"
 			/>
 
-			<span className="file-upload-idle-title">
+			<span className={styles.Title}>
 				{t('Перетащи файлы')}<br />{t('для загрузки')}
 			</span>
 		</div>

@@ -1,4 +1,4 @@
-import { IDropDownItem } from '../../../shared/ui/drop-down-menu-hover/interface/IDropDownItem';
+import IDropdownItem from '../../../shared/ui/drop-down-list-menu/types/IDropdownItem';
 
 export enum DefaultCountLoadKeys {
 	INFINITY = '365',
@@ -9,31 +9,47 @@ export enum DefaultCountLoadKeys {
 	CUSTOM = 'custom',
 }
 
-export const DefaultCountLoadItems: IDropDownItem[] = [
+export interface ICountLoadValue {
+    key: DefaultCountLoadKeys,
+}
+
+export const DefaultCountLoadItems: IDropdownItem<ICountLoadValue>[] = [
 	{
-		key: DefaultCountLoadKeys.INFINITY,
-		text: 'Бесконечно',
+		value: {
+			key: DefaultCountLoadKeys.INFINITY,
+		},
+		label: 'Бесконечно',
 	},
 	{
-		key: DefaultCountLoadKeys.ONE,
-		text: '1 скач-е',
+		value: {
+			key: DefaultCountLoadKeys.ONE,
+		},
+		label: '1 скач-е',
 	},
 	{
-		key: DefaultCountLoadKeys.THREE,
-		text: '3 скач-я',
+		value: {
+			key: DefaultCountLoadKeys.THREE,
+		},
+		label: '3 скач-я',
 	},
 	{
-		key: DefaultCountLoadKeys.FIVE,
-		text: '5 скач-й',
+		value: {
+			key: DefaultCountLoadKeys.FIVE,
+		},
+		label: '5 скач-й',
 	},
 	{
-		key: DefaultCountLoadKeys.TEN,
-		text: '10 скач-й',
+		value: {
+			key: DefaultCountLoadKeys.TEN,
+		},
+		label: '10 скач-й',
 	},
 	{
-		key: DefaultCountLoadKeys.CUSTOM,
-		text: 'Свое',
+		value: {
+			key: DefaultCountLoadKeys.CUSTOM,
+		},
+		label: 'Свое',
 	},
 ];
 
-export const DefaultCountLoadSelectItem: IDropDownItem = DefaultCountLoadItems[0];
+export const DefaultCountLoadSelectItem = DefaultCountLoadItems[0];

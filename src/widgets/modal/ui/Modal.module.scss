@@ -1,4 +1,4 @@
-.modal-overlay {
+.ModalOverlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -13,15 +13,15 @@
   transition: opacity 0.3s ease;
 }
 
-.modal-overlay.open {
+.ModalOverlay.Open {
   opacity: 1;
 }
 
-.modal-overlay.closing {
+.ModalOverlay.Closing {
   opacity: 0;
 }
 
-.modal-content {
+.ModalContent {
   background-color: var(--gray-dark);
   padding: 50px;
   border-radius: 10px;
@@ -35,17 +35,17 @@
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.modal-content.open {
+.ModalContent.Open {
   transform: translateY(0);
   opacity: 1;
 }
 
-.modal-content.closing {
+.ModalContent.Closing {
   transform: translateY(-30px);
   opacity: 0;
 }
 
-.modal-close {
+.ModalClose {
   position: absolute;
   top: 10px;
   right: 10px;
@@ -56,16 +56,16 @@
   cursor: pointer;
 }
 
-.modal-close:hover {
+.ModalClose:hover {
   color: #ff0000;
 }
 
 @media (max-width: 600px) {
-  .modal-content {
+  .ModalContent {
     padding: 10px;
   }
 
-  .modal-close {
+  .ModalClose {
     display: none;
   }
 }

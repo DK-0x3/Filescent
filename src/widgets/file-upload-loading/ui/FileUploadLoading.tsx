@@ -1,4 +1,4 @@
-import './FileUploadLoading.scss';
+import styles from './FileUploadLoading.module.scss';
 import LogoBig from '../../../shared/assets/svg/logoBig.svg';
 import React, { useRef } from 'react';
 import { useAppDispatch } from '../../../store/types/useAppDispatch';
@@ -37,7 +37,7 @@ const FileUploadLoading = () => {
 	};
     
 	return (
-		<div className='file-upload-loading'>
+		<div className={styles.Wrapper}>
 			{/* Скрытый инпут */}
 			<input
 				type="file"
@@ -48,22 +48,22 @@ const FileUploadLoading = () => {
 			/>
 
 			<img
-				className='file-upload-loading-logo'
+				className={styles.Logo}
 				src={LogoBig}
 				onClick={handleClick}
 				draggable="false"
 			/>
 
-			<div className='file-upload-loading-description'>
-				<span className="file-upload-loading-title">
+			<div className={styles.Description}>
+				<span className={styles.Title}>
 					{t('Файлы') + ': ' + uploadedFiles.length}
 				</span>
 				<br/>
-				<span className="file-upload-loading-loaded">
+				<span className={styles.Loaded}>
 					{UTILS.formatFileSize(load.loaded) + ' / '
 						+ UTILS.formatFileSize(load.total)}
 				</span>
-				<span className='file-upload-loading-info'>
+				<span className={styles.Info}>
 					<br/>
 					{t('Осталось') + ' ≈ '}{UTILS.formatEtaVerbose(load.eta)}
 					<br/>

@@ -1,4 +1,4 @@
-import './FileUploadSuccess.scss';
+import styles from './FileUploadSuccess.module.scss';
 import { useAppDispatch } from '../../../store/types/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { getUploadFiles } from '../../../store/services/upload-files/selectors/getUploadFiles';
@@ -14,7 +14,7 @@ import CopySvg from '../../../shared/assets/svg/copy.svg';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 import { useModal } from '../../modal/ui/ModalContext';
-import { toggleEnableParametersUI } from '../../../store/services/parameters-settings/parametersSettingsSlice';
+import { setEnableParametersUI } from '../../../store/services/parameters-settings/parametersSettingsSlice';
 import { useIsMobile } from '../../../shared/hooks/useIsMobile';
 import copy from 'copy-to-clipboard';
 
@@ -29,7 +29,7 @@ const FileUploadSuccess = () => {
 	const isMobile = useIsMobile();
 
 	useEffect(() => {
-		dispatch(toggleEnableParametersUI(true));
+		dispatch(setEnableParametersUI(true));
 	});
 
 	const { openModal } = useModal();
@@ -67,7 +67,7 @@ const FileUploadSuccess = () => {
 	};
 
 	return (
-		<div className='file-upload-success'>
+		<div className={styles.Wrapper}>
 			{/* Скрытый инпут */}
 			<input
 				type="file"
@@ -77,12 +77,12 @@ const FileUploadSuccess = () => {
 				style={{ display: 'none' }}
 			/>
 
-			<div className='file-upload-success-qr'>
+			<div className='QR'>
 				<QRCode onClick={handleOpenQR} cursor='pointer' size={isMobile ? 250 : 300} text={filesUrl} />
-				<div className='file-upload-success-text'>
-					<img className='file-upload-success-qr-img' src={CopyLinkSvg} alt='' />
+				<div>
+					<img className={styles.QRImg} src={CopyLinkSvg} alt='' />
 					<span
-						className='file-upload-success-qr-title'
+						className={styles.QRTitle}
 						onClick={handleCopy}
 						title={t('Нажмите, чтобы скопировать')}
 					>
@@ -92,18 +92,18 @@ const FileUploadSuccess = () => {
 			</div>
 
 			<img
-				className='file-upload-success-logo'
+				className={styles.Logo}
 				src={LogoBig}
 				onClick={handleUploadFilesClick}
 				draggable="false"
 			/>
 
-			<div className='file-upload-success-description'>
-				<span className="file-upload-success-title">
+			<div className={styles.Description}>
+				<span className={styles.Title}>
 					{t('Файлы') + ': ' + uploadedFiles.length}
 				</span>
 				<br/>
-				<span className="file-upload-success-loaded">
+				<span className={styles.Loaded}>
 					{UTILS.formatFileSize(load.total)}
 				</span>
 			</div>

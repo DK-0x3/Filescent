@@ -1,23 +1,26 @@
-import './ParametersPanel.scss';
+import styles from './ParametersPanel.module.scss';
 import { useTranslation } from 'react-i18next';
 import timeIcon from '../../../shared/assets/svg/time.svg';
 import countLoadIcon from '../../../shared/assets/svg/countLoad.svg';
 import passwordIcon from '../../../shared/assets/svg/password.svg';
-import { DropDownMenuHover } from '../../../shared/ui/drop-down-menu-hover/DropDownMenuHover';
-import { SwitchMUI } from '../../../shared/ui/switch-mui/switchMUI';
 import { useSelector } from 'react-redux';
 import { getPasswordEnabled } from '../../../store/services/parameters-settings/selectors/getPasswordEnabled';
 import {
-	toggleEnableCustomCountLoad,
-	toggleEnableCustomTime,
-	togglePassword
+	setEnableCustomCountLoad,
+	setEnableCustomTime,
+	setIsEnablePassword
 } from '../../../store/services/parameters-settings/parametersSettingsSlice';
-import { DefaultTimeItems, DefaultTimeKeys, DefaultTimeSelectItem } from '../types/DefaultTimeItems';
+import {
+	DefaultTimeItems,
+	DefaultTimeKeys,
+	DefaultTimeSelectItem,
+	IDropDownItemTimesValue
+} from '../types/DefaultTimeItems';
 import {
 	DefaultCountLoadItems,
 	DefaultCountLoadKeys,
-	DefaultCountLoadSelectItem } from '../types/DefaultCountLoadItems';
-import { IDropDownItem } from '../../../shared/ui/drop-down-menu-hover/interface/IDropDownItem';
+	DefaultCountLoadSelectItem, ICountLoadValue
+} from '../types/DefaultCountLoadItems';
 import { useAppDispatch } from '../../../store/types/useAppDispatch';
 import { getEnabledCustomTime } from '../../../store/services/parameters-settings/selectors/getEnabledCustomTime';
 import {
@@ -37,6 +40,10 @@ import {
 	getEnabledParametersPanel
 } from '../../../store/services/parameters-settings/selectors/getEnabledParametersPanel';
 import { InputApp } from '../../../shared/ui/input/InputApp';
+import { DropDownListMenu } from '../../../shared/ui/drop-down-list-menu/DropDownListMenu';
+import IDropdownItem from '../../../shared/ui/drop-down-list-menu/types/IDropdownItem';
+import classNames from 'classnames';
+import { ToggleSwitch } from '../../../shared/ui/toggle-switch/ToggleSwitch';
 
 interface IParametersPanelProps {
     className?: string;
@@ -55,26 +62,26 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 	const isEnableCustomCountLoad = useSelector(getEnabledCustomCountLoad);
 	const isEnabledUI = useSelector(getEnabledParametersPanel);
 
-	const handleSelectCustomTime = (item: IDropDownItem) => {
-		if (item.key === DefaultTimeKeys.CUSTOM) {
-			dispatch(toggleEnableCustomTime(true));
+	const handleSelectCustomTime = (item: IDropdownItem<IDropDownItemTimesValue>) => {
+		if (item.value.key === DefaultTimeKeys.CUSTOM) {
+			dispatch(setEnableCustomTime(true));
 			return;
 		}
 		dispatch(updateTimeParameterThunk({
-			days: +item.key,
+			days: +item.value.key,
 		}));
-		dispatch(toggleEnableCustomTime(false));
+		dispatch(setEnableCustomTime(false));
 	};
 
-	const handleSelectCustomCountLoad = (item: IDropDownItem) => {
-		if (item.key === DefaultCountLoadKeys.CUSTOM) {
-			dispatch(toggleEnableCustomCountLoad(true));
+	const handleSelectCustomCountLoad = (item: IDropdownItem<ICountLoadValue>) => {
+		if (item.value.key === DefaultCountLoadKeys.CUSTOM) {
+			dispatch(setEnableCustomCountLoad(true));
 			return;
 		}
 		dispatch(updateCountLoadParameterThunk({
-			countLoad: +item.key,
+			countLoad: +item.value.key,
 		}));
-		dispatch(toggleEnableCustomCountLoad(false));
+		dispatch(setEnableCustomCountLoad(false));
 	};
 
 	const handleTimeChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -96,12 +103,13 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 	};
 
 	const handlePasswordEnabledChange = async (change: boolean) => {
-		if (change) {
-			return;
+		dispatch(setIsEnablePassword(change));
+        
+		if (!change) {
+			dispatch(updatePasswordParameterThunk({
+				password: '',
+			}));
 		}
-		dispatch(updatePasswordParameterThunk({
-			password: '',
-		}));
 	};
 	const handleDescriptionChange = (description: string) => {
 		dispatch(updateDescriptionParameterThunk({
@@ -115,110 +123,109 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 				pointerEvents: 'none',
 				opacity: 0.5
 			}}
-			className={`ParametersPanel ${className}`
-			}>
-			<div className='containerGridMain'>
-				<div className='containerTitle'>
-					<h2 className='title'>{t('Параметры')}</h2>
-					<div className='separator'></div>
+			className={classNames(styles.ParametersPanel, className)}
+		>
+			<div className={styles.ContainerGridMain}>
+				<div className={styles.ContainerTitle}>
+					<h2 className={styles.Title}>{t('Параметры')}</h2>
+					<div className={styles.Separator}></div>
 				</div>
-				<div className='containerTime'>
+				<div className={styles.ContainerTime}>
 					<Tooltip
 						title={t('Время хранения файла')}
 						enterDelay={500}
 						leaveDelay={200}
 						placement='top'
 					>
-						<img className={'img-parameter'} src={timeIcon} alt='timeIcon'/>
+						<img className={styles.ImgParameter} src={timeIcon} alt='timeIcon'/>
 					</Tooltip>
-					<DropDownMenuHover
-						defaultSelectItem={DefaultTimeSelectItem}
+					<DropDownListMenu
 						items={DefaultTimeItems}
-						fnChanged={handleSelectCustomTime}
-						className='TimeSelect'
+						initialSelectedItem={DefaultTimeSelectItem}
+						onSelect={handleSelectCustomTime}
+						className={styles.TimeSelect}
+						buttonClassName={styles.ButtonSelect}
+						menuClassName={styles.Menu}
+						selectedItemClassName={styles.Select}
+						itemClassName={styles.Item}
 					/>
 				</div>
-				<div className='containerCountLoad'>
+				<div className={styles.ContainerCountLoad}>
 					<Tooltip
 						title={t('Количество скачиваний')}
 						enterDelay={500}
 						leaveDelay={200}
 						placement='top'
 					>
-						<img className={'img-parameter'} src={countLoadIcon} alt='countLoadIcon'/>
+						<img className={styles.ImgParameter} src={countLoadIcon} alt='countLoadIcon'/>
 					</Tooltip>
-					<DropDownMenuHover
-						defaultSelectItem={DefaultCountLoadSelectItem}
+					<DropDownListMenu
 						items={DefaultCountLoadItems}
-						fnChanged={handleSelectCustomCountLoad}/>
+						initialSelectedItem={DefaultCountLoadSelectItem}
+						onSelect={handleSelectCustomCountLoad}
+						className={styles.TimeSelect}
+						buttonClassName={styles.ButtonSelect}
+						menuClassName={styles.Menu}
+						selectedItemClassName={styles.Select}
+						itemClassName={styles.Item}
+					/>
 				</div>
-				<div className='containerPassword'>
+				<div className={styles.ContainerPassword}>
 					<Tooltip
 						title={t('Пароль для скачивания')}
 						enterDelay={500}
 						leaveDelay={200}
 						placement='top'
 					>
-						<img className={'img-parameter'} src={passwordIcon} alt='passwordIcon'/>
+						<img className={styles.ImgParameter} src={passwordIcon} alt='passwordIcon'/>
 					</Tooltip>
-					<SwitchMUI
-						onDispatchToggle={togglePassword}
-						changeSelector={getPasswordEnabled}
+					<ToggleSwitch
 						onChange={handlePasswordEnabledChange}
+						backgroundColorChecked='var(--green-light)'
 					/>
 				</div>
 
-				<div className='containerPasswordInput'>
-					<div className={`passwordContainerInput ${
-						isPasswordEnable ? 'fade-in' : 'fade-out'
-					}`}>
-						{/*<InputPasswordOutlinedMUI*/}
-						{/*	placeholder='пароль'*/}
-						{/*	onInputChange={handlePasswordChange}*/}
-						{/*/>*/}
+				<div className={styles.ContainerPasswordInput}>
+					<div className={classNames(styles.PasswordContainerInput, {
+						[styles.FadeIn]: isPasswordEnable,
+						[styles.FadeOut]: !isPasswordEnable,
+					})
+					}>
 						<InputApp
 							type='password'
 							onChange={handlePasswordChange}
 							placeholder='пароль'
-							className='password-input'
+							className={styles.PasswordInput}
 						/>
 					</div>
 				</div>
 
-				<div className={`containerTimeInput ${
-					isEnableCustomTime ? 'fade-in' : 'fade-out'
-				}`}>
-					{/*<InputOutlinedMUI*/}
-					{/*	startAdornment='дни'*/}
-					{/*	placeholder='кол-во'*/}
-					{/*	type='number'*/}
-					{/*	onInputChange={handleTimeChange}*/}
-					{/*/>*/}
+				<div className={classNames(styles.ContainerTimeInput, {
+					[styles.FadeIn]: isEnableCustomTime,
+					[styles.FadeOut]: !isEnableCustomTime,
+				})
+				}>
 					<InputApp
 						type='number'
 						onChange={handleTimeChange}
 						placeholder='дни'
-						className='time-input'
+						className={styles.TimeInput}
 					/>
 				</div>
-				<div className={`containerCountLoadInput ${
-					isEnableCustomCountLoad ? 'fade-in' : 'fade-out'
-				}`}>
-					{/*<InputOutlinedMUI*/}
-					{/*	startAdornment='скач-я'*/}
-					{/*	placeholder='кол-во'*/}
-					{/*	type='number'*/}
-					{/*	onInputChange={handleCountLoadChange}*/}
-					{/*/>*/}
+				<div className={classNames(styles.ContainerCountLoadInput, {
+					[styles.FadeIn]: isEnableCustomCountLoad,
+					[styles.FadeOut]: !isEnableCustomCountLoad,
+				})
+				}>
 					<InputApp
 						type='number'
 						onChange={handleCountLoadChange}
 						placeholder='скачивания'
-						className='countload-input'
+						className={styles.CountloadInput}
 					/>
 				</div>
 
-				<div className='ParametersPanelDescription'>
+				<div className={styles.ParametersPanelDescription}>
 					<TextAreaDelayed
 						timeChange={1500}
 						onChangeDelayed={handleDescriptionChange}

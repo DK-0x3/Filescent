@@ -1,4 +1,4 @@
-.file-upload-idle {
+.Wrapper {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -7,7 +7,7 @@
   gap: 50px;
 }
 
-.file-upload-idle-title {
+.Title {
   justify-self: left;
   font-size: 64px;
   font-weight: 600;
@@ -18,7 +18,7 @@
   -ms-user-select: none;     /* IE/Edge */
 }
 
-.file-upload-idle-logo {
+.Logo {
   justify-self: right;
   cursor: pointer;
 
@@ -36,18 +36,18 @@
 }
 
 @media (max-width: 600px) {
-  .file-upload-idle {
+  .Wrapper {
     margin-top: 50px;
     margin-bottom: 50px;
     grid-template-columns: 1fr;
   }
 
-  .file-upload-idle-logo {
+  .Logo {
     justify-self: center;
     width: 60%;
   }
 
-  .file-upload-idle-title {
+  .Title {
     display: none;
   }
 }

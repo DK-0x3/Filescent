@@ -1,4 +1,4 @@
-.file-upload-loading {
+.Wrapper {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -7,7 +7,7 @@
   gap: 50px;
 }
 
-.file-upload-loading-logo {
+.Logo {
   justify-self: right;
   cursor: pointer;
 
@@ -39,24 +39,24 @@
 }
 
 
-.file-upload-loading-title {
+.Title {
   font-size: 64px;
   font-weight: 600;
   color: var(--green-dark);
 }
 
-.file-upload-loading-info {
+.Info {
   color: var(--white-primary);
   font-size: 18px;
   font-weight: 600;
 }
 
-.file-upload-loading-loaded {
+.Loaded {
   font-size: 64px;
   color: var(--gray-light);
 }
 
-.file-upload-loading-description {
+.Description {
   background-color: var(--gray-dark);
   width: fit-content;
   padding: 30px;
@@ -65,31 +65,31 @@
 }
 
 @media (max-width: 600px) {
-  .file-upload-loading {
+  .Wrapper {
     margin-top: 50px;
     margin-bottom: 50px;
     grid-template-columns: 1fr;
   }
 
-  .file-upload-loading-logo {
+  .Logo {
     justify-self: center;
     width: 60%;
   }
 
-  .file-upload-loading-description {
+  .Description {
     margin: 10px;
     width: auto;
   }
 
-  .file-upload-loading-title {
+  .Title {
     font-size: 34px;
   }
 
-  .file-upload-loading-loaded {
+  .Loaded {
     font-size: 34px;
   }
 
-  .file-upload-loading-info {
+  .Info {
     font-size: 14px;
     margin-top: 20px;
     display: block;

@@ -3,7 +3,7 @@
   color: var(--white-primary);
 }
 
-.containerGridMain {
+.ContainerGridMain {
   margin-left: 16px;
   text-align: center;
   display: grid;
@@ -16,12 +16,12 @@
   max-width: 100%;
 }
 
-.containerTitle {
+.ContainerTitle {
   display: grid;
   grid-column: 1 / 5;
 }
 
-.title {
+.Title {
   display: flex;
   margin: 0 0 0 10px;
   font-size: 22px;
@@ -32,28 +32,28 @@
   -ms-user-select: none;     /* IE/Edge */
 }
 
-.separator {
+.Separator {
   background-color: var(--gray-dark);
   height: 2px;
   grid-column: 1 / 2;
   margin: 0;
 }
 
-.containerTime {
+.ContainerTime {
   display: grid;
   grid-template-columns: 1fr 4fr;
   gap: 10px;
   align-items: center;
 }
 
-.containerCountLoad {
+.ContainerCountLoad {
   display: grid;
   grid-template-columns: 1fr 4fr;
   gap: 10px;
   align-items: center;
 }
 
-.containerPassword {
+.ContainerPassword {
   display: grid;
   grid-template-columns: 1fr 4fr;
   gap: 10px;
@@ -61,7 +61,7 @@
 }
 
 /* Общие стили для контейнеров */
-.containerInput {
+.ContainerInput {
   align-items: center;
   display: flex;
   grid-row: 3;
@@ -72,13 +72,13 @@
   transition: opacity 300ms, transform 300ms, visibility 300ms;
   visibility: hidden;
 
-  &.fade-in {
+  &.FadeIn {
     opacity: 1;
     transform: translateY(0);
     visibility: visible;
   }
 
-  &.fade-out {
+  &.FadeOut {
     opacity: 0;
     transform: translateY(-10px);
     visibility: hidden;
@@ -93,45 +93,45 @@
 }
 
 /* Специфичные модификаторы для каждого контейнера */
-.containerPasswordInput {
+.ContainerPasswordInput {
   grid-column: 3;
 }
 
-.passwordContainerInput {
-  @extend .containerInput;
+.PasswordContainerInput {
+  @extend .ContainerInput;
   grid-column: 2;
   width: inherit;
 
-  .password-input {
+  .PasswordInput {
     width: max-content;
   }
 }
 
-.containerCountLoadInput {
-  @extend .containerInput;
+.ContainerCountLoadInput {
+  @extend .ContainerInput;
   grid-column: 2;
 
-  .countload-input {
+  .CountloadInput {
     width: max-content;
   }
 }
 
-.containerTimeInput {
-  @extend .containerInput;
+.ContainerTimeInput {
+  @extend .ContainerInput;
   grid-column: 1;
 
-  .time-input {
+  .TimeInput {
     width: max-content;
   }
 }
 
-.img-parameter {
+.ImgParameter {
   justify-self: center;
 }
 
 
 @media (max-width: 600px) {
-  .containerGridMain {
+  .ContainerGridMain {
     margin-left: 0;
     text-align: center;
     display: grid;
@@ -144,21 +144,21 @@
     max-width: 100%;
   }
 
-  .containerTitle {
+  .ContainerTitle {
     grid-column: 1;
   }
 
-  .containerPasswordInput {
+  .ContainerPasswordInput {
     grid-column: 1;
     grid-row: 7;
   }
 
-  .containerCountLoadInput {
+  .ContainerCountLoadInput {
     grid-column: 1;
     grid-row: 5;
   }
 
-  .containerTimeInput {
+  .ContainerTimeInput {
     grid-column: 1;
   }
 
@@ -171,5 +171,26 @@
 }
 
 .TimeSelect {
-  z-index: 11;
+  width: 100%;
+  height: 100%;
+
+  .ButtonSelect{
+    width: 100%;
+    height: 100%;
+    box-shadow: none;
+    background: var(--gray-dark);
+    font-size: 20px;
+  }
+}
+.Menu {
+  background: var(--gray-dark);
+  padding: 0;
+}
+.Select {
+  background: transparent;
+  color: var(--green-light);
+}
+.Item {
+  font-size: 18px;
+  justify-content: center;
 }

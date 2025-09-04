@@ -1,7 +1,8 @@
-import './Modal.scss';
+import styles from './Modal.module.scss';
 import { createPortal } from 'react-dom';
 import { useModal } from './ModalContext';
 import { FC, useEffect, useRef, useState } from 'react';
+import classNames from 'classnames';
 
 export const Modal: FC = () => {
 	const { isOpen, closeModal, component } = useModal();
@@ -27,15 +28,19 @@ export const Modal: FC = () => {
 
 	return createPortal(
 		<div
-			className={`modal-overlay ${isTransitioning ? 'open' : ''}`}
+			className={classNames(styles.ModalOverlay, {
+				[styles.Open]: isTransitioning,
+			})}
 			onClick={handleCloseModal}
 		>
 			<div
-				className={`modal-content ${isTransitioning ? 'open' : ''}`}
+				className={classNames(styles.ModalContent, {
+					[styles.Open]: isTransitioning
+				})}
 				ref={modalRef}
 				onClick={(e) => e.stopPropagation()}
 			>
-				<button className="modal-close" onClick={handleCloseModal}>
+				<button className={styles.ModalClose} onClick={handleCloseModal}>
 					×
 				</button>
 				<div>{component}</div>

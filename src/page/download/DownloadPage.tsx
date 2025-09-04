@@ -149,9 +149,9 @@ export const DownloadPage = () => {
 			<div>
 				<QRCode onClick={handleOpenQR} cursor='pointer' size={isMobile ? 250 : 300} text={filesUrl} />
 				<div>
-					<img className='file-upload-success-qr-img' src={CopyLinkSvg} alt='' />
+					<img className='QRImg' src={CopyLinkSvg} alt='' />
 					<span
-						className='file-upload-success-qr-title'
+						className='QRTitle'
 						onClick={handleCopy}
 						title={t('Нажмите, чтобы скопировать')}
 					>
@@ -173,7 +173,7 @@ export const DownloadPage = () => {
 					{t('Архив')}{' .zip'}
 				</span>
 				<br/>
-				<span className="file-upload-success-loaded">
+				<span className="Loaded">
 					{UTILS.formatFileSize(blob?.size ?? 0)}
 				</span>
 			</div>

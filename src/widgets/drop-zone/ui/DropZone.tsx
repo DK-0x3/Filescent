@@ -1,5 +1,5 @@
 import { FC, useCallback, useState, DragEvent, useEffect, ReactNode } from 'react';
-import './DropZone.scss';
+import styles from './DropZone.module.scss';
 
 interface IDropZoneProps {
 	onFilesDropped: (files: File[]) => void;
@@ -72,7 +72,7 @@ const DropZone: FC<IDropZoneProps> = (props: IDropZoneProps) => {
 				textAlign: 'center',
 				transition: 'background-color 0.3s',
 			}}
-			className='DropZone'
+			className={styles.DropZone}
 		>
 			{children}
 		</div>

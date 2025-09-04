@@ -12,26 +12,26 @@ const parametersSettingsSlice = createSlice({
 	name: 'parametersSettings',
 	initialState,
 	reducers: {
-		togglePassword(state, action: PayloadAction<boolean>) {
+		setIsEnablePassword(state, action: PayloadAction<boolean>) {
 			state.isEnablePassword = action.payload;
 		},
-		toggleEnableCustomTime(state, action: PayloadAction<boolean>) {
+		setEnableCustomTime(state, action: PayloadAction<boolean>) {
 			state.isEnableCustomTime = action.payload;
 		},
-		toggleEnableCustomCountLoad(state, action: PayloadAction<boolean>) {
+		setEnableCustomCountLoad(state, action: PayloadAction<boolean>) {
 			state.isEnableCustomCountLoad = action.payload;
 		},
-		toggleEnableParametersUI(state, action: PayloadAction<boolean>) {
+		setEnableParametersUI(state, action: PayloadAction<boolean>) {
 			state.isEnable = action.payload;
 		}
 	}
 });
 
 export const {
-	togglePassword,
-	toggleEnableCustomTime,
-	toggleEnableCustomCountLoad,
-	toggleEnableParametersUI,
+	setIsEnablePassword,
+	setEnableCustomTime,
+	setEnableCustomCountLoad,
+	setEnableParametersUI,
 } = parametersSettingsSlice.actions;
 
 export default parametersSettingsSlice.reducer;
