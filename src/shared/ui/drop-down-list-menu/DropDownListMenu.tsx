@@ -74,7 +74,7 @@ export interface IDropdownMenuProps<ValueT> {
  */
 // 👇 Внеси изменения в существующий компонент
 
-export const DropDownListMenu = <ValueT extends IBaseMenuItemValue,>({
+export const DropDownListMenu = <ValueT,>({
 	label = 'Menu',
 	items,
 	onSelect,
