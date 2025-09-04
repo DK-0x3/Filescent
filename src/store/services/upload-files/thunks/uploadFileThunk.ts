@@ -3,7 +3,9 @@ import { createAppAsyncThunk } from '../../../types/createAppAsyncThunk';
 import { UploadStatus } from '../types/UploadStatus';
 import { API_URL } from '../../../../app/env';
 import {
-	addUploadFiles, setFilesUrl,
+	addUploadFiles,
+	setFilesUrl,
+	setStatus,
 	setUploadFilesLoading,
 	setUploadFilesSuccess,
 	updateUploadFileProgress
@@ -94,16 +96,8 @@ export const uploadFileThunk = createAppAsyncThunk<
 
 			return response.data;
 		} catch (err) {
-			dispatch(addUploadFiles(files.map(file => {
-				return {
-					id: fileId,
-					name: file.name,
-					size: file.size,
-					type: file.type,
-					status: UploadStatus.ERROR,
-					progress: null,
-				};
-			})));
+			dispatch(setStatus(UploadStatus.ERROR));
+
 			return rejectWithValue('Ошибка при загрузке файла');
 		}
 	}
