@@ -44,6 +44,7 @@ import IDropdownItem from '../../../shared/ui/drop-down-list-menu/types/IDropdow
 import classNames from 'classnames';
 import { ToggleSwitch } from '../../../shared/ui/toggle-switch/ToggleSwitch';
 import { Tooltip } from '../../../shared/ui/tooltip/Tooltip';
+import { ParametersPanelState } from '../../../store/services/parameters-settings/IParameterSettingsSchema';
 
 interface IParametersPanelProps {
     className?: string;
@@ -60,7 +61,11 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 	const isPasswordEnable = useSelector(getPasswordEnabled);
 	const isEnableCustomTime = useSelector(getEnabledCustomTime);
 	const isEnableCustomCountLoad = useSelector(getEnabledCustomCountLoad);
-	const isEnabledUI = useSelector(getEnabledParametersPanel);
+	const panelState = useSelector(getEnabledParametersPanel);
+
+	if (panelState === ParametersPanelState.HIDDEN) {
+		return null;
+	}
 
 	const handleSelectCustomTime = (item: IDropdownItem<IDropDownItemTimesValue>) => {
 		if (item.value.key === DefaultTimeKeys.CUSTOM) {
@@ -111,6 +116,7 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 			}));
 		}
 	};
+
 	const handleDescriptionChange = (description: string) => {
 		dispatch(updateDescriptionParameterThunk({
 			description: description,
@@ -119,7 +125,7 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 	
 	return (
 		<footer
-			style={isEnabledUI ? {} : {
+			style={panelState === ParametersPanelState.ACTIVE ? {} : {
 				pointerEvents: 'none',
 				opacity: 0.5
 			}}
@@ -131,18 +137,15 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 					<div className={styles.Separator}></div>
 				</div>
 				<div className={styles.ContainerTime}>
-					{/*<Tooltip content="Я сверху!" placement="top">*/}
-					{/*	<button>Наведи (top)</button>*/}
-					{/*</Tooltip>*/}
-					{/*<Tooltip*/}
+					<Tooltip
+						content={t('Время хранения файла')}
+						placement='Top'
+						className={styles.Tooltip}
+						delay={300}
+					>
+						<img className={styles.ImgParameter} src={timeIcon} alt='timeIcon'/>
+					</Tooltip>
 
-					{/*	title={t('Время хранения файла')}*/}
-					{/*	enterDelay={500}*/}
-					{/*	leaveDelay={200}*/}
-					{/*	placement='top'*/}
-					{/*>*/}
-					{/*	<img className={styles.ImgParameter} src={timeIcon} alt='timeIcon'/>*/}
-					{/*</Tooltip>*/}
 					<DropDownListMenu
 						items={DefaultTimeItems}
 						initialSelectedItem={DefaultTimeSelectItem}
@@ -156,14 +159,15 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 					/>
 				</div>
 				<div className={styles.ContainerCountLoad}>
-					{/*<Tooltip*/}
-					{/*	title={t('Количество скачиваний')}*/}
-					{/*	enterDelay={500}*/}
-					{/*	leaveDelay={200}*/}
-					{/*	placement='top'*/}
-					{/*>*/}
-					{/*	<img className={styles.ImgParameter} src={countLoadIcon} alt='countLoadIcon'/>*/}
-					{/*</Tooltip>*/}
+					<Tooltip
+						content={t('Количество скачиваний')}
+						placement='Top'
+						className={styles.Tooltip}
+						delay={300}
+					>
+						<img className={styles.ImgParameter} src={countLoadIcon} alt='countLoadIcon'/>
+					</Tooltip>
+
 					<DropDownListMenu
 						items={DefaultCountLoadItems}
 						initialSelectedItem={DefaultCountLoadSelectItem}
@@ -177,14 +181,15 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 					/>
 				</div>
 				<div className={styles.ContainerPassword}>
-					{/*<Tooltip*/}
-					{/*	title={t('Пароль для скачивания')}*/}
-					{/*	enterDelay={500}*/}
-					{/*	leaveDelay={200}*/}
-					{/*	placement='top'*/}
-					{/*>*/}
-					{/*	<img className={styles.ImgParameter} src={passwordIcon} alt='passwordIcon'/>*/}
-					{/*</Tooltip>*/}
+					<Tooltip
+						content={t('Пароль для скачивания')}
+						placement='Top'
+						className={styles.Tooltip}
+						delay={300}
+					>
+						<img className={styles.ImgParameter} src={passwordIcon} alt='passwordIcon'/>
+					</Tooltip>
+
 					<ToggleSwitch
 						onChange={handlePasswordEnabledChange}
 						backgroundColorChecked='var(--green-light)'

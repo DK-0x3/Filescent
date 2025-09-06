@@ -16,16 +16,18 @@ export interface TooltipProps {
     className?: string;
     /** Inline-стили тултипа */
     style?: CSSProperties;
+    /** Отступ от родителя */
+    offset?: number;
 }
-
 
 export const Tooltip: FC<TooltipProps> = ({
 	content,
 	children,
-	placement = 'top',
+	placement = 'Top',
 	delay = 150,
 	className,
 	style,
+	offset = 8,
 }) => {
 	const [visible, setVisible] = useState(false);
 	const [coords, setCoords] = useState<{ top: number; left: number }>({ top: 0, left: 0 });
@@ -34,7 +36,6 @@ export const Tooltip: FC<TooltipProps> = ({
 	const wrapperRef = useRef<HTMLDivElement | null>(null);
 	const tooltipRef = useRef<HTMLDivElement | null>(null);
 
-	// вычисляем позицию
 	const updatePosition = () => {
 		if (!wrapperRef.current || !tooltipRef.current) return;
 
@@ -45,32 +46,48 @@ export const Tooltip: FC<TooltipProps> = ({
 
 		switch (placement) {
 		case 'Top':
-			top = triggerRect.top - tooltipRect.height - 8;
+			top = triggerRect.top - tooltipRect.height - offset;
 			left = triggerRect.left + (triggerRect.width - tooltipRect.width) / 2;
 			break;
 		case 'Bottom':
-			top = triggerRect.bottom + 8;
+			top = triggerRect.bottom + offset;
 			left = triggerRect.left + (triggerRect.width - tooltipRect.width) / 2;
 			break;
 		case 'Left':
 			top = triggerRect.top + (triggerRect.height - tooltipRect.height) / 2;
-			left = triggerRect.left - tooltipRect.width - 8;
+			left = triggerRect.left - tooltipRect.width - offset;
 			break;
 		case 'Right':
 			top = triggerRect.top + (triggerRect.height - tooltipRect.height) / 2;
-			left = triggerRect.right + 8;
+			left = triggerRect.right + offset;
 			break;
 		}
 
-		setCoords({ top: top + window.scrollY, left: left + window.scrollX });
+		top += window.scrollY;
+		left += window.scrollX;
+
+		const { innerWidth, innerHeight, scrollX, scrollY } = window;
+
+		// левая и верхняя границы
+		if (left < scrollX) left = scrollX + 5;
+		if (top < scrollY) top = scrollY + 5;
+
+		// правая и нижняя границы
+		if (left + tooltipRect.width > scrollX + innerWidth) {
+			left = scrollX + innerWidth - tooltipRect.width - 5;
+		}
+		if (top + tooltipRect.height > scrollY + innerHeight) {
+			top = scrollY + innerHeight - tooltipRect.height - 5;
+		}
+
+		setCoords({ top, left });
 	};
 
 	// показать с задержкой
 	const show = () => {
 		if (timeoutRef.current) clearTimeout(timeoutRef.current);
 		timeoutRef.current = window.setTimeout(() => {
-			setVisible(true);
-			updatePosition();
+			setVisible(true); // сначала просто показать
 		}, delay);
 	};
 
@@ -83,9 +100,14 @@ export const Tooltip: FC<TooltipProps> = ({
 	// обновляем позицию при ресайзе/скролле
 	useEffect(() => {
 		if (!visible) return;
+
 		const handleScroll = () => updatePosition();
 		window.addEventListener('scroll', handleScroll, true);
 		window.addEventListener('resize', handleScroll);
+
+		// ⬇️ Вызовем после отрисовки тултипа
+		updatePosition();
+
 		return () => {
 			window.removeEventListener('scroll', handleScroll, true);
 			window.removeEventListener('resize', handleScroll);
@@ -106,8 +128,18 @@ export const Tooltip: FC<TooltipProps> = ({
 			{visible && (
 				<div
 					ref={tooltipRef}
-					className={classNames(styles.Tooltip, `Tooltip${placement}`, className)}
-					style={{ top: coords.top, left: coords.left, ...style }}
+					className={classNames(
+						styles.Tooltip,
+						styles[`Tooltip${placement}`],
+						{ [styles.TooltipShow]: visible },
+						className
+					)}
+					style={{
+						visibility: visible ? 'visible' : 'hidden',
+						top: coords.top,
+						left: coords.left,
+						...style,
+					}}
 				>
 					{content}
 				</div>

@@ -16,7 +16,7 @@
   "10 скач-й": "10 down-ds",
   "Свое": "Custom",
   "кол-во": "count",
-  "дни": "day",
+  "дни": "days",
   "пароль": "password",
   "скач-я": "down-d",
   "Время хранения файла": "File storage time",
@@ -38,5 +38,6 @@
   "Описание": "Description",
   "Архив": "Archive",
   "Ошибка загрузки": "Download error",
-  "Повторить попытку": "Try again"
+  "Повторить попытку": "Try again",
+  "скачивания": "downloads"
 }

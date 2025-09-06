@@ -5,14 +5,15 @@
 
 .ContainerGridMain {
   margin-left: 16px;
+  margin-right: 16px;
   text-align: center;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 2fr;
   grid-gap: 20px;
 
-  /* Чтобы контейнер не растягивался шире экрана */
-  width: calc(100% - 80px);
+  ///* Чтобы контейнер не растягивался шире экрана */
+  //width: calc(100% - 80px);
   max-width: 100%;
 }
 
@@ -131,15 +132,19 @@
   justify-self: center;
 }
 
+.Tooltip {
+  font-size: 20px;
+  background: var(--gray-dark);
+}
 
 @media (max-width: 600px) {
   .ContainerGridMain {
     margin-left: 0;
     text-align: center;
     display: grid;
+    gap: 10px;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 3fr;
-    grid-gap: 0;
 
     /* Чтобы контейнер не растягивался шире экрана */
     width: 100%;
@@ -153,15 +158,18 @@
   .ContainerPasswordInput {
     grid-column: 1;
     grid-row: 7;
+    justify-content: center;
   }
 
   .ContainerCountLoadInput {
     grid-column: 1;
     grid-row: 5;
+    justify-content: center;
   }
 
   .ContainerTimeInput {
     grid-column: 1;
+    justify-content: center;
   }
 
   .ParametersPanelDescription {
@@ -182,6 +190,7 @@
     box-shadow: none;
     background: var(--gray-dark);
     font-size: 20px;
+    box-sizing: border-box;
   }
 }
 .Menu {

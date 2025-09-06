@@ -14,6 +14,9 @@ import i18n from 'i18next';
 import { useIsMobile } from '../../shared/hooks/useIsMobile';
 import copy from 'copy-to-clipboard';
 import { useFileDownload } from './hooks/useFileDownload';
+import { useAppDispatch } from '../../store/types/useAppDispatch';
+import { ParametersPanelState } from '../../store/services/parameters-settings/IParameterSettingsSchema';
+import { setEnableParametersUI } from '../../store/services/parameters-settings/parametersSettingsSlice';
 
 export enum IncorrectPassword {
 	CORRECT = 'CORRECT',
@@ -23,6 +26,10 @@ export enum IncorrectPassword {
 
 export const DownloadPage = () => {
 	const { t } = useTranslation();
+	const dispatch = useAppDispatch();
+
+	dispatch(setEnableParametersUI(ParametersPanelState.HIDDEN));
+
 	const params = useParams() as Record<string, string | undefined>;
 	const id = params.id;
 	if (!id) {
@@ -64,9 +71,9 @@ export const DownloadPage = () => {
 			<div>
 				<QRCode onClick={handleOpenQR} cursor='pointer' size={isMobile ? 250 : 300} text={filesUrl} />
 				<div>
-					<img className='QRImg' src={CopyLinkSvg} alt='' />
+					<img className={styles.QRImg} src={CopyLinkSvg} alt='' />
 					<span
-						className='QRTitle'
+						className={styles.QRTitle}
 						onClick={handleCopy}
 						title={t('Нажмите, чтобы скопировать')}
 					>
@@ -84,7 +91,6 @@ export const DownloadPage = () => {
 
 			<div className={styles.DownloadPageProperty}>
 				<span className={styles.DownloadPageTitle}>
-					{/*{t('Файлы') + ': ' + (UTILS.getExtensionFromMime(blob?.type ?? 'anonim') || 'load')}*/}
 					{t('Архив')}{' .zip'}
 				</span>
 				<br/>

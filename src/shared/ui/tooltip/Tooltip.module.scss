@@ -1,4 +1,4 @@
-.Tooltip {
+:where(.Tooltip) {
   position: absolute;
   background: #2563eb;
   color: #fff;
@@ -6,20 +6,34 @@
   border-radius: 6px;
   font-size: 14px;
   line-height: 1.4;
-  pointer-events: none; /* не мешает кликам */
+  pointer-events: none;
   white-space: nowrap;
   z-index: 9999;
   opacity: 0;
-  transform: translateY(-4px);
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transform: none;
+  visibility: hidden;
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
 }
-
-.Tooltip.TooltipTop { transform-origin: bottom center; }
-.Tooltip.TooltipBottom { transform-origin: top center; }
-.Tooltip.TooltipLeft { transform-origin: right center; }
-.Tooltip.TooltipRight { transform-origin: left center; }
 
 .TooltipShow {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate(0, 0);
+  visibility: visible;
+}
+
+.TooltipTop {
+  transform: translateY(-4px);
+  transform-origin: bottom center;
+}
+.TooltipBottom {
+  transform: translateY(4px);
+  transform-origin: top center;
+}
+.TooltipLeft {
+  transform: translateX(-4px);
+  transform-origin: right center;
+}
+.TooltipRight {
+  transform: translateX(4px);
+  transform-origin: left center;
 }

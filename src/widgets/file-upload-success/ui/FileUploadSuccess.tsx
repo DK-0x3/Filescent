@@ -17,6 +17,7 @@ import { useModal } from '../../modal/ui/ModalContext';
 import { setEnableParametersUI } from '../../../store/services/parameters-settings/parametersSettingsSlice';
 import { useIsMobile } from '../../../shared/hooks/useIsMobile';
 import copy from 'copy-to-clipboard';
+import { ParametersPanelState } from '../../../store/services/parameters-settings/IParameterSettingsSchema';
 
 const FileUploadSuccess = () => {
 	const { t } = useTranslation();
@@ -29,7 +30,7 @@ const FileUploadSuccess = () => {
 	const isMobile = useIsMobile();
 
 	useEffect(() => {
-		dispatch(setEnableParametersUI(true));
+		dispatch(setEnableParametersUI(ParametersPanelState.ACTIVE));
 	});
 
 	const { openModal } = useModal();

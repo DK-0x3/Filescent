@@ -24,7 +24,7 @@ export const useFileDownload = (id: string | undefined) => {
 
 				setParameters(currentParameters);
 
-				if (currentParameters.password !== null) {
+				if (currentParameters.password) {
 					const password = sessionStorage.getItem(`file-password-${id}`);
 
 					if (password) {
@@ -35,9 +35,14 @@ export const useFileDownload = (id: string | undefined) => {
 							setIsPassword(IncorrectPassword.CORRECT);
 						} catch (error) {
 							if (axios.isAxiosError(error)) {
-								if (error.response?.status === 401) {
+								if (error.response?.status === 400) {
 									setIsPassword(IncorrectPassword.INCORRECT);
-								} else {
+								} else if (error.response?.status === 410) {
+									alert(t('Файлы удалены'));
+									navigate(ROUTES.HOME);
+									console.error('Ошибка при получении файла:', error);
+								}
+								else {
 									alert(t('Произошла непредвиденная ошибка'));
 									navigate(ROUTES.HOME);
 									console.error('Ошибка при получении файла:', error);

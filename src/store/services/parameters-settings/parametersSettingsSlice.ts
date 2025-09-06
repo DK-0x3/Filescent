@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IParametersSettingsSchema } from './IParameterSettingsSchema';
+import { IParametersSettingsSchema, ParametersPanelState } from './IParameterSettingsSchema';
 
 export const initialState: IParametersSettingsSchema = {
 	isEnablePassword: false,
 	isEnableCustomTime: false,
 	isEnableCustomCountLoad: false,
-	isEnable: false,
+	isEnable: ParametersPanelState.DISABLED,
 };
 
 const parametersSettingsSlice = createSlice({
@@ -21,7 +21,7 @@ const parametersSettingsSlice = createSlice({
 		setEnableCustomCountLoad(state, action: PayloadAction<boolean>) {
 			state.isEnableCustomCountLoad = action.payload;
 		},
-		setEnableParametersUI(state, action: PayloadAction<boolean>) {
+		setEnableParametersUI(state, action: PayloadAction<ParametersPanelState>) {
 			state.isEnable = action.payload;
 		}
 	}

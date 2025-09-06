@@ -28,6 +28,7 @@
 .App {
   display: grid;
   grid-template-rows: var(--navbar-height) 3fr 1fr;
+    min-height: 100vh;
 }
 
 @media (max-width: 600px) {
