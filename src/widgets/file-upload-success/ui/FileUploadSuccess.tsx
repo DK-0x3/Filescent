@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { getUploadFiles } from '../../../store/services/upload-files/selectors/getUploadFiles';
 import React, { useEffect, useRef } from 'react';
 import { getUploadGlobalProgress } from '../../../store/services/upload-files/selectors/getUploadGlobalProgress';
-import { uploadFileThunk } from '../../../store/services/upload-files/thunks/uploadFileThunk';
+import { uploadFileThunk } from '../../../entities/file/model/thunks/uploadFileThunk';
 import LogoBig from '../../../shared/assets/svg/logoBig.svg';
 import { UTILS } from '../../../shared/utils/Utils';
 import QRCode from '../../../shared/ui/qr-code/QRCode';

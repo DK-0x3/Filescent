@@ -3,7 +3,7 @@ import { useAppDispatch } from '../../../store/types/useAppDispatch';
 import LogoBig from '../../../shared/assets/svg/logoBig.svg';
 import styles from './FileUploadIdle.module.scss';
 import { useTranslation } from 'react-i18next';
-import { uploadFileThunk } from '../../../store/services/upload-files/thunks/uploadFileThunk';
+import { uploadFileThunk } from '../../../entities/file/model/thunks/uploadFileThunk';
 
 const FileUploadIdle = () => {
 	const { t } = useTranslation();

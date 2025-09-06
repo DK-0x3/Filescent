@@ -1,5 +1,5 @@
-import { createAppAsyncThunk } from '../../../types/createAppAsyncThunk';
-import { getSessionId } from '../../session/selectors/getSessionId';
+import { createAppAsyncThunk } from '../../../../store/types/createAppAsyncThunk';
+import { getSessionId } from '../../../../store/services/session/selectors/getSessionId';
 import axios from 'axios';
 import { API_URL } from '../../../../app/env';
 
@@ -8,23 +8,23 @@ interface IUploadFileResponse {
 }
 
 interface IUploadFileThunk {
-    password: string;
+    countLoad: number;
 }
 
-export const updatePasswordParameterThunk = createAppAsyncThunk<
+export const updateCountLoadParameterThunk = createAppAsyncThunk<
     IUploadFileResponse,
     IUploadFileThunk
 >(
 	'upload/file',
-	async ({ password }, { rejectWithValue, getState }) => {
+	async ({ countLoad }, { rejectWithValue, getState }) => {
 		const state = getState();
 		const sessionId = getSessionId(state);
 
 		try {
 			const response = await axios.put<IUploadFileResponse>(
-				`${API_URL}/api/file/update/password`,
+				`${API_URL}/api/file/update/count-download`,
 				{
-					password: password,
+					count_download: countLoad,
 				},
 				{
 					headers: {

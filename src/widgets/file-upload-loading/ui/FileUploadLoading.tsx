@@ -5,7 +5,7 @@ import { useAppDispatch } from '../../../store/types/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { getUploadFiles } from '../../../store/services/upload-files/selectors/getUploadFiles';
 import { getUploadGlobalProgress } from '../../../store/services/upload-files/selectors/getUploadGlobalProgress';
-import { uploadFileThunk } from '../../../store/services/upload-files/thunks/uploadFileThunk';
+import { uploadFileThunk } from '../../../entities/file/model/thunks/uploadFileThunk';
 import { useTranslation } from 'react-i18next';
 import { UTILS } from '../../../shared/utils/Utils';
 import toast from 'react-hot-toast';

@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { createAppAsyncThunk } from '../../../types/createAppAsyncThunk';
-import { UploadStatus } from '../types/UploadStatus';
+import { createAppAsyncThunk } from '../../../../store/types/createAppAsyncThunk';
+import { UploadStatus } from '../../../../store/services/upload-files/types/UploadStatus';
 import { API_URL } from '../../../../app/env';
 import {
 	addUploadFiles,
@@ -9,9 +9,9 @@ import {
 	setUploadFilesLoading,
 	setUploadFilesSuccess,
 	updateUploadFileProgress
-} from '../slice/uploadFilesSlice';
+} from '../../../../store/services/upload-files/slice/uploadFilesSlice';
 import { v4 as uuidv4 } from 'uuid';
-import { getSessionId } from '../../session/selectors/getSessionId';
+import { getSessionId } from '../../../../store/services/session/selectors/getSessionId';
 
 interface IUploadFileResponse {
     count: number;

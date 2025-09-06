@@ -26,14 +26,14 @@ import { getEnabledCustomTime } from '../../../store/services/parameters-setting
 import {
 	getEnabledCustomCountLoad
 } from '../../../store/services/parameters-settings/selectors/getEnabledCustomCountLoad';
-import { updateTimeParameterThunk } from '../../../store/services/upload-files/thunks/updateTimeParameterThunk';
+import { updateTimeParameterThunk } from '../../../entities/file/model/thunks/updateTimeParameterThunk';
 import { updateCountLoadParameterThunk } from
-	'../../../store/services/upload-files/thunks/updateCountLoadParameterThunk';
-import { updatePasswordParameterThunk } from '../../../store/services/upload-files/thunks/updatePasswordParameterThunk';
+	'../../../entities/file/model/thunks/updateCountLoadParameterThunk';
+import { updatePasswordParameterThunk } from '../../../entities/file/model/thunks/updatePasswordParameterThunk';
 import { TextAreaDelayed } from '../../text-area-description/TextAreaDelayed';
 import {
 	updateDescriptionParameterThunk
-} from '../../../store/services/upload-files/thunks/updateDescriptionParameterThunk';
+} from '../../../entities/file/model/thunks/updateDescriptionParameterThunk';
 import { ChangeEvent } from 'react';
 import {
 	getEnabledParametersPanel

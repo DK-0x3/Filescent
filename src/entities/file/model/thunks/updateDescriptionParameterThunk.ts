@@ -1,5 +1,5 @@
-import { createAppAsyncThunk } from '../../../types/createAppAsyncThunk';
-import { getSessionId } from '../../session/selectors/getSessionId';
+import { createAppAsyncThunk } from '../../../../store/types/createAppAsyncThunk';
+import { getSessionId } from '../../../../store/services/session/selectors/getSessionId';
 import axios from 'axios';
 import { API_URL } from '../../../../app/env';
 
