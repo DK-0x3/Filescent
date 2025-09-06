@@ -26,7 +26,6 @@ import { getEnabledCustomTime } from '../../../store/services/parameters-setting
 import {
 	getEnabledCustomCountLoad
 } from '../../../store/services/parameters-settings/selectors/getEnabledCustomCountLoad';
-import { Tooltip } from '@mui/material';
 import { updateTimeParameterThunk } from '../../../store/services/upload-files/thunks/updateTimeParameterThunk';
 import { updateCountLoadParameterThunk } from
 	'../../../store/services/upload-files/thunks/updateCountLoadParameterThunk';
@@ -44,6 +43,7 @@ import { DropDownListMenu } from '../../../shared/ui/drop-down-list-menu/DropDow
 import IDropdownItem from '../../../shared/ui/drop-down-list-menu/types/IDropdownItem';
 import classNames from 'classnames';
 import { ToggleSwitch } from '../../../shared/ui/toggle-switch/ToggleSwitch';
+import { Tooltip } from '../../../shared/ui/tooltip/Tooltip';
 
 interface IParametersPanelProps {
     className?: string;
@@ -131,14 +131,17 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 					<div className={styles.Separator}></div>
 				</div>
 				<div className={styles.ContainerTime}>
-					<Tooltip
-						title={t('Время хранения файла')}
-						enterDelay={500}
-						leaveDelay={200}
-						placement='top'
-					>
-						<img className={styles.ImgParameter} src={timeIcon} alt='timeIcon'/>
-					</Tooltip>
+					{/*<Tooltip content="Я сверху!" placement="top">*/}
+					{/*	<button>Наведи (top)</button>*/}
+					{/*</Tooltip>*/}
+					{/*<Tooltip*/}
+					{/*	title={t('Время хранения файла')}*/}
+					{/*	enterDelay={500}*/}
+					{/*	leaveDelay={200}*/}
+					{/*	placement='top'*/}
+					{/*>*/}
+					{/*	<img className={styles.ImgParameter} src={timeIcon} alt='timeIcon'/>*/}
+					{/*</Tooltip>*/}
 					<DropDownListMenu
 						items={DefaultTimeItems}
 						initialSelectedItem={DefaultTimeSelectItem}
@@ -148,17 +151,18 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 						menuClassName={styles.Menu}
 						selectedItemClassName={styles.Select}
 						itemClassName={styles.Item}
+						isMenuMatchButtonWidth
 					/>
 				</div>
 				<div className={styles.ContainerCountLoad}>
-					<Tooltip
-						title={t('Количество скачиваний')}
-						enterDelay={500}
-						leaveDelay={200}
-						placement='top'
-					>
-						<img className={styles.ImgParameter} src={countLoadIcon} alt='countLoadIcon'/>
-					</Tooltip>
+					{/*<Tooltip*/}
+					{/*	title={t('Количество скачиваний')}*/}
+					{/*	enterDelay={500}*/}
+					{/*	leaveDelay={200}*/}
+					{/*	placement='top'*/}
+					{/*>*/}
+					{/*	<img className={styles.ImgParameter} src={countLoadIcon} alt='countLoadIcon'/>*/}
+					{/*</Tooltip>*/}
 					<DropDownListMenu
 						items={DefaultCountLoadItems}
 						initialSelectedItem={DefaultCountLoadSelectItem}
@@ -168,17 +172,18 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 						menuClassName={styles.Menu}
 						selectedItemClassName={styles.Select}
 						itemClassName={styles.Item}
+						isMenuMatchButtonWidth
 					/>
 				</div>
 				<div className={styles.ContainerPassword}>
-					<Tooltip
-						title={t('Пароль для скачивания')}
-						enterDelay={500}
-						leaveDelay={200}
-						placement='top'
-					>
-						<img className={styles.ImgParameter} src={passwordIcon} alt='passwordIcon'/>
-					</Tooltip>
+					{/*<Tooltip*/}
+					{/*	title={t('Пароль для скачивания')}*/}
+					{/*	enterDelay={500}*/}
+					{/*	leaveDelay={200}*/}
+					{/*	placement='top'*/}
+					{/*>*/}
+					{/*	<img className={styles.ImgParameter} src={passwordIcon} alt='passwordIcon'/>*/}
+					{/*</Tooltip>*/}
 					<ToggleSwitch
 						onChange={handlePasswordEnabledChange}
 						backgroundColorChecked='var(--green-light)'

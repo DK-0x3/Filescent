@@ -2,7 +2,6 @@ import React, { useEffect, useId, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import styles from './DropDownListMenu.module.scss';
 import Placement from './types/Placement';
-import IBaseMenuItemValue from './types/IBaseMenuItemValue';
 import IDropdownItem from './types/IDropdownItem';
 import ChevronDown from './assets/ChevronDownIcon';
 import classNames from 'classnames';
@@ -47,7 +46,7 @@ export interface IDropdownMenuProps<ValueT> {
     initialSelectedItem?: IDropdownItem<ValueT>;
 
     /** Должна ли ширина меню соответствовать ширине кнопки */
-    menuMatchButtonWidth?: boolean;
+    isMenuMatchButtonWidth?: boolean;
 }
 
 
@@ -78,7 +77,7 @@ export const DropDownListMenu = <ValueT,>({
 	label = 'Menu',
 	items,
 	onSelect,
-	placement = 'bottom',
+	placement = 'Bottom',
 
 	className,
 	style,
@@ -94,7 +93,7 @@ export const DropDownListMenu = <ValueT,>({
 	showSelectedItem = true,
 	selectedItemClassName = '',
 	initialSelectedItem,
-	menuMatchButtonWidth = true,
+	isMenuMatchButtonWidth = false,
 }: IDropdownMenuProps<ValueT>) => {
 	const { t } = useTranslation();
 
@@ -161,19 +160,19 @@ export const DropDownListMenu = <ValueT,>({
 				let top = 0, left = 0;
 
 				switch (placement) {
-				case 'bottom':
+				case 'Bottom':
 					top = buttonRect.bottom + scrollY + offset;
 					left = buttonRect.left + scrollX + buttonRect.width / 2 - menuRect.width / 2;
 					break;
-				case 'top':
+				case 'Top':
 					top = buttonRect.top + scrollY - menuRect.height - offset;
 					left = buttonRect.left + scrollX + buttonRect.width / 2 - menuRect.width / 2;
 					break;
-				case 'left':
+				case 'Left':
 					top = buttonRect.top + scrollY + buttonRect.height / 2 - menuRect.height / 2;
 					left = buttonRect.left + scrollX - menuRect.width - offset;
 					break;
-				case 'right':
+				case 'Right':
 					top = buttonRect.top + scrollY + buttonRect.height / 2 - menuRect.height / 2;
 					left = buttonRect.right + scrollX + offset;
 					break;
@@ -199,16 +198,16 @@ export const DropDownListMenu = <ValueT,>({
 			role="menu"
 			aria-label="Dropdown menu"
 			className={classNames(
-				styles.ddmMenu,
-				styles[`placement-${placement}`],
+				styles.Menu,
+				styles[`Placement${placement}`],
 				menuClassName,
-				{ [styles.open]: open }
+				{ [styles.Open]: open }
 			)}
 			style={{
 				top: menuPos.top,
 				left: menuPos.left,
 				minWidth: menuMinWidth,
-				width: menuMatchButtonWidth ? buttonWidth : undefined,
+				width: isMenuMatchButtonWidth ? buttonWidth : undefined,
 				...menuStyle,
 			}}
 		>
@@ -225,7 +224,7 @@ export const DropDownListMenu = <ValueT,>({
 							aria-disabled={item.disabled || undefined}
 							disabled={item.disabled}
 							className={classNames(
-								styles.ddmItem,
+								styles.Item,
 								itemClassName,
 								{
 									[styles.Selected]: showSelectedItem && isSelected,
@@ -254,7 +253,7 @@ export const DropDownListMenu = <ValueT,>({
 	return (
 		<div
 			ref={rootRef}
-			className={classNames(styles.dd, className)}
+			className={classNames(styles.Wrapper, className)}
 			style={{ display: 'inline-block', ...style }}
 		>
 			<button
@@ -263,7 +262,7 @@ export const DropDownListMenu = <ValueT,>({
 				aria-haspopup="menu"
 				aria-expanded={open}
 				aria-controls={menuId}
-				className={classNames(styles.ddmButton, buttonClassName)}
+				className={classNames(styles.MainButton, buttonClassName)}
 				style={{ ...buttonStyle }}
 				onClick={() => setOpen((p) => !p)}
 			>

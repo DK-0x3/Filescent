@@ -13,8 +13,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-button {
-    all: unset; // сбрасываем ВСЕ стили, включая системные (очень удобно для полной кастомизации)
+:where(button) {
+    all: unset;
 
 display: inline-flex;
     align-items: center;

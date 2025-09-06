@@ -108,7 +108,7 @@ export const ToggleSwitch: FC<ToggleSwitchProps> = ({
 
 	return (
 		<label
-			className={classNames(styles.wrapper, { [styles.Disable]: disabled })}
+			className={classNames(styles.Wrapper, { [styles.Disable]: disabled })}
 		>
 			{label && <span className={classNames(styles.Title, labelClassName)}>{label}</span>}
 

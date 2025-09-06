@@ -47,10 +47,6 @@ export default [
 				{
 					selector: 'interface',
 					format: ['PascalCase',],
-					custom: {
-						regex: '^I[A-Z]',
-						match: true,
-					},
 				},
 				{
 					selector: 'variable',

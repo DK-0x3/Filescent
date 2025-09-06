@@ -1,0 +1,25 @@
+.Tooltip {
+  position: absolute;
+  background: #2563eb;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 1.4;
+  pointer-events: none; /* не мешает кликам */
+  white-space: nowrap;
+  z-index: 9999;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.Tooltip.TooltipTop { transform-origin: bottom center; }
+.Tooltip.TooltipBottom { transform-origin: top center; }
+.Tooltip.TooltipLeft { transform-origin: right center; }
+.Tooltip.TooltipRight { transform-origin: left center; }
+
+.TooltipShow {
+  opacity: 1;
+  transform: translateY(0);
+}

@@ -95,6 +95,8 @@
 /* Специфичные модификаторы для каждого контейнера */
 .ContainerPasswordInput {
   grid-column: 3;
+  display: flex;
+  justify-content: center;
 }
 
 .PasswordContainerInput {
@@ -193,4 +195,5 @@
 .Item {
   font-size: 18px;
   justify-content: center;
+  padding: 10px;
 }

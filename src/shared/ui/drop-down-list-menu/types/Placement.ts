@@ -1,3 +1,3 @@
-type Placement = 'bottom' | 'top' | 'left' | 'right';
+type Placement = 'Bottom' | 'Top' | 'Left' | 'Right';
 
 export default Placement;

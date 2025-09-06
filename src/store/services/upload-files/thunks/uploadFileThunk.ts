@@ -14,11 +14,9 @@ import { v4 as uuidv4 } from 'uuid';
 import { getSessionId } from '../../session/selectors/getSessionId';
 
 interface IUploadFileResponse {
-	message: {
-		count: number;
-		id: string;
-		size: number;
-	},
+    count: number;
+    id: string;
+    size: number;
 	status: string;
 }
 
@@ -92,10 +90,11 @@ export const uploadFileThunk = createAppAsyncThunk<
 			);
 
 			dispatch(setUploadFilesSuccess([fileId]));
-			dispatch(setFilesUrl(response.data.message.id));
+			dispatch(setFilesUrl(response.data.id));
 
 			return response.data;
 		} catch (err) {
+			console.log(err);
 			dispatch(setStatus(UploadStatus.ERROR));
 
 			return rejectWithValue('Ошибка при загрузке файла');
