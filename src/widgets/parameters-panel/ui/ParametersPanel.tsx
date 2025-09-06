@@ -135,6 +135,7 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 					{/*	<button>Наведи (top)</button>*/}
 					{/*</Tooltip>*/}
 					{/*<Tooltip*/}
+
 					{/*	title={t('Время хранения файла')}*/}
 					{/*	enterDelay={500}*/}
 					{/*	leaveDelay={200}*/}

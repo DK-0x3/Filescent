@@ -13,7 +13,7 @@ const MainPage = () => {
 
 	switch (globalStatus) {
 	case UploadStatus.IDLE:
-		content = <FileUploadSuccess />;
+		content = <FileUploadIdle />;
 		break;
 	case UploadStatus.LOADING:
 		content = <FileUploadLoading />;

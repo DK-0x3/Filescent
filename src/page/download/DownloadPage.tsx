@@ -18,12 +18,10 @@ import { useIsMobile } from '../../shared/hooks/useIsMobile';
 import copy from 'copy-to-clipboard';
 
 export interface IFilesDownloadParameters {
-	message: {
-		count_download: number,
-		date_deleted: string,
-		password: boolean,
-		description: string,
-	}
+    count_download: number,
+    date_deleted: string,
+    password: boolean,
+    description: string,
 }
 
 export enum IncorrectPassword {
@@ -84,7 +82,7 @@ export const DownloadPage = () => {
 				);
 				setParameters(responseGet.data);
 
-				if (responseGet.data.message.password) {
+				if (responseGet.data.password) {
 					if (password !== null) {
 						try {
 							const response = await axios.get<Blob>(
@@ -180,21 +178,21 @@ export const DownloadPage = () => {
 
 			<div className={styles.DownloadPageParameters}>
 				<span>
-					{t('Осталось скачиваний')}: {parameters?.message.count_download}
+					{t('Осталось скачиваний')}: {parameters?.count_download}
 				</span>
 				<span>
 					{t('Срок харнения')}: {new Intl.DateTimeFormat(i18n.language, {
 						day: 'numeric',
 						month: 'long',
 						year: 'numeric',
-					}).format(parameters?.message && new Date(parameters?.message.date_deleted))}
+					}).format(parameters && new Date(parameters?.date_deleted))}
 				</span>
 			</div>
 
 			<div></div>
 
 			<div className={styles.DownloadPageDescription}>
-				{parameters?.message.description}
+				{parameters?.description}
 			</div>
 		</div>
 	);
