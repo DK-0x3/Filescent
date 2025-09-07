@@ -1,5 +1,5 @@
 import { ChangeEvent, FC, TextareaHTMLAttributes, useEffect, useRef, useState } from 'react';
-import styles from './TextAreaDelayed.module.scss';
+import styles from './TextAreaApp.module.scss';
 
 export interface ITextAreaDescriptionProps
     extends TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -7,7 +7,7 @@ export interface ITextAreaDescriptionProps
     timeChange?: number;
 }
 
-export const TextAreaDelayed: FC<ITextAreaDescriptionProps> = ({
+export const TextAreaApp: FC<ITextAreaDescriptionProps> = ({
 	onChangeDelayed,
 	timeChange = 500, // по умолчанию 500 мс
 	...restProps

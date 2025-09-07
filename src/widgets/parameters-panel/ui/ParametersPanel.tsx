@@ -30,7 +30,7 @@ import { updateTimeParameterThunk } from '../../../entities/file/model/thunks/up
 import { updateCountLoadParameterThunk } from
 	'../../../entities/file/model/thunks/updateCountLoadParameterThunk';
 import { updatePasswordParameterThunk } from '../../../entities/file/model/thunks/updatePasswordParameterThunk';
-import { TextAreaDelayed } from '../../text-area-description/TextAreaDelayed';
+import { TextAreaApp } from '../../text-area-app/TextAreaApp';
 import {
 	updateDescriptionParameterThunk
 } from '../../../entities/file/model/thunks/updateDescriptionParameterThunk';
@@ -237,7 +237,7 @@ export const ParametersPanel = (props: IParametersPanelProps) => {
 				</div>
 
 				<div className={styles.ParametersPanelDescription}>
-					<TextAreaDelayed
+					<TextAreaApp
 						timeChange={1500}
 						onChangeDelayed={handleDescriptionChange}
 						placeholder={t('Описание')}/>

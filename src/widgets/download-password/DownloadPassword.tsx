@@ -2,10 +2,10 @@ import styles from './DownloadPassword.module.scss';
 import { useTranslation } from 'react-i18next';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { IncorrectPassword } from '../../page/download/DownloadPage';
+import { PasswordValidationState } from '../../page/download/DownloadPage';
 
 interface IDownloadPasswordProps {
-	isPassword: IncorrectPassword;
+	isPassword: PasswordValidationState;
 }
 
 export const DownloadPassword = (props: IDownloadPasswordProps) => {
@@ -48,7 +48,7 @@ export const DownloadPassword = (props: IDownloadPasswordProps) => {
 				onChange={(e) => setPassword(e.target.value)}
 				onKeyDown={handleKeyDown}
 			/>
-			{props.isPassword === IncorrectPassword.INCORRECT &&
+			{props.isPassword === PasswordValidationState.INVALID &&
 				<span className={styles.DownloadPasswordIncorrect}>
 					{t('Неверный пароль')}
 				</span>}

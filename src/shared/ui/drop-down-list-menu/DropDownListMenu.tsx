@@ -6,6 +6,7 @@ import IDropdownItem from './types/IDropdownItem';
 import ChevronDown from './assets/ChevronDownIcon';
 import classNames from 'classnames';
 import { useTranslation } from 'react-i18next';
+import { useWindowSize } from '../../hooks/useWindowSize';
 
 /**
  * Свойства компонента DropdownMenu
@@ -110,6 +111,8 @@ export const DropDownListMenu = <ValueT,>({
 	const itemRefs = useRef<Array<HTMLButtonElement | null>>([]);
 	const menuId = useId();
 
+	const { width: windowWidth } = useWindowSize();
+
 	// Закрытие меню при клике вне
 	useEffect(() => {
 		const handleClickOutside = (e: MouseEvent) => {
@@ -190,7 +193,7 @@ export const DropDownListMenu = <ValueT,>({
 				setMenuPos({ top, left });
 			});
 		}
-	}, [open, placement, menuId, buttonWidth]);
+	}, [open, placement, menuId, buttonWidth, windowWidth]);
 
 	const menuContent = (
 		<ul

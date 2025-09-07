@@ -105,7 +105,7 @@ export const Tooltip: FC<TooltipProps> = ({
 		window.addEventListener('scroll', handleScroll, true);
 		window.addEventListener('resize', handleScroll);
 
-		// ⬇️ Вызовем после отрисовки тултипа
+		// Вызов после отрисовки тултипа
 		updatePosition();
 
 		return () => {

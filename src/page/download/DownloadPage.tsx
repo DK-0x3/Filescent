@@ -4,7 +4,7 @@ import React from 'react';
 import QRCode from '../../shared/ui/qr-code/QRCode';
 import CopyLinkSvg from '../../shared/assets/svg/copyLink.svg';
 import DownloadLogo from '../../shared/assets/svg/downloadLogo.svg';
-import { useModal } from '../../widgets/modal/ui/ModalContext';
+import { useModal } from '../../widgets/modal/model/ModalContext';
 import { useTranslation } from 'react-i18next';
 import toast from 'react-hot-toast';
 import CopySvg from '../../shared/assets/svg/copy.svg';
@@ -18,9 +18,9 @@ import { useAppDispatch } from '../../store/types/useAppDispatch';
 import { ParametersPanelState } from '../../store/services/parameters-settings/IParameterSettingsSchema';
 import { setEnableParametersUI } from '../../store/services/parameters-settings/parametersSettingsSlice';
 
-export enum IncorrectPassword {
-	CORRECT = 'CORRECT',
-	INCORRECT = 'INCORRECT',
+export enum PasswordValidationState {
+	VALID = 'VALID',
+	INVALID = 'INVALID',
 	EMPTY = 'EMPTY',
 }
 
@@ -62,7 +62,7 @@ export const DownloadPage = () => {
 		});
 	};
 
-	if (isPassword !== IncorrectPassword.CORRECT) {
+	if (isPassword !== PasswordValidationState.VALID) {
 		return <DownloadPassword isPassword={isPassword} />;
 	}
 
@@ -104,7 +104,7 @@ export const DownloadPage = () => {
 					{t('Осталось скачиваний')}: {parameters?.countDownload}
 				</span>
 				<span>
-					{t('Срок харнения')}: {new Intl.DateTimeFormat(i18n.language, {
+					{t('Срок хранения')}: {new Intl.DateTimeFormat(i18n.language, {
 						day: 'numeric',
 						month: 'long',
 						year: 'numeric',

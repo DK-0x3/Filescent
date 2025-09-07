@@ -5,14 +5,14 @@ import ROUTES from '../../../app/rout/routes';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { getFileParameters, IFilesDownloadParameters } from '../../../entities/file/model/thunks/getFileParameters';
-import { IncorrectPassword } from '../DownloadPage';
+import { PasswordValidationState } from '../DownloadPage';
 import { getFileBlob } from '../../../entities/file/model/thunks/getFileBlob';
 
 export const useFileDownload = (id: string | undefined) => {
 	const [blob, setBlob] = useState<Blob | null>(null);
 	const [blobUrl, setBlobUrl] = useState<string | null>(null);
 	const [parameters, setParameters] = useState<IFilesDownloadParameters>();
-	const [isPassword, setIsPassword] = useState<IncorrectPassword>(IncorrectPassword.CORRECT);
+	const [isPassword, setIsPassword] = useState<PasswordValidationState>(PasswordValidationState.VALID);
 
 	const navigate = useNavigate();
 	const { t } = useTranslation();
@@ -32,11 +32,11 @@ export const useFileDownload = (id: string | undefined) => {
 							const fileBlob = await getFileBlob(fileId, password);
 							setBlob(fileBlob);
 							setBlobUrl(URL.createObjectURL(fileBlob));
-							setIsPassword(IncorrectPassword.CORRECT);
+							setIsPassword(PasswordValidationState.VALID);
 						} catch (error) {
 							if (axios.isAxiosError(error)) {
 								if (error.response?.status === 400) {
-									setIsPassword(IncorrectPassword.INCORRECT);
+									setIsPassword(PasswordValidationState.INVALID);
 								} else if (error.response?.status === 410) {
 									alert(t('Файлы удалены'));
 									navigate(ROUTES.HOME);
@@ -52,7 +52,7 @@ export const useFileDownload = (id: string | undefined) => {
 							}
 						}
 					} else {
-						setIsPassword(IncorrectPassword.EMPTY);
+						setIsPassword(PasswordValidationState.EMPTY);
 					}
 				} else {
 					// если файлы не защищены паролем

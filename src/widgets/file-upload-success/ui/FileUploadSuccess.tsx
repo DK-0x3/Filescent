@@ -13,7 +13,7 @@ import CopyLinkSvg from '../../../shared/assets/svg/copyLink.svg';
 import CopySvg from '../../../shared/assets/svg/copy.svg';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
-import { useModal } from '../../modal/ui/ModalContext';
+import { useModal } from '../../modal/model/ModalContext';
 import { setEnableParametersUI } from '../../../store/services/parameters-settings/parametersSettingsSlice';
 import { useIsMobile } from '../../../shared/hooks/useIsMobile';
 import copy from 'copy-to-clipboard';

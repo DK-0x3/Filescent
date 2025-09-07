@@ -1,6 +1,6 @@
 import styles from './Modal.module.scss';
 import { createPortal } from 'react-dom';
-import { useModal } from './ModalContext';
+import { useModal } from '../model/ModalContext';
 import { FC, useEffect, useRef, useState } from 'react';
 import classNames from 'classnames';
 
