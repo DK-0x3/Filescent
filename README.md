@@ -1,35 +1,88 @@
-- ### React + Vite
-- ### Redux Toolkit + RTK Query
-- ### I18 Next
-- ### React Router
+# Filescent – File Sharing App
 
-## Используемая версия Node.js `22.14.0`
+## 🧠 Technologies
 
-```
+- ⚛️ React + Vite
+- 🧰 Redux Toolkit + RTK Query
+- 🌐 React Router
+- 🌍 I18Next
+- 🚀 Node.js `v22.14.0`
+
+---
+
+## 🚀 Quick Start
+
+### 1. Install Node using `nvm`
+
+```bash
 nvm install v22.14.0
-```
-
-```
 nvm use v22.14.0
 ```
 
+Create a `.env` file:
 
-Создайте файл `.env` в корне проекта
 ```
 VITE_API_URL=http://localhost:1941
 ```
 
+---
 
-## Backend:
+# 🛠️ Backend Required
 
-db + minio
+To run the project properly, two backend services are required:
+
+| Service                   | Purpose                           | Repository                                                                                 |
+|---------------------------|-----------------------------------|---------------------------------------------------------------------------------------------|
+| 📦 Storage (MinIO + DB)   | File processing and storage       | [DragDropFiles-backend-for-dev](https://github.com/Aurivena/DragDropFiles-backend-for-dev) |
+| 🔌 API Server             | File management via REST API      | [DropDragFile-API](https://github.com/Aurivena/DropDragFile-API)                           |
+
+By default, the API should be available at:  
+**http://localhost:1941**
+
+Make sure the ports are free and the backend is running **before starting the frontend**.
+
+<br/>
+## RU Version
+<br/>
+
+# Filescent – Обменник файлами
+
+## 🧠 Технологии
+
+- ⚛️ React + Vite
+- 🧰 Redux Toolkit + RTK Query
+- 🌐 React Router
+- 🌍 I18Next
+- 🚀 Node.js `v22.14.0`
+
+---
+
+## 🚀 Быстрый старт
+
+### 1. Установка Node через `nvm`
+
+```bash
+nvm install v22.14.0
+nvm use v22.14.0
 ```
-https://github.com/Aurivena/DragDropFiles-backend-for-dev
+
+Создайте файл `.env`
 ```
-API
+VITE_API_URL=http://localhost:1941
 ```
-https://github.com/Aurivena/DropDragFile-API
-```
+---
+# 🛠️ Требуется бэкенд
+
+Для корректной работы проекта необходимо поднять два бэкенд-сервиса:
+| Сервис                    | Назначение                        | Репозиторий                                                                                |
+| ------------------------- | --------------------------------- | ------------------------------------------------------------------------------------------ |
+| 📦 Хранилище (MinIO + DB) | Обработка и хранение файлов       | [DragDropFiles-backend-for-dev](https://github.com/Aurivena/DragDropFiles-backend-for-dev) |
+| 🔌 API сервер             | Управление файлами через REST API | [DropDragFile-API](https://github.com/Aurivena/DropDragFile-API)                           |
+
+По умолчанию API должен быть доступен на http://localhost:1941
+Убедитесь, что порты не заняты и backend запущен до старта фронта.
+
+# Screenshots
 
 ![image](https://github.com/user-attachments/assets/55c13e69-4a8a-4d1a-abfa-5d68c668959a)
 ![image](https://github.com/user-attachments/assets/e74d6436-b4b4-4bcc-b754-45e59820cadc)
